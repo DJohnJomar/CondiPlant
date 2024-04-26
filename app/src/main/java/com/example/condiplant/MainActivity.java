@@ -1,9 +1,12 @@
 package com.example.condiplant;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.Manifest;
 
 import java.io.IOException;
 
@@ -30,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
         btnSeeDiseases = findViewById(R.id.btnSeeDiseases);
         imageView = (ImageView) findViewById(R.id.imgView);
 
+        //Permission
+        getPermission();
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 12);
             }
         });
         btnUpload.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +66,28 @@ public class MainActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             }
+        }else if(requestCode == 12){
+            bitmap = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(bitmap);
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    void getPermission(){
+        if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(MainActivity.this, new String [] {Manifest.permission.CAMERA}, 11);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 11){
+            if(grantResults.length>0){
+                if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    this.getPermission();
+                }
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
