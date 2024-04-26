@@ -21,21 +21,20 @@
         app:layout_constraintVertical_bias="0.075" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgView"
         android:layout_width="156dp"
         android:layout_height="166dp"
-        android:layout_marginStart="127dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258"
+        app:layout_constraintVertical_bias="0.243"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/logo"
         android:layout_width="95dp"
         android:layout_height="104dp"
         android:layout_marginStart="27dp"
@@ -48,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.018"
-        app:srcCompat="@drawable/CondiPlantLogo" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageButton
         android:id="@+id/btnSeeDiseases"
@@ -65,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/Diseases" />
+        app:srcCompat="@drawable/diseases" />
 
     <ImageButton
         android:id="@+id/btnCapture"
@@ -82,7 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/Capture" />
+        app:srcCompat="@drawable/capture" />
 
     <ImageButton
         android:id="@+id/btnUpload"
@@ -99,7 +98,7 @@
         app:layout_constraintStart_toEndOf="@+id/btnCapture"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/Upload" />
+        app:srcCompat="@drawable/upload" />
 
     <TextView
         android:id="@+id/txtCapture"
