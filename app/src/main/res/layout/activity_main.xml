@@ -21,19 +21,6 @@
         app:layout_constraintVertical_bias="0.075" />
 
     <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="156dp"
-        android:layout_height="166dp"
-        android:layout_marginEnd="9dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.243"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-    <ImageView
         android:id="@+id/logo"
         android:layout_width="95dp"
         android:layout_height="104dp"

@@ -3,4 +3,7 @@
     <string name="upload_image">Upload Image</string>
     <string name="known_diseases">Known Diseases</string>
     <string name="condiplant">CondiPlant</string>
+    <string name="remedy">Remedy</string>
+    <string name="back">Back</string>
+    <string name="app_name">CondiPlant\n</string>
 </resources>

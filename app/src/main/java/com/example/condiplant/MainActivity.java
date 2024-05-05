@@ -21,7 +21,6 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton btnCapture, btnUpload, btnSeeDiseases;
-    ImageView imageView;
     Bitmap bitmap;
 
     @Override
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btnCapture);
         btnUpload = findViewById(R.id.btnUpload);
         btnSeeDiseases = findViewById(R.id.btnSeeDiseases);
-        imageView = (ImageView) findViewById(R.id.imgView);
 
         //Permission
         getPermission();
@@ -56,19 +54,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //Image Capture
         if(requestCode == 10){
             if (data != null){
                 Uri uri = data.getData();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-                    imageView.setImageBitmap(bitmap);
+                    Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
+                    displayIntent.putExtra("image", bitmap);
+                    startActivity(displayIntent);
+                    //imageView.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
-        }else if(requestCode == 12){
+        }else if(requestCode == 12){//Upload Image
             bitmap = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(bitmap);
+            //imageView.setImageBitmap(bitmap);
+            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
+            displayIntent.putExtra("image", bitmap);
+            startActivity(displayIntent);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
