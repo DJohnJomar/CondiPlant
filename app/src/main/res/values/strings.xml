@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">CondiPlant</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="known_diseases">Known Diseases</string>
+    <string name="condiplant">CondiPlant</string>
 </resources>
