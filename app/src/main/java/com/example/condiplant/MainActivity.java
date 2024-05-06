@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -54,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        int captureRequestCode = 10;
+        int uploadRequestCode = 12;
         //Image Capture
-        if(requestCode == 10){
+        if(requestCode == captureRequestCode){
             if (data != null){
                 Uri uri = data.getData();
                 try {
@@ -68,12 +71,15 @@ public class MainActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             }
-        }else if(requestCode == 12){//Upload Image
+        }else if(requestCode == uploadRequestCode && resultCode == RESULT_OK && data != null){//Upload Image
             bitmap = (Bitmap) data.getExtras().get("data");
             //imageView.setImageBitmap(bitmap);
             Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
             displayIntent.putExtra("image", bitmap);
             startActivity(displayIntent);
+        }else{
+            // Log a message if no condition matches
+            Log.e("MainActivity", "No valid condition matched in onActivityResult()");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -86,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == 11){
+        int permissionRequestCode = 11;
+        if(requestCode == permissionRequestCode){
             if(grantResults.length>0){
                 if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
                     this.getPermission();
