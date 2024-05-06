@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
     private File createTempImageFile(Bitmap bitmatp){
         File tempFile = null;
         try {
-            tempFile = File.createTempFile("temp_image", ".jpg", getCacheDir());
+            tempFile = File.createTempFile("temp_image", ".png", getCacheDir());
             FileOutputStream out = new FileOutputStream(tempFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);//Using png format to save image
             out.flush();
             out.close();
         }catch (IOException e){
