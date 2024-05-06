@@ -17,12 +17,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.Manifest;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton btnCapture, btnUpload, btnSeeDiseases;
-    Bitmap bitmap;
+    private ImageButton btnCapture, btnUpload, btnSeeDiseases;
+    private Bitmap bitmap;
+    private File tempImageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 Uri uri = data.getData();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                    tempImageFile = createTempImageFile(bitmap);
                     Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
-                    displayIntent.putExtra("image", bitmap);
+                    displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
                     startActivity(displayIntent);
                     //imageView.setImageBitmap(bitmap);
                 } catch (IOException e) {
@@ -73,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }else if(requestCode == uploadRequestCode && resultCode == RESULT_OK && data != null){//Upload Image
             bitmap = (Bitmap) data.getExtras().get("data");
+            tempImageFile = createTempImageFile(bitmap);
             //imageView.setImageBitmap(bitmap);
             Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
-            displayIntent.putExtra("image", bitmap);
+            displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
             startActivity(displayIntent);
         }else{
             // Log a message if no condition matches
@@ -84,6 +89,19 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private File createTempImageFile(Bitmap bitmatp){
+        File tempFile = null;
+        try {
+            tempFile = File.createTempFile("temp_image", ".jpg", getCacheDir());
+            FileOutputStream out = new FileOutputStream(tempFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return tempFile;
+    }
     void getPermission(){
         if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String [] {Manifest.permission.CAMERA}, 11);
