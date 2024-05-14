@@ -17,8 +17,11 @@ import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.image.TensorImage;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class DisplayImageActivity extends AppCompatActivity {
 
@@ -26,10 +29,14 @@ public class DisplayImageActivity extends AppCompatActivity {
     private Button btnBack, btnRemedy;
     private TextView txtPrediction;
     private String imagePath;
+    private ArrayList<String> labels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_image);
+        labels = new ArrayList<>();
+
+        setUpLabels(labels);
 
         txtPrediction = findViewById(R.id.txtPrediction);
         imageView = findViewById(R.id.displayImageView);
@@ -89,7 +96,7 @@ public class DisplayImageActivity extends AppCompatActivity {
 
             // Get max confidence index
             int predictedClass = getMax(outputFeature0.getFloatArray());
-            txtPrediction.setText(predictedClass + "");
+            txtPrediction.setText(labels.get(predictedClass));
 
             // Releases model resources if no longer used.
             model.close();
@@ -103,10 +110,26 @@ public class DisplayImageActivity extends AppCompatActivity {
         int max = 0;
         for (int i = 0; i<array.length; i++){
             if(array[i] > array[max])
-                max = i;
+                max = i+1; //+1 because index starts with 0 but labels's index start with 1
         }
 
         return max;
+    }
+
+    public void setUpLabels(ArrayList<String> labels){
+        //For the classification labels
+
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader (getAssets().open("labels.txt")));
+            String line = reader.readLine();
+            while(line != null){
+                labels.add(line);
+                line = reader.readLine(); // Read the next line
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
