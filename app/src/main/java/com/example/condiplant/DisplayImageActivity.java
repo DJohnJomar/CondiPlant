@@ -71,20 +71,25 @@ public class DisplayImageActivity extends AppCompatActivity {
         try {
             Model model = Model.newInstance(DisplayImageActivity.this);
 
+            // Resize and normalize bitmap
+            bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
+
+            TensorImage tensorImage = new TensorImage(DataType.FLOAT32);
+            tensorImage.load(bitmap);
+
             // Creates inputs for reference.
             TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
-            //Resize bitmap
-            bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
-            inputFeature0.loadBuffer(TensorImage.fromBitmap(bitmap).getBuffer());
+            inputFeature0.loadBuffer(tensorImage.getBuffer());
 
-            Log.d("Shape of input buffer",TensorImage.fromBitmap(bitmap).getBuffer()+"");
+            Log.d("Shape of input buffer", tensorImage.getBuffer() + "");
+
             // Runs model inference and gets result.
             Model.Outputs outputs = model.process(inputFeature0);
             TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
 
-            //outputFeature0.getFloatArray();
-            //txtPrediction.setText(outputFeature0.getFloatArray()[1000]+"");
-            txtPrediction.setText(getMax(outputFeature0.getFloatArray())+"");
+            // Get max confidence index
+            int predictedClass = getMax(outputFeature0.getFloatArray());
+            txtPrediction.setText(predictedClass + "");
 
             // Releases model resources if no longer used.
             model.close();
