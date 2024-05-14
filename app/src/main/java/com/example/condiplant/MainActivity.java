@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private File createTempImageFile(Bitmap bitmatp){
+    private File createTempImageFile(Bitmap bitmap){
         File tempFile = null;
         try {
             tempFile = File.createTempFile("temp_image", ".png", getCacheDir());
