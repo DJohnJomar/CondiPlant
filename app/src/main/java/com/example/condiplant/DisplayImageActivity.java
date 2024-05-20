@@ -110,7 +110,7 @@ public class DisplayImageActivity extends AppCompatActivity {
         int max = 0;
         for (int i = 0; i<array.length; i++){
             if(array[i] > array[max])
-                max = i+1; //+1 because index starts with 0 but labels's index start with 1
+                max = i;
         }
 
         return max;
