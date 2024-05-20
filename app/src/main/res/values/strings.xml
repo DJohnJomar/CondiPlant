@@ -1,7 +1,7 @@
 <resources>
     <string name="capture_image">Capture Image</string>
     <string name="upload_image">Upload Image</string>
-    <string name="known_diseases">Known Diseases</string>
+    <string name="known_diseases">Common Diseases</string>
     <string name="condiplant">CondiPlant</string>
     <string name="remedy">Remedy</string>
     <string name="back">Back</string>
