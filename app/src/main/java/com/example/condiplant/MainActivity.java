@@ -66,11 +66,16 @@ public class MainActivity extends AppCompatActivity {
                 Uri uri = data.getData();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+//                    if (bitmap.getHeight() == bitmap.getWidth()) { // check if image is square
                     tempImageFile = createTempImageFile(bitmap);
+
+                    // check first if the image is within restriction
+
                     Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
                     displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
                     startActivity(displayIntent);
                     //imageView.setImageBitmap(bitmap);
+//                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -78,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         }else if(requestCode == uploadRequestCode && resultCode == RESULT_OK && data != null){//Upload Image
             bitmap = (Bitmap) data.getExtras().get("data");
             tempImageFile = createTempImageFile(bitmap);
+
+            // check first if the image is within restriction
+
             //imageView.setImageBitmap(bitmap);
             Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
             displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
