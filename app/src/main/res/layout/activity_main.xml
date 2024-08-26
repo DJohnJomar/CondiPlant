@@ -7,32 +7,45 @@
     android:background="@color/BgGreen"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:fontFamily="@font/racing_sans_one"
-        android:text="@string/condiplant"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toEndOf="@+id/logo"
-        app:layout_constraintTop_toTopOf="@+id/logo" />
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="95dp"
-        android:layout_height="104dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolBar"
+        android:layout_width="413dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="150dp"
+        android:background="@android:color/holo_green_light"
+        app:layout_constraintBottom_toTopOf="@+id/btnCapture"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.060000002"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="13dp"
+            android:fontFamily="@font/racing_sans_one"
+            android:text="@string/condiplant"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="145dp" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="49dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="81dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/btnSeeDiseases"
@@ -44,43 +57,42 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.65999997"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpload"
+        app:layout_constraintVertical_bias="0.096"
         app:srcCompat="@drawable/diseases" />
 
     <ImageButton
         android:id="@+id/btnCapture"
         android:layout_width="133dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="113dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="Capture Image"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintEnd_toStartOf="@+id/btnUpload"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
         app:srcCompat="@drawable/capture" />
 
     <ImageButton
         android:id="@+id/btnUpload"
         android:layout_width="133dp"
         android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="14dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="Upload Image"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCapture"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtCapture"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
         app:srcCompat="@drawable/upload" />
 
     <TextView

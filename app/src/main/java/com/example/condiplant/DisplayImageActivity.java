@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class DisplayImageActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private Button btnBack, btnRemedy;
+    private ImageButton btnBack, btnRemedy;
     private TextView txtPrediction;
     private String imagePath;
     private ArrayList<String> labels;
@@ -67,7 +68,7 @@ public class DisplayImageActivity extends AppCompatActivity {
 //        //Display the image in ImageView
 //        imageView.setImageBitmap(image);
 
-        btnBack = findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.backButton);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
