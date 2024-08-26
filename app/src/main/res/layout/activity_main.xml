@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="150dp"
         android:background="@android:color/holo_green_light"
