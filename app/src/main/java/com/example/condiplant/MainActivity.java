@@ -1,21 +1,36 @@
 package com.example.condiplant;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
+import android.widget.Button;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.Manifest;
+import android.widget.TextView;
+
+import com.canhub.cropper.CropImage;
+import com.canhub.cropper.CropImageContract;
+import com.canhub.cropper.CropImageContractOptions;
+import com.canhub.cropper.CropImageOptions;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,6 +41,21 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnCapture, btnUpload, btnSeeDiseases;
     private Bitmap bitmap;
     private File tempImageFile;
+
+
+    ActivityResultLauncher<CropImageContractOptions> cropImage = registerForActivityResult(new CropImageContract(), result -> {
+        if (result.isSuccessful()) {
+            bitmap = BitmapFactory.decodeFile(result.getUriFilePath(getApplicationContext(), true));
+            tempImageFile = createTempImageFile(bitmap);
+
+            // check first if the image is within restriction
+
+            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
+            displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
+            startActivity(displayIntent);
+        }
+    });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 12);
+//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                startActivityForResult(intent, 12);
+                launchImageCropper(null);
             }
         });
         btnUpload.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +85,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 10);
             }
         });
+
+
+
+    }
+
+    private void launchImageCropper(Uri uri) {
+        CropImageOptions cropImageOptions = new CropImageOptions();
+        cropImageOptions.imageSourceIncludeGallery = false;
+        cropImageOptions.imageSourceIncludeCamera = true;
+        cropImageOptions.fixAspectRatio = true;
+        cropImageOptions.aspectRatioX = 1;
+        cropImageOptions.aspectRatioY = 1;
+        CropImageContractOptions cropImageContractOptions = new CropImageContractOptions(uri, cropImageOptions);
+        cropImage.launch(cropImageContractOptions);
     }
 
     @Override
@@ -63,33 +108,34 @@ public class MainActivity extends AppCompatActivity {
         //Image Capture
         if(requestCode == captureRequestCode){
             if (data != null){
+
                 Uri uri = data.getData();
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-//                    if (bitmap.getHeight() == bitmap.getWidth()) { // check if image is square
-                    tempImageFile = createTempImageFile(bitmap);
+                launchImageCropper(uri);
+//                tempImageFile = createTempImageFile(bitmap);
+//
+//                // check first if the image is within restriction
+//
+//                Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
+//                displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
+//                startActivity(displayIntent);
+//                //imageView.setImageBitmap(bitmap);
 
-                    // check first if the image is within restriction
-
-                    Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
-                    displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
-                    startActivity(displayIntent);
-                    //imageView.setImageBitmap(bitmap);
-//                    }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
             }
         }else if(requestCode == uploadRequestCode && resultCode == RESULT_OK && data != null){//Upload Image
+            Uri uri = data.getData();
+            launchImageCropper(uri);
             bitmap = (Bitmap) data.getExtras().get("data");
-            tempImageFile = createTempImageFile(bitmap);
 
-            // check first if the image is within restriction
 
-            //imageView.setImageBitmap(bitmap);
-            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
-            displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
-            startActivity(displayIntent);
+
+//            tempImageFile = createTempImageFile(bitmap);
+//
+//            // check first if the image is within restriction
+//
+//            //imageView.setImageBitmap(bitmap);
+//            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
+//            displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
+//            startActivity(displayIntent);
         }else{
             // Log a message if no condition matches
             Log.e("MainActivity", "No valid condition matched in onActivityResult()");
@@ -128,4 +174,6 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    
 }

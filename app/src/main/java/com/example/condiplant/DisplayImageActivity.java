@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.condiplant.ml.Model;
+import com.example.condiplant.ml.EfficientNetB0;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.image.TensorImage;
@@ -21,6 +21,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 
 public class DisplayImageActivity extends AppCompatActivity {
@@ -76,7 +78,34 @@ public class DisplayImageActivity extends AppCompatActivity {
 
     public void predict(Bitmap bitmap){
         try {
-            Model model = Model.newInstance(DisplayImageActivity.this);
+            System.out.println("Predicting");
+            EfficientNetB0 model = EfficientNetB0.newInstance(DisplayImageActivity.this);
+
+            // Creates inputs for reference.
+//            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
+//            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
+//            byteBuffer.order(ByteOrder.nativeOrder());
+//
+//            int[] intValues = new int[224 * 224];
+//            bitmap.getPixels(intValues, 0 ,bitmap.getWidth(),0,0,bitmap.getWidth(), bitmap.getHeight());
+//            int pixel = 0;
+//
+//            for (int i = 0; i < 224; i++){
+//                for (int j = 0; j < 224; j++){
+//                    int val = intValues[pixel++];
+//                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f/255));
+//                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f/255));
+//                    byteBuffer.putFloat((val & 0xFF) * (1.f/255));
+//                }
+//            }
+//
+//            inputFeature0.loadBuffer(byteBuffer);
+//
+//            // Runs model inference and gets result.
+//            EfficientNetB0.Outputs outputs = model.process(inputFeature0);
+//            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+
+
 
             // Resize and normalize bitmap
             bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
@@ -86,22 +115,39 @@ public class DisplayImageActivity extends AppCompatActivity {
 
             // Creates inputs for reference.
             TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
-            inputFeature0.loadBuffer(tensorImage.getBuffer());
+
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
+            byteBuffer.order(ByteOrder.nativeOrder());
+            int[] intValues = new int[224 * 224];
+            bitmap.getPixels(intValues, 0 ,bitmap.getWidth(),0,0,bitmap.getWidth(), bitmap.getHeight());
+            int pixel = 0;
+
+            for (int i = 0; i < 224; i++){
+                for (int j = 0; j < 224; j++){
+                    int val = intValues[pixel++];
+                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f/255));
+                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f/255));
+                    byteBuffer.putFloat((val & 0xFF) * (1.f/255));
+                }
+            }
+            inputFeature0.loadBuffer(byteBuffer);
 
             Log.d("Shape of input buffer", tensorImage.getBuffer() + "");
 
             // Runs model inference and gets result.
-            Model.Outputs outputs = model.process(inputFeature0);
+            EfficientNetB0.Outputs outputs = model.process(inputFeature0);
             TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
 
+
             // Get max confidence index
-            int predictedClass = getMax(outputFeature0.getFloatArray());
-            txtPrediction.setText(labels.get(predictedClass));
+            float[] confidence = outputFeature0.getFloatArray();
+            int predictedClass = getMax(confidence);
+            txtPrediction.setText(labels.get(predictedClass) + " " + confidence[predictedClass] );
 
             // Releases model resources if no longer used.
             model.close();
         } catch (IOException e) {
-            // TODO Handle the exception
+            e.printStackTrace();
         }
 
     }
@@ -143,4 +189,6 @@ public class DisplayImageActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

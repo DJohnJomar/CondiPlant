@@ -5,6 +5,8 @@
     <string name="condiplant">CondiPlant</string>
     <string name="remedy">Remedy</string>
     <string name="back">Back</string>
+    <string name="close">Close</string>
     <string name="app_name">CondiPlant\n</string>
     <string name="prediction">Prediction\n</string>
+    <string name="error_message">Error Message Here\n</string>
 </resources>

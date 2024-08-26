@@ -45,8 +45,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpload"
-        app:layout_constraintVertical_bias="0.110000014"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.65999997"
         app:srcCompat="@drawable/diseases" />
 
     <ImageButton
@@ -54,15 +54,16 @@
         android:layout_width="133dp"
         android:layout_height="150dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="Capture Image"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintEnd_toStartOf="@+id/btnUpload"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/capture" />
 
     <ImageButton
@@ -70,15 +71,16 @@
         android:layout_width="133dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="20dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="Upload Image"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCapture"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/upload" />
 
     <TextView
