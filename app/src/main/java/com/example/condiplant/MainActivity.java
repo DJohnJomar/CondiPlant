@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
             // check first if the image is within restriction
 
+            //imageView.setImageBitmap(bitmap);
             Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
             displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
             startActivity(displayIntent);
@@ -71,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent, 12);
                 launchImageCropper(null);
             }
         });
@@ -108,34 +107,10 @@ public class MainActivity extends AppCompatActivity {
         //Image Capture
         if(requestCode == captureRequestCode){
             if (data != null){
-
                 Uri uri = data.getData();
                 launchImageCropper(uri);
-//                tempImageFile = createTempImageFile(bitmap);
-//
-//                // check first if the image is within restriction
-//
-//                Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
-//                displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
-//                startActivity(displayIntent);
-//                //imageView.setImageBitmap(bitmap);
 
             }
-        }else if(requestCode == uploadRequestCode && resultCode == RESULT_OK && data != null){//Upload Image
-            Uri uri = data.getData();
-            launchImageCropper(uri);
-            bitmap = (Bitmap) data.getExtras().get("data");
-
-
-
-//            tempImageFile = createTempImageFile(bitmap);
-//
-//            // check first if the image is within restriction
-//
-//            //imageView.setImageBitmap(bitmap);
-//            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
-//            displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
-//            startActivity(displayIntent);
         }else{
             // Log a message if no condition matches
             Log.e("MainActivity", "No valid condition matched in onActivityResult()");
@@ -174,6 +149,4 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
-    
 }
