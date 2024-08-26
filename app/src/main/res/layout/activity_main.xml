@@ -69,9 +69,10 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintEnd_toStartOf="@+id/btnUpload"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintVertical_bias="0.747"
         app:srcCompat="@drawable/capture" />
 
     <ImageButton
