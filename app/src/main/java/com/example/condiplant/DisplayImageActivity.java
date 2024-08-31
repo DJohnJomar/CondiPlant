@@ -31,17 +31,22 @@ public class DisplayImageActivity extends AppCompatActivity {
     private ImageView imageView;
     private ImageButton btnBack, btnRemedy;
     private TextView txtPrediction;
+    private TextView txtPredictionDesc;
     private String imagePath;
     private ArrayList<String> labels;
+    private ArrayList<String> labelDescription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_image);
         labels = new ArrayList<>();
+        setUpLabels(labels, "labels.txt");
+        labelDescription = new ArrayList<>();
+        setUpLabels(labelDescription, "labelDescription.txt");
 
-        setUpLabels(labels);
 
         txtPrediction = findViewById(R.id.txtPrediction);
+        txtPredictionDesc = findViewById(R.id.txtPredictionDesc);
         imageView = findViewById(R.id.displayImageView);
 
 
@@ -143,7 +148,9 @@ public class DisplayImageActivity extends AppCompatActivity {
             // Get max confidence index
             float[] confidence = outputFeature0.getFloatArray();
             int predictedClass = getMax(confidence);
+            //Changes text views from results
             txtPrediction.setText(labels.get(predictedClass) + " " + confidence[predictedClass] );
+            txtPredictionDesc.setText(labelDescription.get(predictedClass));
 
             // Releases model resources if no longer used.
             model.close();
@@ -163,12 +170,11 @@ public class DisplayImageActivity extends AppCompatActivity {
         return max;
     }
 
-    public void setUpLabels(ArrayList<String> labels){
+    //Fills up the arraylist with the text contained in the selected text file named "fileName"
+    public void setUpLabels(ArrayList<String> labels, String fileName){
         //For the classification labels
-
-
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader (getAssets().open("labels.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader (getAssets().open(fileName)));
             String line = reader.readLine();
             while(line != null){
                 labels.add(line);
