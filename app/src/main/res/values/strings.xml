@@ -9,4 +9,7 @@
     <string name="app_name">CondiPlant\n</string>
     <string name="prediction">Prediction\n</string>
     <string name="error_message">Error Message Here\n</string>
+    <string name="back_button">Back Btn</string>
+    <string name="uploaded_img">Uploaded image by the user</string>
+    <string name="app_logo">Condiplant logo</string>
 </resources>
