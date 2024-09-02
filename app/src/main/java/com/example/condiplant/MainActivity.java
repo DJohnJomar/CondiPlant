@@ -84,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 10);
             }
         });
+        btnSeeDiseases.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListOfRootcrops.class);
+                startActivity(intent);
+            }
+        });
 
 
 
