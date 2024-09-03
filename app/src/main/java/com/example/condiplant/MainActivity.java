@@ -1,33 +1,22 @@
 package com.example.condiplant;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.ColorDrawable;
-import android.widget.Button;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.Manifest;
-import android.widget.TextView;
 
-import com.canhub.cropper.CropImage;
 import com.canhub.cropper.CropImageContract;
 import com.canhub.cropper.CropImageContractOptions;
 import com.canhub.cropper.CropImageOptions;
@@ -42,15 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private File tempImageFile;
 
-
+    // Used after successful image cropping. Prepares the image for application usage.
     ActivityResultLauncher<CropImageContractOptions> cropImage = registerForActivityResult(new CropImageContract(), result -> {
         if (result.isSuccessful()) {
             bitmap = BitmapFactory.decodeFile(result.getUriFilePath(getApplicationContext(), true));
             tempImageFile = createTempImageFile(bitmap);
-
-            // check first if the image is within restriction
-
-            //imageView.setImageBitmap(bitmap);
             Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
             displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
             startActivity(displayIntent);
@@ -69,12 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Permission
         getPermission();
+
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchImageCropper(null);
             }
         });
+
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 10);
             }
         });
-
-
-
     }
 
+    /**
+     * Launches image cropper for the input image (Uri)
+     */
     private void launchImageCropper(Uri uri) {
         CropImageOptions cropImageOptions = new CropImageOptions();
         cropImageOptions.imageSourceIncludeGallery = false;
@@ -109,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             if (data != null){
                 Uri uri = data.getData();
                 launchImageCropper(uri);
-
             }
         }else{
             // Log a message if no condition matches
@@ -131,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return tempFile;
     }
+
+    /**
+     * Requests camera permission if the devices has not granted its use.
+     */
     void getPermission(){
         if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this, new String [] {Manifest.permission.CAMERA}, 11);
