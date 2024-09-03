@@ -7,6 +7,10 @@
     <string name="back">Back</string>
     <string name="close">Close</string>
     <string name="app_name">CondiPlant\n</string>
-    <string name="prediction">Prediction\n</string>
+    <string name="prediction">Prediction</string>
     <string name="error_message">Error Message Here\n</string>
+    <string name="back_button">Back Btn</string>
+    <string name="uploaded_img">Uploaded image by the user</string>
+    <string name="app_logo">Condiplant logo</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>

@@ -1,8 +1,0 @@
-Cassava Leaf Blight
-Cassava Brown Spot
-Cassava Healthy
-Cassava Mosaic
-Sweet Potato Leaf Spot
-Taro Leaf Blight
-Taro Mosaic
-Unknown
