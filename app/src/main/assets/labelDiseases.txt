@@ -1,0 +1,8 @@
+Leaf Blight
+Brown Spot
+Healthy
+Mosaic
+Leaf Spot
+Leaf Blight
+Mosaic
+Unknown

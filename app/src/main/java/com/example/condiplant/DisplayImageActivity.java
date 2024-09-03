@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,23 +29,39 @@ public class DisplayImageActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private ImageButton btnBack, btnRemedy;
-    private TextView txtPrediction;
-    private TextView txtPredictionDesc;
+    private TextView txtRootCrop, txtDisease, txtDiseaseDesc, txtRemedy, txtRemedyDesc;
     private String imagePath;
-    private ArrayList<String> labels;
-    private ArrayList<String> labelDescription;
+    private ArrayList<String> labelRootCrops, labelDiseases, labelDescription;
+    private ArrayList<String> remedy1, remedy2, remedy4, remedy5, remedy6, remedy7;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_image);
-        labels = new ArrayList<>();
-        setUpLabels(labels, "labels.txt");
+        labelRootCrops = new ArrayList<>();
+        setUpLabels(labelRootCrops, "labelRootCrops.txt");
+        labelDiseases = new ArrayList<>();
+        setUpLabels(labelDiseases, "labelDiseases.txt");
         labelDescription = new ArrayList<>();
         setUpLabels(labelDescription, "labelDescription.txt");
+        remedy1 = new ArrayList<>();
+        setUpLabels(remedy1, "CLBRemedy.txt");
+        remedy2 = new ArrayList<>();
+        setUpLabels(remedy2, "CBSRemedy.txt");
+        remedy4 = new ArrayList<>();
+        setUpLabels(remedy4, "CMRemedy.txt");
+        remedy5 = new ArrayList<>();
+        setUpLabels(remedy5, "SPLSRemedy.txt");
+        remedy6 = new ArrayList<>();
+        setUpLabels(remedy6, "TLBRemedy.txt");
+        remedy7 = new ArrayList<>();
+        setUpLabels(remedy7, "TMRemedy.txt");
 
-
-        txtPrediction = findViewById(R.id.txtPrediction);
-        txtPredictionDesc = findViewById(R.id.txtPredictionDesc);
+        txtRootCrop = findViewById(R.id.txtRootCrop);
+        txtDisease = findViewById(R.id.txtDisease);
+        txtDiseaseDesc = findViewById(R.id.txtDiseaseDesc);
+        txtRemedy = findViewById(R.id.txtRemedy);
+        txtRemedyDesc = findViewById(R.id.txtRemedyDesc);
         imageView = findViewById(R.id.displayImageView);
 
 
@@ -67,11 +82,6 @@ public class DisplayImageActivity extends AppCompatActivity {
             // Handle the case where no image file path is received
             Log.e("DisplayImageActivity", "No image file path received.");
         }
-//        //Receive the image bitmap from intent.
-//        Bitmap image = getIntent().getParcelableExtra("image");
-//
-//        //Display the image in ImageView
-//        imageView.setImageBitmap(image);
 
         btnBack = findViewById(R.id.backButton);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -86,32 +96,6 @@ public class DisplayImageActivity extends AppCompatActivity {
         try {
             System.out.println("Predicting");
             EfficientNetB0 model = EfficientNetB0.newInstance(DisplayImageActivity.this);
-
-            // Creates inputs for reference.
-//            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
-//            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
-//            byteBuffer.order(ByteOrder.nativeOrder());
-//
-//            int[] intValues = new int[224 * 224];
-//            bitmap.getPixels(intValues, 0 ,bitmap.getWidth(),0,0,bitmap.getWidth(), bitmap.getHeight());
-//            int pixel = 0;
-//
-//            for (int i = 0; i < 224; i++){
-//                for (int j = 0; j < 224; j++){
-//                    int val = intValues[pixel++];
-//                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f/255));
-//                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f/255));
-//                    byteBuffer.putFloat((val & 0xFF) * (1.f/255));
-//                }
-//            }
-//
-//            inputFeature0.loadBuffer(byteBuffer);
-//
-//            // Runs model inference and gets result.
-//            EfficientNetB0.Outputs outputs = model.process(inputFeature0);
-//            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
-
-
 
             // Resize and normalize bitmap
             bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
@@ -144,13 +128,26 @@ public class DisplayImageActivity extends AppCompatActivity {
             EfficientNetB0.Outputs outputs = model.process(inputFeature0);
             TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
 
-
             // Get max confidence index
             float[] confidence = outputFeature0.getFloatArray();
             int predictedClass = getMax(confidence);
+
             //Changes text views from results
-            txtPrediction.setText(labels.get(predictedClass) + " " + confidence[predictedClass] );
-            txtPredictionDesc.setText(labelDescription.get(predictedClass));
+
+            txtRootCrop.setText(labelRootCrops.get(predictedClass));
+            txtDisease.setText(labelDiseases.get(predictedClass));
+            txtDiseaseDesc.setText("    " + labelDescription.get(predictedClass));
+
+            if (predictedClass == 7){
+                txtRemedy.setVisibility(View.INVISIBLE);
+                txtRemedyDesc.setVisibility(View.INVISIBLE);
+                txtRemedyDesc.setText("");
+            } else {
+                txtRemedy.setVisibility(View.VISIBLE);
+                txtRemedyDesc.setVisibility(View.VISIBLE);
+                txtRemedyDesc.setText(getRemedyDescription(predictedClass));
+            }
+
 
             // Releases model resources if no longer used.
             model.close();
@@ -195,6 +192,43 @@ public class DisplayImageActivity extends AppCompatActivity {
                 tempFile.delete();
             }
         }
+    }
+
+    public String getRemedyDescription(int index){
+        StringBuilder remedyDescription = new StringBuilder();
+        switch (index){
+            case 0:
+                for (String remedy : remedy1){
+                    remedyDescription.append("• ").append(remedy).append("\n");
+                }
+                break;
+            case 1:
+                for (String remedy : remedy2){
+                    remedyDescription.append("• ").append(remedy).append("\n");
+                }
+                break;
+            case 3:
+                for (String remedy : remedy4){
+                    remedyDescription.append("• ").append(remedy).append("\n");
+                }
+                break;
+            case 4:
+                for (String remedy : remedy5){
+                    remedyDescription.append("• ").append(remedy).append("\n");
+                }
+                break;
+            case 5:
+                for (String remedy : remedy6){
+                    remedyDescription.append("• ").append(remedy).append("\n");
+                }
+                break;
+            case 6:
+                for (String remedy : remedy7){
+                    remedyDescription.append("• ").append(remedy).append("\n");
+                }
+                break;
+        }
+        return remedyDescription.toString();
     }
 
 
