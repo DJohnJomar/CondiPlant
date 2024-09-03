@@ -19,6 +19,18 @@
         android:theme="@style/Theme.CondiPlant"
         tools:targetApi="31">
         <activity
+            android:name=".SweetPotatoDiseases"
+            android:exported="false" />
+        <activity
+            android:name=".TaroDiseases"
+            android:exported="false" />
+        <activity
+            android:name=".CassavaDiseases"
+            android:exported="false" />
+        <activity
+            android:name=".cassavaDiseases"
+            android:exported="false" />
+        <activity
             android:name=".ListOfRootcrops"
             android:exported="false" />
         <activity
