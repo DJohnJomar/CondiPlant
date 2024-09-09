@@ -39,11 +39,22 @@
             android:layout_width="49dp"
             android:layout_height="42dp"
             android:layout_marginEnd="14dp"
+            android:contentDescription="tlbrLogo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imgLeafBG"
+        android:layout_width="367dp"
+        android:layout_height="413dp"
+        android:layout_marginTop="428dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        app:srcCompat="@drawable/dahon" />
 
     <ImageButton
         android:id="@+id/btnSeeDiseases"
@@ -57,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintVertical_bias="0.585"
         app:srcCompat="@drawable/diseases" />
 
     <ImageButton
@@ -133,5 +144,36 @@
         app:layout_constraintStart_toStartOf="@+id/btnSeeDiseases"
         app:layout_constraintTop_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintVertical_bias="0.97" />
+
+    <ImageButton
+        android:id="@+id/btnGuide"
+        android:layout_width="114dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="76dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="btnGuide"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeeDiseases"
+        app:layout_constraintVertical_bias="0.714"
+        app:srcCompat="@drawable/guide" />
+
+    <TextView
+        android:id="@+id/txtGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guide"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnGuide"
+        app:layout_constraintEnd_toEndOf="@+id/btnGuide"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="@+id/btnGuide"
+        app:layout_constraintTop_toTopOf="@+id/btnGuide"
+        app:layout_constraintVertical_bias="0.89" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton btnCapture, btnUpload, btnSeeDiseases;
+    private ImageButton btnCapture, btnUpload, btnSeeDiseases, btnGuide;
     private Bitmap bitmap;
     private File tempImageFile;
 
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btnCapture);
         btnUpload = findViewById(R.id.btnUpload);
         btnSeeDiseases = findViewById(R.id.btnSeeDiseases);
+        btnGuide = findViewById(R.id.btnGuide);
 
         //Permission
         getPermission();
@@ -77,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ListOfRootcrops.class);
+                startActivity(intent);
+            }
+        });
+
+        btnGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Guide.class);
                 startActivity(intent);
             }
         });

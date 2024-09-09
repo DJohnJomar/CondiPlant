@@ -19,6 +19,9 @@
         android:theme="@style/Theme.CondiPlant"
         tools:targetApi="31">
         <activity
+            android:name=".Guide"
+            android:exported="false" />
+        <activity
             android:name=".SweetPotatoDiseases"
             android:exported="false" />
         <activity
