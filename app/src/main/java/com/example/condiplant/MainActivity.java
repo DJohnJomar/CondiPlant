@@ -5,7 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,6 +22,7 @@ import android.Manifest;
 import com.canhub.cropper.CropImageContract;
 import com.canhub.cropper.CropImageContractOptions;
 import com.canhub.cropper.CropImageOptions;
+import com.example.condiplant.databinding.ActivityMainBinding;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,9 +30,11 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    ActivityMainBinding binding;
     private ImageButton btnCapture, btnUpload, btnSeeDiseases, btnGuide;
     private Bitmap bitmap;
     private File tempImageFile;
+
 
     // Used after successful image cropping. Prepares the image for application usage.
     ActivityResultLauncher<CropImageContractOptions> cropImage = registerForActivityResult(new CropImageContract(), result -> {
@@ -46,12 +51,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        replaceFragment(new HomeFragment());
+
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.home){
+                replaceFragment(new HomeFragment());
+            } else if (item.getItemId() == R.id.about_us){
+                replaceFragment(new AboutUsFragment());
+            } else{
+                replaceFragment(new HelpFragment());
+            }
+
+            return true;
+        });
+
 
         btnCapture = findViewById(R.id.btnCapture);
         btnUpload = findViewById(R.id.btnUpload);
         btnSeeDiseases = findViewById(R.id.btnSeeDiseases);
-        btnGuide = findViewById(R.id.btnGuide);
+
 
         //Permission
         getPermission();
@@ -93,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void replaceFragment(Fragment fragment){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
     }
 
     /**
