@@ -21,7 +21,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar"
         app:layout_constraintVertical_bias="0.585"
         app:srcCompat="@drawable/diseases" />
 
@@ -38,8 +37,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btnUpload"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        app:layout_constraintVertical_bias="0.747"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.953"
         app:srcCompat="@drawable/capture" />
 
     <ImageButton
@@ -53,10 +52,10 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/txtCapture"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.931"
         app:srcCompat="@drawable/upload" />
 
     <TextView
@@ -92,7 +91,7 @@
         android:id="@+id/txtDiseases"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOME FRAGMENT"
+        android:text="@string/known_diseases"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"

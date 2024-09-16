@@ -4,13 +4,16 @@
     <item
         android:id="@+id/home"
         android:title="Home"
+        android:iconTint="@color/black"
         android:icon="@drawable/ic_home" />
     <item
         android:id="@+id/about_us"
         android:title="About Us"
+        android:iconTint="@color/black"
         android:icon="@drawable/ic_people"/>
     <item
         android:id="@+id/help"
         android:title="Help"
+        android:iconTint="@color/black"
         android:icon="@drawable/ic_help"/>
 </menu>
