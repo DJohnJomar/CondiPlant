@@ -131,6 +131,10 @@ public class DisplayImageActivity extends AppCompatActivity {
             // Get max confidence index
             float[] confidence = outputFeature0.getFloatArray();
             int predictedClass = getMax(confidence);
+            float threshold = 0.70f;
+            if (confidence[predictedClass] < threshold){
+                predictedClass = 7;
+            }
 
             //Changes text views from results
 
@@ -138,7 +142,7 @@ public class DisplayImageActivity extends AppCompatActivity {
             txtDisease.setText(labelDiseases.get(predictedClass));
             txtDiseaseDesc.setText("    " + labelDescription.get(predictedClass));
 
-            if (predictedClass == 7){
+            if (predictedClass == 7 || predictedClass == 3){
                 txtRemedy.setVisibility(View.INVISIBLE);
                 txtRemedyDesc.setVisibility(View.INVISIBLE);
                 txtRemedyDesc.setText("");
