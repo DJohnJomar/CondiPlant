@@ -1,17 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BgGreen"
-    tools:context=".HomeFragment">
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageButton
+        android:id="@+id/btnSeeDiseases"
+        android:layout_width="133dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="188dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="See Diseases"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        app:layout_constraintVertical_bias="0.585"
+        app:srcCompat="@drawable/diseases" />
+
+    <ImageButton
+        android:id="@+id/btnCapture"
+        android:layout_width="133dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="72dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="Capture Image"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpload"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        app:layout_constraintVertical_bias="0.747"
+        app:srcCompat="@drawable/capture" />
+
+    <ImageButton
+        android:id="@+id/btnUpload"
+        android:layout_width="133dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="68dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="Upload Image"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toEndOf="@+id/txtCapture"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        app:layout_constraintVertical_bias="0.75"
+        app:srcCompat="@drawable/upload" />
+
     <TextView
+        android:id="@+id/txtCapture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textSize="26dp"
-        android:layout_gravity="center"/>
+        android:text="@string/capture_image"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCapture"
+        app:layout_constraintEnd_toEndOf="@+id/btnCapture"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnCapture"
+        app:layout_constraintTop_toTopOf="@+id/btnCapture"
+        app:layout_constraintVertical_bias="0.95" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_image"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btnUpload"
+        app:layout_constraintEnd_toEndOf="@+id/btnUpload"
+        app:layout_constraintStart_toStartOf="@+id/btnUpload"
+        app:layout_constraintTop_toTopOf="@+id/btnUpload"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <TextView
+        android:id="@+id/txtDiseases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME FRAGMENT"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSeeDiseases"
+        app:layout_constraintEnd_toEndOf="@+id/btnSeeDiseases"
+        app:layout_constraintStart_toStartOf="@+id/btnSeeDiseases"
+        app:layout_constraintTop_toTopOf="@+id/btnSeeDiseases"
+        app:layout_constraintVertical_bias="0.97" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

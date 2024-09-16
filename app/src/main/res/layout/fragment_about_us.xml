@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:text="About Us Fragment"
         android:textSize="26dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_gravity="center"/>
 
 </FrameLayout>

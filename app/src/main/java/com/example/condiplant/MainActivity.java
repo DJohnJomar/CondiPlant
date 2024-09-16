@@ -53,14 +53,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        replaceFragment(new HomeFragment());
 
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.home){
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                return true;
+                replaceFragment(new HomeFragment());
             } else if (item.getItemId() == R.id.about_us){
                 replaceFragment(new AboutUsFragment());
             } else{
@@ -71,42 +70,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        btnCapture = findViewById(R.id.btnCapture);
-        btnUpload = findViewById(R.id.btnUpload);
-        btnSeeDiseases = findViewById(R.id.btnSeeDiseases);
-
-
         //Permission
         getPermission();
-
-        btnCapture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchImageCropper(null);
-            }
-        });
-
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 10);
-            }
-        });
-
-
-        btnSeeDiseases.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListOfRootcrops.class);
-                startActivity(intent);
-            }
-        });
-
-
-
 
 
     }
