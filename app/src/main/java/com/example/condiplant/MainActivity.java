@@ -53,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
+
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.home){
-                replaceFragment(new HomeFragment());
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
             } else if (item.getItemId() == R.id.about_us){
                 replaceFragment(new AboutUsFragment());
             } else{
@@ -103,13 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Guide.class);
-                startActivity(intent);
-            }
-        });
 
 
 
