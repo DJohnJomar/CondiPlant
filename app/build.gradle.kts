@@ -46,6 +46,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
+    implementation("com.tbuonomo:dotsindicator:4.2")
     implementation("androidx.activity:activity:1.9.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
