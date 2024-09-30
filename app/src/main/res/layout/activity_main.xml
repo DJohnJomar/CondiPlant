@@ -7,7 +7,7 @@
     android:background="@color/BgGreen"
     tools:context=".MainActivity">
 
-
+<!--Toolbar-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+<!--Rest of the contents-->
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="0dp"

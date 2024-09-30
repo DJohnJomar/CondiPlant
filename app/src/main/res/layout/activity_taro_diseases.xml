@@ -8,6 +8,7 @@
     android:background="@color/BgGreen"
     tools:context=".TaroDiseases">
 
+<!--Toolbar-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -62,7 +63,7 @@
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+<!--Rest of the contents-->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"

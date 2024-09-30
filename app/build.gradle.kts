@@ -53,4 +53,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.vanniktech:android-image-cropper:4.6.0")
     implementation ("com.google.android.material:material:1.4.0")
+    implementation ("com.tbuonomo:dotsindicator:4.2")
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/BgGreen"
     tools:context=".DisplayImageActivity">
-
+<!--Toolbar-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+<!--Rest of the contents-->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
