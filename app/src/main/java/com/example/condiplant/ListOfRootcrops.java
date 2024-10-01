@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ListOfRootcrops extends AppCompatActivity {
 
-    private ImageButton btnBack, btnCassava, btnTaro, btnSweetPotato;
+    private ImageButton btnBack, btnCassava, btnTaro, btnSweetPotato, btnPurpleYam;
 
 
     @Override
@@ -58,6 +58,15 @@ public class ListOfRootcrops extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListOfRootcrops.this, SweetPotatoDiseases.class);
+                startActivity(intent);
+            }
+        });
+
+        btnPurpleYam = findViewById(R.id.btnPurpleYam);
+        btnPurpleYam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListOfRootcrops.this, PurpleYamDiseases.class);
                 startActivity(intent);
             }
         });
