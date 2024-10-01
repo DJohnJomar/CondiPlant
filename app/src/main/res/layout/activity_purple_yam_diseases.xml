@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/BgGreen"
-    tools:context=".SweetPotatoDiseases">
+    tools:context=".PurpleYamDiseases">
 
-<!--Toolbar-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -45,8 +44,8 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logo"
+            app:layout_constraintStart_toEndOf="@+id/backButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -63,7 +62,7 @@
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-<!--Rest of the contents-->
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -78,83 +77,34 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imgSweetPotato"
+                android:id="@+id/imgCassava"
                 android:layout_width="137dp"
                 android:layout_height="127dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.055"
-                app:srcCompat="@drawable/sweet_potato" />
+                app:layout_constraintVertical_bias="0.033"
+                app:srcCompat="@drawable/purpleyam" />
 
             <TextView
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sweet Potato Common Diseases"
+                android:text="Purple Yam Common Diseases"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSweetPotato"
-                app:layout_constraintEnd_toEndOf="@+id/imgSweetPotato"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toStartOf="@+id/imgSweetPotato"
-                app:layout_constraintTop_toTopOf="@+id/imgSweetPotato"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCassava"
+                app:layout_constraintEnd_toEndOf="@+id/imgCassava"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="@+id/imgCassava"
+                app:layout_constraintTop_toTopOf="@+id/imgCassava"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <ImageView
-                android:id="@+id/imgSwtPtaLfSptBox"
-                android:layout_width="368dp"
-                android:layout_height="113dp"
-                android:layout_marginTop="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgSweetPotato"
-                app:srcCompat="@drawable/rectangle" />
 
-            <ImageView
-                android:id="@+id/imgSwtPtaLfSpt"
-                android:layout_width="84dp"
-                android:layout_height="83dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintEnd_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintHorizontal_bias="0.084"
-                app:layout_constraintStart_toStartOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintTop_toTopOf="@+id/imgSwtPtaLfSptBox"
-                app:srcCompat="@drawable/sweetpotato_leafspot" />
-
-            <TextView
-                android:id="@+id/txtSwtPtaLfSptTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sweet Potato Leaf Spot"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintEnd_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintHorizontal_bias="0.706"
-                app:layout_constraintStart_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintStart_toStartOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintTop_toTopOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintVertical_bias="0.085" />
-
-            <TextView
-                android:id="@+id/txtSwtPtaLfSptDesc"
-                android:layout_width="229dp"
-                android:layout_height="66dp"
-                android:justificationMode="inter_word"
-                android:text="	Are brown, circular to irregular on the upper surface, sometimes with light brown centers, and as the spots grow, some join together. Lesions are usually restricted to the older leaves and may be surrounded by a yellow halo."
-                android:textColor="@color/black"
-                android:textSize="10sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintEnd_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintHorizontal_bias="0.225"
-                app:layout_constraintStart_toEndOf="@+id/imgSwtPtaLfSpt"
-                app:layout_constraintTop_toBottomOf="@+id/txtSwtPtaLfSptTitle"
-                app:layout_constraintVertical_bias="0.25" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
