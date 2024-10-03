@@ -27,6 +27,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DisplayImageActivityInitial extends AppCompatActivity {
@@ -216,9 +218,17 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         topThreeConfidence.put(secondIndex, second);
         topThreeConfidence.put(thirdIndex, third);
 
+        // Create a list from the map entries and sort it by confidence values in descending order
+        List<Map.Entry<Integer, Float>> sortedEntries = new ArrayList<>(topThreeConfidence.entrySet());
+        sortedEntries.sort((entry1, entry2) -> Float.compare(entry2.getValue(), entry1.getValue()));
 
+        // Create a new LinkedHashMap to maintain the order of entries
+        Map<Integer, Float> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<Integer, Float> entry : sortedEntries) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
 
-        return topThreeConfidence;
+        return sortedMap;
     }
 
     @Override
