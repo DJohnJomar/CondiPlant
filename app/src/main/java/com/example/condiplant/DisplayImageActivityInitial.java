@@ -44,7 +44,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     private TextView txtAccuracy3;
     private Button btnPrediction3More;
     private ImageButton btnBack;
-    private ArrayList<String> labelRootCrops;
+    private ArrayList<String> labelDiseases;
     private String imagePath;
     private ImageView imageView;
     private int[] topIndices;
@@ -55,8 +55,8 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_image_initial);
 
-        labelRootCrops = new ArrayList<>();
-        setUpLabels(labelRootCrops, "labelRootCrops.txt");
+        labelDiseases = new ArrayList<>();
+        setUpLabels(labelDiseases, "labelDiseases.txt");
 
         txtPrediction1 = findViewById(R.id.txtPrediction1);
         txtPrediction2 = findViewById(R.id.txtPrediction2);
@@ -273,7 +273,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     //Removes unnecessary UI elements when confidence is 0%
     private void updatePredictionUI(TextView predictionText, TextView accuracyText, Button moreButton, int index, float confidence) {
         if (confidence >= 0.01) { // Set threshold for visibility to 1%
-            predictionText.setText(labelRootCrops.get(index));
+            predictionText.setText(labelDiseases.get(index));
             accuracyText.setText(String.format("%.2f%%", confidence * 100));
             predictionText.setVisibility(View.VISIBLE);
             accuracyText.setVisibility(View.VISIBLE);
