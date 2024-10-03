@@ -1,5 +1,6 @@
 package com.example.condiplant;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -46,6 +47,8 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     private ArrayList<String> labelRootCrops;
     private String imagePath;
     private ImageView imageView;
+    private int[] topIndices;
+    private float[] topConfidences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,23 +68,37 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         btnPrediction2More = findViewById(R.id.btnPrediction2More);
         btnPrediction3More = findViewById(R.id.btnPrediction3More);
         imageView = findViewById(R.id.displayImageView);
+        topIndices = new int[3];
+        topConfidences = new float[3];
 
         btnPrediction1More.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                //Intent to pass on data
+                Intent intent = new Intent(DisplayImageActivityInitial.this, DisplayImageActivity.class);
+                intent.putExtra("index", topIndices[0]); // Pass the top confidence - index 0
+                intent.putExtra("imagePath", imagePath); // Pass the image path
+                startActivity(intent);
             }
         });
         btnPrediction2More.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                //Intent to pass on data
+                Intent intent = new Intent(DisplayImageActivityInitial.this, DisplayImageActivity.class);
+                intent.putExtra("index", topIndices[1]); // Pass the top confidence - index 1
+                intent.putExtra("imagePath", imagePath); // Pass the image path
+                startActivity(intent);
             }
         });
         btnPrediction3More.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                //Intent to pass on data
+                Intent intent = new Intent(DisplayImageActivityInitial.this, DisplayImageActivity.class);
+                intent.putExtra("index", topIndices[2]); // Pass the top confidence - index 2
+                intent.putExtra("imagePath", imagePath); // Pass the image path
+                startActivity(intent);
             }
         });
 
@@ -149,13 +166,9 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             EfficientNetB0.Outputs outputs = model.process(inputFeature0);
             TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
 
-            // Get max confidence index
+            // Get top three confidence indices and values
             float[] confidence = outputFeature0.getFloatArray();
             Map<Integer,Float> topThreeConfidence = getTopThreeConfidence(confidence);
-
-            // Get the top 3 indices and confidence values
-            int[] topIndices = new int[3];
-            float[] topConfidences = new float[3];
 
             int count = 0;
             for (Map.Entry<Integer, Float> entry : topThreeConfidence.entrySet()) {
@@ -231,7 +244,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     }
 
     @Override
-    //Destroys the temporary image when displayActivity is destroyed
+    //Destroys the temporary image when displayActivityInitial is destroyed
     protected void onDestroy() {
         super.onDestroy();
         if (imagePath != null) {
@@ -257,6 +270,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         }
     }
     // Helper method to update UI elements based on confidence level
+    //Removes unnecessary UI elements when confidence is 0%
     private void updatePredictionUI(TextView predictionText, TextView accuracyText, Button moreButton, int index, float confidence) {
         if (confidence >= 0.01) { // Set threshold for visibility to 1%
             predictionText.setText(labelRootCrops.get(index));
