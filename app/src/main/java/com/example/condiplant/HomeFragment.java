@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         if (result.isSuccessful()) {
             bitmap = BitmapFactory.decodeFile(result.getUriFilePath(requireContext(), true));
             tempImageFile = createTempImageFile(bitmap);
-            Intent displayIntent = new Intent(requireActivity(), DisplayImageActivity.class);
+            Intent displayIntent = new Intent(requireActivity(), DisplayImageActivityInitial.class);
             displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
             startActivity(displayIntent);
         }

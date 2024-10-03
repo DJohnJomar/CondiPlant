@@ -1,12 +1,33 @@
 package com.example.condiplant;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.condiplant.ml.EfficientNetB0;
+
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.image.TensorImage;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DisplayImageActivityInitial extends AppCompatActivity {
 
@@ -19,10 +40,19 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     private TextView txtPrediction3;
     private TextView txtAccuracy3;
     private Button btnPrediction3More;
+    private ImageButton btnBack;
+    private ArrayList<String> labelRootCrops;
+    private String imagePath;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_display_image_initial);
+
+        labelRootCrops = new ArrayList<>();
+        setUpLabels(labelRootCrops, "labelRootCrops.txt");
+
         txtPrediction1 = findViewById(R.id.txtPrediction1);
         txtPrediction2 = findViewById(R.id.txtPrediction2);
         txtPrediction3 = findViewById(R.id.txtPrediction3);
@@ -32,6 +62,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         btnPrediction1More = findViewById(R.id.btnPrediction1More);
         btnPrediction2More = findViewById(R.id.btnPrediction2More);
         btnPrediction3More = findViewById(R.id.btnPrediction3More);
+        imageView = findViewById(R.id.displayImageView);
 
         btnPrediction1More.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -52,6 +83,168 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             }
         });
 
+        // Receive the image file path from the intent
+        imagePath = getIntent().getStringExtra("image");
 
+        // Load the image from the temporary file
+        if (imagePath != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+                predict(bitmap);
+            } else {
+                // Handle the case where the bitmap cannot be decoded
+                Log.e("DisplayImageActivity", "Failed to decode bitmap from file.");
+            }
+        } else {
+            // Handle the case where no image file path is received
+            Log.e("DisplayImageActivity", "No image file path received.");
+        }
+
+        btnBack = findViewById(R.id.backButton);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();// Finish current activity and go back to previous activity (MainActivity)
+            }
+        });
+
+    }
+
+    public void predict(Bitmap bitmap){
+        try {
+            System.out.println("Predicting");
+            EfficientNetB0 model = EfficientNetB0.newInstance(DisplayImageActivityInitial.this);
+
+            // Resize and normalize bitmap
+            bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
+
+            TensorImage tensorImage = new TensorImage(DataType.FLOAT32);
+            tensorImage.load(bitmap);
+
+            // Creates inputs for reference.
+            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
+
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
+            byteBuffer.order(ByteOrder.nativeOrder());
+            int[] intValues = new int[224 * 224];
+            bitmap.getPixels(intValues, 0 ,bitmap.getWidth(),0,0,bitmap.getWidth(), bitmap.getHeight());
+            int pixel = 0;
+
+            for (int i = 0; i < 224; i++){
+                for (int j = 0; j < 224; j++){
+                    int val = intValues[pixel++];
+                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f/255));
+                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f/255));
+                    byteBuffer.putFloat((val & 0xFF) * (1.f/255));
+                }
+            }
+            inputFeature0.loadBuffer(byteBuffer);
+
+            Log.d("Shape of input buffer", tensorImage.getBuffer() + "");
+
+            // Runs model inference and gets result.
+            EfficientNetB0.Outputs outputs = model.process(inputFeature0);
+            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+
+            // Get max confidence index
+            float[] confidence = outputFeature0.getFloatArray();
+            Map<Integer,Float> topThreeConfidence = getTopThreeConfidence(confidence);
+
+            // Get the top 3 indices and confidence values
+            int[] topIndices = new int[3];
+            float[] topConfidences = new float[3];
+
+            int count = 0;
+            for (Map.Entry<Integer, Float> entry : topThreeConfidence.entrySet()) {
+                topIndices[count] = entry.getKey(); // Get the index of the predicted class
+                topConfidences[count] = entry.getValue(); // Get the confidence value
+                count++;
+            }
+
+
+            // Update the text views for the predictions and accuracy
+            txtPrediction1.setText(labelRootCrops.get(topIndices[0]));
+            txtAccuracy1.setText(String.format("%.2f%%", topConfidences[0] * 100));
+
+            txtPrediction2.setText(labelRootCrops.get(topIndices[1]));
+            txtAccuracy2.setText(String.format("%.2f%%", topConfidences[1] * 100));
+
+            txtPrediction3.setText(labelRootCrops.get(topIndices[2]));
+            txtAccuracy3.setText(String.format("%.2f%%", topConfidences[2] * 100));
+
+
+            // Releases model resources if no longer used.
+            model.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // Function to get the top 3 confidence values and their indices (class predictions)
+    public static Map<Integer, Float> getTopThreeConfidence(float[] confidence) {
+        Map<Integer, Float> topThreeConfidence = new HashMap<>();
+
+        float first = Float.NEGATIVE_INFINITY, second = Float.NEGATIVE_INFINITY, third = Float.NEGATIVE_INFINITY;
+        int firstIndex = -1, secondIndex = -1, thirdIndex = -1;
+
+        // Iterate through the array to find the top three confidence values and their indices
+        for (int i = 0; i < confidence.length; i++) {
+            float num = confidence[i];
+            if (num > first) {
+                // Update the indices and values accordingly
+                third = second;
+                thirdIndex = secondIndex;
+                second = first;
+                secondIndex = firstIndex;
+                first = num;
+                firstIndex = i;
+            } else if (num > second) {
+                third = second;
+                thirdIndex = secondIndex;
+                second = num;
+                secondIndex = i;
+            } else if (num > third) {
+                third = num;
+                thirdIndex = i;
+            }
+        }
+
+        // Store the top three confidence values with their respective indices in the map
+        topThreeConfidence.put(firstIndex, first);
+        topThreeConfidence.put(secondIndex, second);
+        topThreeConfidence.put(thirdIndex, third);
+
+
+
+        return topThreeConfidence;
+    }
+
+    @Override
+    //Destroys the temporary image when displayActivity is destroyed
+    protected void onDestroy() {
+        super.onDestroy();
+        if (imagePath != null) {
+            File tempFile = new File(imagePath);
+            if (tempFile.exists()) {
+                tempFile.delete();
+            }
+        }
+    }
+
+    //Fills up the arraylist with the text contained in the selected text file named "fileName"
+    public void setUpLabels(ArrayList<String> labels, String fileName){
+        //For the classification labels
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open(fileName)));
+            String line = reader.readLine();
+            while(line != null){
+                labels.add(line);
+                line = reader.readLine(); // Read the next line
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

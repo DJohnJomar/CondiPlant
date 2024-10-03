@@ -6,230 +6,198 @@
     android:layout_height="match_parent"
     android:background="@color/BgGreen"
     tools:context=".DisplayImageActivity">
+
     <!--Toolbar-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@android:color/holo_green_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="52dp"
             android:layout_height="49dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="3dp"
             android:contentDescription="@string/back_button"
             android:src="@drawable/baseline_arrow_back_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/Title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:fontFamily="@font/racing_sans_one"
             android:text="@string/condiplant"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/backButton"
             app:layout_constraintEnd_toStartOf="@+id/logo"
-            app:layout_constraintStart_toEndOf="@+id/backButton"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
 
         <ImageView
             android:id="@+id/logo"
             android:layout_width="49dp"
             android:layout_height="42dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="3dp"
             android:contentDescription="@string/app_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Rest of the contents-->
+    <!-- Rest of the contents -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/displayImageView"
                 android:layout_width="350dp"
                 android:layout_height="350dp"
                 android:contentDescription="@string/uploaded_img"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.442"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
 
             <TextView
                 android:id="@+id/predictionTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="16dp"
                 android:text="Predictions"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/accuracyTitle"
-                app:layout_constraintHorizontal_bias="0.596"
+                app:layout_constraintTop_toBottomOf="@+id/displayImageView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayImageView" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/accuracyTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="160dp"
+                android:layout_marginTop="8dp"
                 android:text="Accuracy"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/predictionTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- Predictions and Accuracy TextViews -->
             <TextView
                 android:id="@+id/txtPrediction1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="16dp"
                 android:text="Prediction 1"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnPrediction1More"
-                app:layout_constraintHorizontal_bias="0.22"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/predictionTitle" />
-
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accuracyTitle" />
 
             <TextView
                 android:id="@+id/txtAccuracy1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="4dp"
                 android:text="Accuracy 1"
-                app:layout_constraintEnd_toEndOf="@+id/btnPrediction1More"
-                app:layout_constraintHorizontal_bias="0.201"
-                app:layout_constraintStart_toEndOf="@+id/txtPrediction1"
-                app:layout_constraintTop_toBottomOf="@+id/accuracyTitle" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPrediction1" />
 
             <Button
                 android:id="@+id/btnPrediction1More"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="61dp"
-                android:layout_marginEnd="32dp"
                 android:text="Read More"
                 android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtAccuracy1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayImageView" />
+                android:layout_marginTop="8dp" />
 
             <TextView
                 android:id="@+id/txtPrediction2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="16dp"
                 android:text="Prediction 2"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnPrediction2More"
-                app:layout_constraintHorizontal_bias="0.204"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPrediction1" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnPrediction1More" />
 
             <TextView
                 android:id="@+id/txtAccuracy2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="4dp"
                 android:text="Accuracy 2"
-                app:layout_constraintEnd_toStartOf="@+id/btnPrediction2More"
-                app:layout_constraintHorizontal_bias="0.051"
-                app:layout_constraintStart_toEndOf="@+id/txtPrediction2"
-                app:layout_constraintTop_toBottomOf="@+id/txtAccuracy1" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPrediction2" />
 
             <Button
                 android:id="@+id/btnPrediction2More"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 android:text="Read More"
                 android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtAccuracy2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnPrediction1More" />
+                android:layout_marginTop="8dp" />
 
             <TextView
                 android:id="@+id/txtPrediction3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="16dp"
                 android:text="Prediction 3"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnPrediction3More"
-                app:layout_constraintHorizontal_bias="0.204"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPrediction2" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnPrediction2More" />
 
             <TextView
                 android:id="@+id/txtAccuracy3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="4dp"
                 android:text="Accuracy 3"
-                app:layout_constraintEnd_toStartOf="@+id/btnPrediction3More"
-                app:layout_constraintHorizontal_bias="0.051"
-                app:layout_constraintStart_toEndOf="@+id/txtPrediction3"
-                app:layout_constraintTop_toBottomOf="@+id/txtAccuracy2" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtPrediction3" />
 
             <Button
                 android:id="@+id/btnPrediction3More"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
                 android:text="Read More"
                 android:textSize="11sp"
+                app:layout_constraintTop_toBottomOf="@+id/txtAccuracy3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnPrediction2More" />
-
-
-
+                android:layout_marginTop="8dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

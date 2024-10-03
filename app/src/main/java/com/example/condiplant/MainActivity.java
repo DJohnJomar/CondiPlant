@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         if (result.isSuccessful()) {
             bitmap = BitmapFactory.decodeFile(result.getUriFilePath(getApplicationContext(), true));
             tempImageFile = createTempImageFile(bitmap);
-            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivity.class);
+            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivityInitial.class);
             displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
             startActivity(displayIntent);
         }

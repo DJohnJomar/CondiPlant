@@ -64,7 +64,7 @@ public class DisplayImageActivity extends AppCompatActivity {
         txtRemedyDesc = findViewById(R.id.txtRemedyDesc);
         imageView = findViewById(R.id.displayImageView);
 
-
+        /*
         // Receive the image file path from the intent
         imagePath = getIntent().getStringExtra("image");
 
@@ -82,6 +82,7 @@ public class DisplayImageActivity extends AppCompatActivity {
             // Handle the case where no image file path is received
             Log.e("DisplayImageActivity", "No image file path received.");
         }
+         */
 
         btnBack = findViewById(R.id.backButton);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +93,7 @@ public class DisplayImageActivity extends AppCompatActivity {
         });
     }
 
+    /*
     public void predict(Bitmap bitmap){
         try {
             System.out.println("Predicting");
@@ -160,6 +162,7 @@ public class DisplayImageActivity extends AppCompatActivity {
         }
 
     }
+    */
 
     public int getMax(float[] array){
         int max = 0;
