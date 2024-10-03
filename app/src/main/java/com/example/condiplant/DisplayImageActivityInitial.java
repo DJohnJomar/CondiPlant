@@ -164,16 +164,15 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                 count++;
             }
 
+            // Debugging: Log the top indices and their corresponding confidence values
+            Log.d("Top Predictions", "Index 1: " + topIndices[0] + ", Confidence: " + topConfidences[0]);
+            Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
+            Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
 
             // Update the text views for the predictions and accuracy
-            txtPrediction1.setText(labelRootCrops.get(topIndices[0]));
-            txtAccuracy1.setText(String.format("%.2f%%", topConfidences[0] * 100));
-
-            txtPrediction2.setText(labelRootCrops.get(topIndices[1]));
-            txtAccuracy2.setText(String.format("%.2f%%", topConfidences[1] * 100));
-
-            txtPrediction3.setText(labelRootCrops.get(topIndices[2]));
-            txtAccuracy3.setText(String.format("%.2f%%", topConfidences[2] * 100));
+            updatePredictionUI(txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
+            updatePredictionUI(txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
+            updatePredictionUI(txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
 
 
             // Releases model resources if no longer used.
@@ -255,6 +254,20 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+    // Helper method to update UI elements based on confidence level
+    private void updatePredictionUI(TextView predictionText, TextView accuracyText, Button moreButton, int index, float confidence) {
+        if (confidence >= 0.01) { // Set threshold for visibility to 1%
+            predictionText.setText(labelRootCrops.get(index));
+            accuracyText.setText(String.format("%.2f%%", confidence * 100));
+            predictionText.setVisibility(View.VISIBLE);
+            accuracyText.setVisibility(View.VISIBLE);
+            moreButton.setVisibility(View.VISIBLE);
+        } else {
+            predictionText.setVisibility(View.GONE);
+            accuracyText.setVisibility(View.GONE);
+            moreButton.setVisibility(View.GONE);
         }
     }
 }
