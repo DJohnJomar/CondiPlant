@@ -34,14 +34,12 @@ public class IntroSlider extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             finish();  // Close IntroSlider so it's not in the back stack
             return;  // Exit the onCreate method early
-
         }
 
         // Set the content view to the correct layout (IntroSlider layout)
         setContentView(R.layout.activity_intro_slider);
 
         // Find views by ID from the layout
-
         viewPager2 = findViewById(R.id.viewPager);
         prevPage = findViewById(R.id.prevPage);
         nextPage = findViewById(R.id.nextPage);
@@ -52,7 +50,6 @@ public class IntroSlider extends AppCompatActivity {
         String[] description = {getString(R.string.lorem_ipsum), getString(R.string.lorem_ipsum), getString(R.string.lorem_ipsum), getString(R.string.lorem_ipsum)};
 
         viewPageItemArrayList = new ArrayList<>();
-
         for (int i = 0; i < images.length; i++) {
             ViewPageItem viewPageItem = new ViewPageItem(title[i], description[i], images[i]);
             viewPageItemArrayList.add(viewPageItem);
@@ -74,8 +71,9 @@ public class IntroSlider extends AppCompatActivity {
 
                 // Show/hide buttons based on position
                 prevPage.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
-                nextPage.setVisibility(position == viewPageItemArrayList.size() - 1 ? View.INVISIBLE : View.VISIBLE);
+                nextPage.setVisibility(View.VISIBLE);  // Always keep nextPage visible
 
+                // Set click listeners for the buttons
                 prevPage.setOnClickListener(v -> {
                     if (position > 0) {
                         viewPager2.setCurrentItem(position - 1);
@@ -96,7 +94,7 @@ public class IntroSlider extends AppCompatActivity {
                         Log.d("IntroSlider", "isFirstLaunch after update: " + check);
 
                         startActivity(new Intent(IntroSlider.this, MainActivity.class));
-                        finish();// Close IntroSlider
+                        finish(); // Close IntroSlider
                     }
                 });
             }
