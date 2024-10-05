@@ -54,7 +54,10 @@ public class HomeFragment extends Fragment {
         //Permission
         getPermission();
 
-        btnCapture.setOnClickListener(v -> launchImageCropper(null));
+        btnCapture.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CameraX.class);
+            startActivityForResult(intent, 12);;
+        });
 
         btnUpload.setOnClickListener(v -> {
             Intent intent = new Intent();
@@ -74,7 +77,7 @@ public class HomeFragment extends Fragment {
     private void launchImageCropper(Uri uri) {
         CropImageOptions cropImageOptions = new CropImageOptions();
         cropImageOptions.imageSourceIncludeGallery = false;
-        cropImageOptions.imageSourceIncludeCamera = true;
+        cropImageOptions.imageSourceIncludeCamera = false;
         cropImageOptions.fixAspectRatio = true;
         cropImageOptions.aspectRatioX = 1;
         cropImageOptions.aspectRatioY = 1;
@@ -84,12 +87,21 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        int captureRequestCode = 10;
+        int uploadRequestCode = 10;
+        int captureRequestCode = 12;
+
         // Image Capture
-        if (requestCode == captureRequestCode) {
+        if (requestCode == uploadRequestCode && resultCode == MainActivity.RESULT_OK) {
             if (data != null) {
                 Uri uri = data.getData();
                 launchImageCropper(uri);
+                Log.e("Upload", "I Upload");
+            }
+        } else if (requestCode == captureRequestCode && resultCode == MainActivity.RESULT_OK){
+            if (data != null) {
+                Uri uri = data.getData();
+                launchImageCropper(uri);
+                Log.e("Capture", "I Capture");
             }
         } else {
             Log.e("HomeFragment", "No valid condition matched in onActivityResult()");

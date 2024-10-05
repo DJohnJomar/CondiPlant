@@ -34,10 +34,10 @@
             android:name=".CassavaDiseases"
             android:exported="false" />
         <activity
-            android:name=".cassavaDiseases"
+            android:name=".ListOfRootcrops"
             android:exported="false" />
         <activity
-            android:name=".ListOfRootcrops"
+            android:name=".CameraX"
             android:exported="false" />
         <activity
             android:name=".DisplayImageActivity"
