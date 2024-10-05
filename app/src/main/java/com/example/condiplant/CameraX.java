@@ -152,24 +152,33 @@ public class CameraX extends AppCompatActivity {
 
             @Override
             public void onCaptureSuccess(@NonNull ImageProxy image) {
-                super.onCaptureSuccess(image);
-                Uri imageUri = saveImageToFile(image);
-                Intent resultIntent = new Intent();
-                resultIntent.setData(imageUri);
-                setResult(MainActivity.RESULT_OK, resultIntent);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(CameraX.this, "Image Captured. Preparing image for cropping...", Toast.LENGTH_SHORT).show();
+                if (capture.getVisibility() == View.INVISIBLE) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(CameraX.this, "Image Capture Failed. Please hold the camera still...", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    super.onCaptureSuccess(image);
+                    Uri imageUri = saveImageToFile(image);
+                    Intent resultIntent = new Intent();
+                    resultIntent.setData(imageUri);
+                    setResult(MainActivity.RESULT_OK, resultIntent);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(CameraX.this, "Image Captured. Preparing image for cropping...", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
-                });
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    image.close(); // Always close the ImageProxy
+                    finish();
                 }
-                image.close(); // Always close the ImageProxy
-                finish();
             }
 
         });
