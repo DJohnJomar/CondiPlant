@@ -5,4 +5,4 @@ Mosaic
 Leaf Spot
 Leaf Blight
 Mosaic
-Unknown
+Not Recognized

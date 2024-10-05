@@ -30,9 +30,10 @@ public class DisplayImageActivity extends AppCompatActivity {
     private ImageView imageView;
     private ImageButton btnBack, btnRemedy;
     private TextView txtRootCrop, txtDisease, txtDiseaseDesc, txtRemedy, txtRemedyDesc;
-    private String imagePath;
     private ArrayList<String> labelRootCrops, labelDiseases, labelDescription;
     private ArrayList<String> remedy1, remedy2, remedy4, remedy5, remedy6, remedy7;
+    private int index; // To store the indices
+    private String imagePath; // To store the image path
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +65,14 @@ public class DisplayImageActivity extends AppCompatActivity {
         txtRemedyDesc = findViewById(R.id.txtRemedyDesc);
         imageView = findViewById(R.id.displayImageView);
 
-
-        // Receive the image file path from the intent
-        imagePath = getIntent().getStringExtra("image");
+        index = getIntent().getIntExtra("index", -1);
+        imagePath = getIntent().getStringExtra("imagePath");
 
         // Load the image from the temporary file
         if (imagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
-                predict(bitmap);
             } else {
                 // Handle the case where the bitmap cannot be decoded
                 Log.e("DisplayImageActivity", "Failed to decode bitmap from file.");
@@ -83,6 +82,7 @@ public class DisplayImageActivity extends AppCompatActivity {
             Log.e("DisplayImageActivity", "No image file path received.");
         }
 
+
         btnBack = findViewById(R.id.backButton);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,85 +90,22 @@ public class DisplayImageActivity extends AppCompatActivity {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
             }
         });
-    }
 
-    public void predict(Bitmap bitmap){
-        try {
-            System.out.println("Predicting");
-            EfficientNetB0 model = EfficientNetB0.newInstance(DisplayImageActivity.this);
+        //Changes text views from results
 
-            // Resize and normalize bitmap
-            bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
+        txtRootCrop.setText(labelRootCrops.get(index));
+        txtDisease.setText(labelDiseases.get(index));
+        txtDiseaseDesc.setText("    " + labelDescription.get(index));
 
-            TensorImage tensorImage = new TensorImage(DataType.FLOAT32);
-            tensorImage.load(bitmap);
-
-            // Creates inputs for reference.
-            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
-
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
-            byteBuffer.order(ByteOrder.nativeOrder());
-            int[] intValues = new int[224 * 224];
-            bitmap.getPixels(intValues, 0 ,bitmap.getWidth(),0,0,bitmap.getWidth(), bitmap.getHeight());
-            int pixel = 0;
-
-            for (int i = 0; i < 224; i++){
-                for (int j = 0; j < 224; j++){
-                    int val = intValues[pixel++];
-                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f/255));
-                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f/255));
-                    byteBuffer.putFloat((val & 0xFF) * (1.f/255));
-                }
-            }
-            inputFeature0.loadBuffer(byteBuffer);
-
-            Log.d("Shape of input buffer", tensorImage.getBuffer() + "");
-
-            // Runs model inference and gets result.
-            EfficientNetB0.Outputs outputs = model.process(inputFeature0);
-            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
-
-            // Get max confidence index
-            float[] confidence = outputFeature0.getFloatArray();
-            int predictedClass = getMax(confidence);
-            float threshold = 0.70f;
-            if (confidence[predictedClass] < threshold){
-                predictedClass = 7;
-            }
-
-            //Changes text views from results
-
-            txtRootCrop.setText(labelRootCrops.get(predictedClass));
-            txtDisease.setText(labelDiseases.get(predictedClass));
-            txtDiseaseDesc.setText("    " + labelDescription.get(predictedClass));
-
-            if (predictedClass == 7 || predictedClass == 3){
-                txtRemedy.setVisibility(View.INVISIBLE);
-                txtRemedyDesc.setVisibility(View.INVISIBLE);
-                txtRemedyDesc.setText("");
-            } else {
-                txtRemedy.setVisibility(View.VISIBLE);
-                txtRemedyDesc.setVisibility(View.VISIBLE);
-                txtRemedyDesc.setText(getRemedyDescription(predictedClass));
-            }
-
-
-            // Releases model resources if no longer used.
-            model.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (index == 7 || index == 3){
+            txtRemedy.setVisibility(View.INVISIBLE);
+            txtRemedyDesc.setVisibility(View.INVISIBLE);
+            txtRemedyDesc.setText("");
+        } else {
+            txtRemedy.setVisibility(View.VISIBLE);
+            txtRemedyDesc.setVisibility(View.VISIBLE);
+            txtRemedyDesc.setText(getRemedyDescription(index));
         }
-
-    }
-
-    public int getMax(float[] array){
-        int max = 0;
-        for (int i = 0; i<array.length; i++){
-            if(array[i] > array[max])
-                max = i;
-        }
-
-        return max;
     }
 
     //Fills up the arraylist with the text contained in the selected text file named "fileName"
@@ -183,18 +120,6 @@ public class DisplayImageActivity extends AppCompatActivity {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    //Destroys the temporary image when displayActivity is destroyed
-    protected void onDestroy() {
-        super.onDestroy();
-        if (imagePath != null) {
-            File tempFile = new File(imagePath);
-            if (tempFile.exists()) {
-                tempFile.delete();
-            }
         }
     }
 
