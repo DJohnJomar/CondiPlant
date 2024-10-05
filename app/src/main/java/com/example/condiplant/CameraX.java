@@ -157,9 +157,21 @@ public class CameraX extends AppCompatActivity {
                 Intent resultIntent = new Intent();
                 resultIntent.setData(imageUri);
                 setResult(MainActivity.RESULT_OK, resultIntent);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(CameraX.this, "Image Captured. Preparing image for cropping...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 image.close(); // Always close the ImageProxy
                 finish();
             }
+
         });
     }
 
