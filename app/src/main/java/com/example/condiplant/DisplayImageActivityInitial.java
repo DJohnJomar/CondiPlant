@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.condiplant.ml.EfficientNetB0;
 
@@ -34,17 +36,24 @@ import java.util.Map;
 
 public class DisplayImageActivityInitial extends AppCompatActivity {
 
+    private ConstraintLayout layout1;
+    private ConstraintLayout layout2;
+    private ConstraintLayout layout3;
+    private TextView txtPlant1;
     private TextView txtPrediction1;
     private TextView txtAccuracy1;
     private Button btnPrediction1More;
+    private TextView txtPlant2;
     private TextView txtPrediction2;
     private TextView txtAccuracy2;
     private Button btnPrediction2More;
+    private TextView txtPlant3;
     private TextView txtPrediction3;
     private TextView txtAccuracy3;
     private Button btnPrediction3More;
     private ImageButton btnBack;
     private ArrayList<String> labelDiseases;
+    private ArrayList<String> labelPlants;
     private String imagePath;
     private ImageView imageView;
     private int[] topIndices;
@@ -57,7 +66,15 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
 
         labelDiseases = new ArrayList<>();
         setUpLabels(labelDiseases, "labelDiseases.txt");
+        labelPlants = new ArrayList<>();
+        setUpLabels(labelPlants, "labelRootCrops2.txt");
 
+        layout1 = findViewById(R.id.layout1);
+        layout2 = findViewById(R.id.layout2);
+        layout3 = findViewById(R.id.layout3);
+        txtPlant1 = findViewById(R.id.txtPlant1);
+        txtPlant2 = findViewById(R.id.txtPlant2);
+        txtPlant3 = findViewById(R.id.txtPlant3);
         txtPrediction1 = findViewById(R.id.txtPrediction1);
         txtPrediction2 = findViewById(R.id.txtPrediction2);
         txtPrediction3 = findViewById(R.id.txtPrediction3);
@@ -183,9 +200,9 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
 
             // Update the text views for the predictions and accuracy
-            updatePredictionUI(txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
-            updatePredictionUI(txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
-            updatePredictionUI(txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
+            updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
+            updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
+            updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
 
 
             // Releases model resources if no longer used.
@@ -271,17 +288,14 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     }
     // Helper method to update UI elements based on confidence level
     //Removes unnecessary UI elements when confidence is 0%
-    private void updatePredictionUI(TextView predictionText, TextView accuracyText, Button moreButton, int index, float confidence) {
+    private void updatePredictionUI(ConstraintLayout layout, TextView plantText, TextView predictionText, TextView accuracyText, Button moreButton, int index, float confidence) {
         if (confidence >= 0.01) { // Set threshold for visibility to 1%
+            plantText.setText(labelPlants.get(index));
             predictionText.setText(labelDiseases.get(index));
             accuracyText.setText(String.format("%.2f%%", confidence * 100));
-            predictionText.setVisibility(View.VISIBLE);
-            accuracyText.setVisibility(View.VISIBLE);
-            moreButton.setVisibility(View.VISIBLE);
+            layout.setVisibility(View.VISIBLE);
         } else {
-            predictionText.setVisibility(View.GONE);
-            accuracyText.setVisibility(View.GONE);
-            moreButton.setVisibility(View.GONE);
+            layout.setVisibility(View.GONE);
         }
     }
 }
