@@ -86,7 +86,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.055"
+                app:layout_constraintVertical_bias="0.03"
                 app:srcCompat="@drawable/sweet_potato" />
 
             <TextView
@@ -105,56 +105,155 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
-                android:id="@+id/imgSwtPtaLfSptBox"
-                android:layout_width="368dp"
-                android:layout_height="113dp"
-                android:layout_marginTop="48dp"
+                android:id="@+id/boxSPVirDis"
+                android:layout_width="350dp"
+                android:layout_height="229dp"
+                android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgSweetPotato"
-                app:srcCompat="@drawable/rectangle" />
+                app:srcCompat="@drawable/rectangle2" />
 
             <ImageView
-                android:id="@+id/imgSwtPtaLfSpt"
-                android:layout_width="84dp"
-                android:layout_height="83dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintEnd_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintHorizontal_bias="0.084"
-                app:layout_constraintStart_toStartOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintTop_toTopOf="@+id/imgSwtPtaLfSptBox"
+                android:id="@+id/imgSpVirDis"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boxSPVirDis"
+                app:layout_constraintEnd_toEndOf="@+id/boxSPVirDis"
+                app:layout_constraintStart_toStartOf="@+id/boxSPVirDis"
+                app:layout_constraintTop_toTopOf="@+id/boxSPVirDis"
+                app:layout_constraintVertical_bias="0.3"
+                app:srcCompat="@drawable/sp_virus_disease" />
+
+            <TextView
+                android:id="@+id/txtSPMscVir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Sweet Potato Virus Disease"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgSpVirDis"
+                app:layout_constraintEnd_toEndOf="@+id/boxSPVirDis"
+                app:layout_constraintStart_toStartOf="@+id/boxSPVirDis"
+                app:layout_constraintTop_toTopOf="@+id/boxSPVirDis"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txtSPMscVirDesc"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="Vein clearing; chlorotic spots; leaf curling; mosaic; stunting "
+                android:textColor="#000000"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/boxSPVirDis"
+                app:layout_constraintEnd_toEndOf="@+id/boxSPVirDis"
+                app:layout_constraintStart_toStartOf="@+id/boxSPVirDis"
+                app:layout_constraintTop_toBottomOf="@+id/imgSpVirDis"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <ImageView
+                android:id="@+id/boxFusWil"
+                android:layout_width="350dp"
+                android:layout_height="229dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boxSPVirDis"
+                app:srcCompat="@drawable/rectangle2" />
+
+            <ImageView
+                android:id="@+id/imgFusWill"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boxFusWil"
+                app:layout_constraintEnd_toEndOf="@+id/boxFusWil"
+                app:layout_constraintStart_toStartOf="@+id/boxFusWil"
+                app:layout_constraintTop_toTopOf="@+id/boxFusWil"
+                app:layout_constraintVertical_bias="0.3"
+                app:srcCompat="@drawable/sp_fusarium" />
+
+            <TextView
+                android:id="@+id/txtFusWil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Fusarium Wilt"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgFusWill"
+                app:layout_constraintEnd_toEndOf="@+id/boxFusWil"
+                app:layout_constraintStart_toStartOf="@+id/boxFusWil"
+                app:layout_constraintTop_toTopOf="@+id/boxFusWil"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txtFulWilDesc"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:text="Interveinal discoloration (yellowing); wilting (older leaves dry out and drop or hang from the stem) "
+                android:justificationMode="inter_word"
+                android:textColor="#000000"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/boxFusWil"
+                app:layout_constraintEnd_toEndOf="@+id/boxFusWil"
+                app:layout_constraintStart_toStartOf="@+id/boxFusWil"
+                app:layout_constraintTop_toBottomOf="@+id/imgFusWill"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <ImageView
+                android:id="@+id/imgFulWil"
+                android:layout_width="350dp"
+                android:layout_height="229dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boxFusWil"
+                app:srcCompat="@drawable/rectangle2" />
+
+            <ImageView
+                android:id="@+id/imgLfSpt"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgFulWil"
+                app:layout_constraintEnd_toEndOf="@+id/imgFulWil"
+                app:layout_constraintStart_toStartOf="@+id/imgFulWil"
+                app:layout_constraintTop_toTopOf="@+id/imgFulWil"
+                app:layout_constraintVertical_bias="0.3"
                 app:srcCompat="@drawable/sweetpotato_leafspot" />
 
             <TextView
-                android:id="@+id/txtSwtPtaLfSptTitle"
+                android:id="@+id/txtSPLfSpt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sweet Potato Leaf Spot"
-                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:text="Leaf Spot"
+                android:textColor="#000000"
+                android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintEnd_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintHorizontal_bias="0.706"
-                app:layout_constraintStart_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintStart_toStartOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintTop_toTopOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintVertical_bias="0.085" />
+                app:layout_constraintBottom_toBottomOf="@+id/imgFulWil"
+                app:layout_constraintEnd_toEndOf="@+id/imgFulWil"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="@+id/imgFulWil"
+                app:layout_constraintTop_toTopOf="@+id/imgFulWil"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/txtSwtPtaLfSptDesc"
-                android:layout_width="229dp"
-                android:layout_height="66dp"
+                android:id="@+id/txtSPLfSptDesc"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
                 android:justificationMode="inter_word"
-                android:text="	Are brown, circular to irregular on the upper surface, sometimes with light brown centers, and as the spots grow, some join together. Lesions are usually restricted to the older leaves and may be surrounded by a yellow halo."
-                android:textColor="@color/black"
-                android:textSize="10sp"
+                android:text="Brown, sometimes whitish to tan brown necrotic lesions on older leaves, with a typical bull’s eye appearance of concentric rings; blackened veins on leaf undersurface; lesions become necrotic usually surrounded by a wide yellow halo"
+                android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintEnd_toEndOf="@+id/imgSwtPtaLfSptBox"
-                app:layout_constraintHorizontal_bias="0.225"
-                app:layout_constraintStart_toEndOf="@+id/imgSwtPtaLfSpt"
-                app:layout_constraintTop_toBottomOf="@+id/txtSwtPtaLfSptTitle"
-                app:layout_constraintVertical_bias="0.25" />
+                app:layout_constraintBottom_toBottomOf="@+id/imgFulWil"
+                app:layout_constraintEnd_toEndOf="@+id/imgFulWil"
+                app:layout_constraintStart_toStartOf="@+id/imgFulWil"
+                app:layout_constraintTop_toBottomOf="@+id/imgLfSpt"
+                app:layout_constraintVertical_bias="0.3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
