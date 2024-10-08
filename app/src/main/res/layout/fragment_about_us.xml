@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,13 +8,64 @@
     tools:context=".AboutUsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About Us Fragment"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_gravity="center"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtPar1"
+            android:layout_width="285dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="40dp"
+            android:justificationMode="inter_word"
+            android:text="We are Mark Christian Banagan, John Jomar Dimaunahan, and James Paulo Meneses, 4th-year Computer Science students from University of Cabuyao. "
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+        <TextView
+            android:id="@+id/txtPar2"
+            android:layout_width="285dp"
+            android:layout_height="171dp"
+            android:layout_marginTop="20dp"
+            android:justificationMode="inter_word"
+            android:text="We developed CondiPlant, an innovative mobile application designed to assist farmers and backyard gardeners in Cabuyao, Laguna. Using advanced image recognition technology, CondiPlant helps identify and recognize diseases on root crop leaves, providing timely information and mitigation steps to ensure healthier crops. "
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPar1" />
+
+        <TextView
+            android:id="@+id/txtPar3"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:justificationMode="inter_word"
+            android:text="Our goal is to empower local farmers and plant enthusiasts by making disease management easier and more efficient, ultimately contributing to food security and sustainable farming practices in our community."
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPar2" />
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="84dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
