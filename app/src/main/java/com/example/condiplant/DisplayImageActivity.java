@@ -1,6 +1,7 @@
 package com.example.condiplant;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,27 +12,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.condiplant.ml.EfficientNetB0;
-
-import org.tensorflow.lite.DataType;
-import org.tensorflow.lite.support.image.TensorImage;
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
 
 public class DisplayImageActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private ImageButton btnBack, btnRemedy;
-    private TextView txtRootCrop, txtDisease, txtDiseaseDesc, txtRemedy, txtRemedyDesc;
-    private ArrayList<String> labelRootCrops, labelDiseases, labelDescription;
-    private ArrayList<String> remedy1, remedy2, remedy4, remedy5, remedy6, remedy7;
+    private TextView txtRootCrop, txtDisease, txtDiseaseDesc, txtCausesDesc, txtBefore, txtDuring, txtAfter;
+    private ArrayList<String> labelRootCrops, labelDiseases, labelDescription, labelCauses;
+    private ArrayList<String> CBB, CBSp, CBSt, CMV, PYA, SPFW, SPLS, SPVD, TLB, TLS, TMV;
+    private ArrayList<ArrayList<String>> listManagements;
+    private ConstraintLayout layoutDiseaseDetails;
     private int index; // To store the indices
     private String imagePath; // To store the image path
 
@@ -45,25 +39,53 @@ public class DisplayImageActivity extends AppCompatActivity {
         setUpLabels(labelDiseases, "labelDiseases.txt");
         labelDescription = new ArrayList<>();
         setUpLabels(labelDescription, "labelDescription.txt");
-        remedy1 = new ArrayList<>();
-        setUpLabels(remedy1, "CLBRemedy.txt");
-        remedy2 = new ArrayList<>();
-        setUpLabels(remedy2, "CBSRemedy.txt");
-        remedy4 = new ArrayList<>();
-        setUpLabels(remedy4, "CMRemedy.txt");
-        remedy5 = new ArrayList<>();
-        setUpLabels(remedy5, "SPLSRemedy.txt");
-        remedy6 = new ArrayList<>();
-        setUpLabels(remedy6, "TLBRemedy.txt");
-        remedy7 = new ArrayList<>();
-        setUpLabels(remedy7, "TMRemedy.txt");
+        labelCauses = new ArrayList<>();
+        setUpLabels(labelCauses, "labelCauses.txt");
+        CBB = new ArrayList<>();
+        setUpLabels(CBB, "CBB_Management.txt");
+        CBSp = new ArrayList<>();
+        setUpLabels(CBSp, "CBSp_Management.txt");
+        CBSt = new ArrayList<>();
+        setUpLabels(CBSt, "CBSt_Management.txt");
+        CMV = new ArrayList<>();
+        setUpLabels(CMV, "CMV_Management.txt");
+        PYA = new ArrayList<>();
+        setUpLabels(PYA, "PYA_Management.txt");
+        SPFW = new ArrayList<>();
+        setUpLabels(SPFW, "SPFW_Management.txt");
+        SPLS = new ArrayList<>();
+        setUpLabels(SPLS, "SPLS_Management.txt");
+        SPVD = new ArrayList<>();
+        setUpLabels(SPVD, "SPVD_Management.txt");
+        TLB = new ArrayList<>();
+        setUpLabels(TLB, "TLB_Management.txt");
+        TLS = new ArrayList<>();
+        setUpLabels(TLS, "TLS_Management.txt");
+        TMV = new ArrayList<>();
+        setUpLabels(TMV, "TMV_Management.txt");
+
+        listManagements = new ArrayList<>();
+        listManagements.add(CBB);
+        listManagements.add(CBSp);
+        listManagements.add(CBSt);
+        listManagements.add(CMV);
+        listManagements.add(PYA);
+        listManagements.add(SPFW);
+        listManagements.add(SPLS);
+        listManagements.add(SPVD);
+        listManagements.add(TLB);
+        listManagements.add(TLS);
+        listManagements.add(TMV);
 
         txtRootCrop = findViewById(R.id.txtRootCrop);
         txtDisease = findViewById(R.id.txtDisease);
         txtDiseaseDesc = findViewById(R.id.txtDiseaseDesc);
-        txtRemedy = findViewById(R.id.txtRemedy);
-        txtRemedyDesc = findViewById(R.id.txtRemedyDesc);
+        txtCausesDesc = findViewById(R.id.txtCausesDesc);
+        txtBefore = findViewById(R.id.txtBefore);
+        txtDuring = findViewById(R.id.txtDuring);
+        txtAfter = findViewById(R.id.txtAfter);
         imageView = findViewById(R.id.displayImageView);
+        layoutDiseaseDetails = findViewById(R.id.layoutDiseaseDetails);
 
         index = getIntent().getIntExtra("index", -1);
         imagePath = getIntent().getStringExtra("imagePath");
@@ -97,14 +119,15 @@ public class DisplayImageActivity extends AppCompatActivity {
         txtDisease.setText(labelDiseases.get(index));
         txtDiseaseDesc.setText("    " + labelDescription.get(index));
 
-        if (index == 7 || index == 3){
-            txtRemedy.setVisibility(View.INVISIBLE);
-            txtRemedyDesc.setVisibility(View.INVISIBLE);
-            txtRemedyDesc.setText("");
+        if (txtDisease.getText().equals("Mechanical / Insect Damage")
+                || txtDisease.getText().equals("Healthy")
+                || txtDisease.getText().equals("Pest Damage")
+                || txtDisease.getText().equals("Not Recognized")){
+            layoutDiseaseDetails.setVisibility(View.GONE);
         } else {
-            txtRemedy.setVisibility(View.VISIBLE);
-            txtRemedyDesc.setVisibility(View.VISIBLE);
-            txtRemedyDesc.setText(getRemedyDescription(index));
+            layoutDiseaseDetails.setVisibility(View.VISIBLE);
+            txtCausesDesc.setText(labelCauses.get(index));
+            getManagementDescription(index);
         }
     }
 
@@ -123,41 +146,63 @@ public class DisplayImageActivity extends AppCompatActivity {
         }
     }
 
-    public String getRemedyDescription(int index){
-        StringBuilder remedyDescription = new StringBuilder();
-        switch (index){
-            case 0:
-                for (String remedy : remedy1){
-                    remedyDescription.append("• ").append(remedy).append("\n");
-                }
-                break;
-            case 1:
-                for (String remedy : remedy2){
-                    remedyDescription.append("• ").append(remedy).append("\n");
-                }
-                break;
-            case 3:
-                for (String remedy : remedy4){
-                    remedyDescription.append("• ").append(remedy).append("\n");
-                }
-                break;
-            case 4:
-                for (String remedy : remedy5){
-                    remedyDescription.append("• ").append(remedy).append("\n");
-                }
-                break;
-            case 5:
-                for (String remedy : remedy6){
-                    remedyDescription.append("• ").append(remedy).append("\n");
-                }
-                break;
-            case 6:
-                for (String remedy : remedy7){
-                    remedyDescription.append("• ").append(remedy).append("\n");
-                }
-                break;
+    public void getManagementDescription(int index){
+        StringBuilder output = new StringBuilder();
+        int indexManagement = 0;
+        if (index == 0 || index == 1 || index == 2) {
+            indexManagement = index;
+        } else if (index == 5) {
+            indexManagement = 3;
+        } else if (index == 7) {
+            indexManagement = 4;
+        } else if (index == 11) {
+            indexManagement = 5;
+        } else if (index == 13) {
+            indexManagement = 6;
+        } else if (index == 14) {
+            indexManagement = 7;
+        } else if (index == 15) {
+            indexManagement = 8;
+        } else if (index == 18) {
+            indexManagement = 9;
+        } else if (index == 19) {
+            indexManagement = 10;
         }
-        return remedyDescription.toString();
+
+        StringBuilder beforePlanting = new StringBuilder();
+        StringBuilder duringGrowth = new StringBuilder();
+        StringBuilder afterHarvest = new StringBuilder();
+
+        // Temporary variable to hold the current section
+        String currentSection = "";
+
+        // Iterate through the list to group the steps
+        for (String step : listManagements.get(indexManagement)) {
+            if (step.startsWith("Before Planting")) {
+                currentSection = "Before Planting";
+            } else if (step.startsWith("During Growth")) {
+                currentSection = "During Growth";
+            } else if (step.startsWith("After Harvest")) {
+                currentSection = "After Harvest";
+            } else {
+                // Append to the current section
+                switch (currentSection) {
+                    case "Before Planting":
+                        beforePlanting.append("• ").append(step).append("\n");
+                        break;
+                    case "During Growth":
+                        duringGrowth.append("• ").append(step).append("\n");
+                        break;
+                    case "After Harvest":
+                        afterHarvest.append("• ").append(step).append("\n");
+                        break;
+                }
+            }
+        }
+
+        txtBefore.setText(beforePlanting.toString());
+        txtDuring.setText(duringGrowth.toString());
+        txtAfter.setText(afterHarvest.toString());
     }
 
 
