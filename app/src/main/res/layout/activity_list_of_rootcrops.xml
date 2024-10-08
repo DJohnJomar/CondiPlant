@@ -8,12 +8,21 @@
     android:background="@color/BgGreen"
     tools:context=".ListOfRootcrops">
 
+    <ImageView
+        android:id="@+id/imgPlant3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="516dp"
+        android:src="@drawable/bg_design"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        tools:layout_editor_absoluteX="0dp" />
+
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="50dp"
         android:text="Root Crops in Cabuyao"
         android:textColor="@color/black"
@@ -87,8 +96,8 @@
         android:id="@+id/btnTaro"
         android:layout_width="174dp"
         android:layout_height="159dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/BgGreen"
         android:contentDescription="Taro"
         android:scaleType="fitCenter"
@@ -97,30 +106,44 @@
         app:srcCompat="@drawable/taro" />
 
     <ImageButton
-        android:id="@+id/btnPurpleYam"
-        android:layout_width="179dp"
-        android:layout_height="152dp"
-        android:layout_marginEnd="16dp"
-        android:background="#00E9FCDA"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTaro"
-        app:layout_constraintVertical_bias="0.163"
-        app:srcCompat="@drawable/purpleyam" />
-
-    <ImageButton
         android:id="@+id/btnCassava"
         android:layout_width="179dp"
         android:layout_height="152dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="116dp"
         android:background="@color/BgGreen"
         android:contentDescription="Cassava"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle"
         app:srcCompat="@drawable/cassava" />
+
+    <ImageButton
+        android:id="@+id/btnSweetPotato"
+        android:layout_width="179dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="12dp"
+        android:background="#00E9FCDA"
+        android:contentDescription="Sweet_Potato"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCassava"
+        app:layout_constraintVertical_bias="0.21"
+        app:srcCompat="@drawable/sweet_potato" />
+
+    <ImageButton
+        android:id="@+id/btnPurpleYam"
+        android:layout_width="179dp"
+        android:layout_height="152dp"
+        android:layout_marginEnd="12dp"
+        android:background="#00E9FCDA"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTaro"
+        app:layout_constraintVertical_bias="0.186"
+        app:srcCompat="@drawable/purpleyam" />
 
     <TextView
         android:id="@+id/txtSweetPotato"
@@ -149,20 +172,6 @@
         app:layout_constraintStart_toStartOf="@+id/btnCassava"
         app:layout_constraintTop_toTopOf="@+id/btnCassava"
         app:layout_constraintVertical_bias="0.984" />
-
-    <ImageButton
-        android:id="@+id/btnSweetPotato"
-        android:layout_width="179dp"
-        android:layout_height="152dp"
-        android:layout_marginStart="16dp"
-        android:background="#00E9FCDA"
-        android:contentDescription="Sweet_Potato"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCassava"
-        app:layout_constraintVertical_bias="0.19"
-        app:srcCompat="@drawable/sweet_potato" />
 
     <TextView
         android:id="@+id/txtTaro"

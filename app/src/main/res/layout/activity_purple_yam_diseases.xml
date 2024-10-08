@@ -86,7 +86,7 @@
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.033"
+                app:layout_constraintVertical_bias="0.07999998"
                 app:srcCompat="@drawable/purpleyam" />
 
             <TextView
@@ -104,6 +104,55 @@
                 app:layout_constraintTop_toTopOf="@+id/imgCassava"
                 app:layout_constraintVertical_bias="1.0" />
 
+            <ImageView
+                android:id="@+id/boxAnthrac"
+                android:layout_width="350dp"
+                android:layout_height="229dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                app:srcCompat="@drawable/rectangle2" />
+
+            <ImageView
+                android:id="@+id/imgAnthrac"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boxAnthrac"
+                app:layout_constraintEnd_toEndOf="@+id/boxAnthrac"
+                app:layout_constraintStart_toStartOf="@+id/boxAnthrac"
+                app:layout_constraintTop_toTopOf="@+id/boxAnthrac"
+                app:layout_constraintVertical_bias="0.3"
+                app:srcCompat="@drawable/yam_anthracnose" />
+
+            <TextView
+                android:id="@+id/txtAnthrac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Anthracnose"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgAnthrac"
+                app:layout_constraintEnd_toEndOf="@+id/boxAnthrac"
+                app:layout_constraintStart_toStartOf="@+id/boxAnthrac"
+                app:layout_constraintTop_toTopOf="@+id/boxAnthrac"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txtAnthracDesc"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="Very small brown spots on young leaves; spots become larger as the leaves approach full size; may develop pale yellow margins; sometimes the leaf spots run together to form large irregular blotches "
+                android:textColor="#000000"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/boxAnthrac"
+                app:layout_constraintEnd_toEndOf="@+id/boxAnthrac"
+                app:layout_constraintStart_toStartOf="@+id/boxAnthrac"
+                app:layout_constraintTop_toBottomOf="@+id/imgAnthrac"
+                app:layout_constraintVertical_bias="0.24000001" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
