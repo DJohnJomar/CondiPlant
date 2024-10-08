@@ -9,6 +9,7 @@
     tools:context=".SweetPotatoDiseases">
 
 <!--Toolbar-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -65,6 +66,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 <!--Rest of the contents-->
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -194,8 +196,8 @@
                 android:id="@+id/txtFulWilDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
-                android:text="Interveinal discoloration (yellowing); wilting (older leaves dry out and drop or hang from the stem) "
                 android:justificationMode="inter_word"
+                android:text="Interveinal discoloration (yellowing); wilting (older leaves dry out and drop or hang from the stem) "
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="@+id/boxFusWil"

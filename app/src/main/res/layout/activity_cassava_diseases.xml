@@ -62,9 +62,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/logo" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -146,8 +148,8 @@
                 android:id="@+id/txtCassBrwnDesc"
                 android:layout_width="295dp"
                 android:layout_height="80dp"
-                android:text="Leaf spots are circular, up to 15 mm diameter, becoming angular and limited by veins; the spots are brown with dark borders, sometimes surrounded by indistinct yellow margins"
                 android:justificationMode="inter_word"
+                android:text="Leaf spots are circular, up to 15 mm diameter, becoming angular and limited by veins; the spots are brown with dark borders, sometimes surrounded by indistinct yellow margins"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="@+id/bxBrwnSpt"
@@ -163,6 +165,7 @@
                 android:layout_height="229dp"
                 android:layout_marginTop="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bxBrwnSpt"
                 app:srcCompat="@drawable/rectangle2" />
@@ -198,8 +201,8 @@
                 android:id="@+id/txtMscVrsDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
-                android:text="Deformed and distorted leaves and shoots are common and plants are stunted; leaves show pale green to yellow patches, giving what is called a 'mosaic' pattern"
                 android:justificationMode="inter_word"
+                android:text="Deformed and distorted leaves and shoots are common and plants are stunted; leaves show pale green to yellow patches, giving what is called a 'mosaic' pattern"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -248,8 +251,8 @@
                 android:id="@+id/txtBacBlghtDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
-                android:text="Angular, water-soaked spots occur on the leaves which are restricted by the veins; the spots expand rapidly, join together, especially along the margins of the leaves, and turn brown with yellow borders"
                 android:justificationMode="inter_word"
+                android:text="Angular, water-soaked spots occur on the leaves which are restricted by the veins; the spots expand rapidly, join together, especially along the margins of the leaves, and turn brown with yellow borders"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="@+id/bxBacBlght"
