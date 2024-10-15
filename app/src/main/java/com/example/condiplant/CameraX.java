@@ -53,10 +53,13 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
 public class CameraX extends AppCompatActivity {
+    private Timer timer;
     private ImageButton capture, toggleFlash;
     private PreviewView previewView;
     private BoundingBoxView boundingBoxView;
@@ -86,6 +89,22 @@ public class CameraX extends AppCompatActivity {
         } else {
             startCamera(cameraFacing);
         }
+
+        timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (capture.getVisibility() == View.INVISIBLE) {
+                            Toast.makeText(CameraX.this, "Move Around the target object to focus", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(task, 0, 15000);
     }
 
     public void startCamera(int cameraFacing) {
@@ -161,6 +180,8 @@ public class CameraX extends AppCompatActivity {
                     });
                 } else {
                     super.onCaptureSuccess(image);
+                    timer.cancel();
+                    timer.purge();
                     Uri imageUri = saveImageToFile(image);
                     Intent resultIntent = new Intent();
                     resultIntent.setData(imageUri);

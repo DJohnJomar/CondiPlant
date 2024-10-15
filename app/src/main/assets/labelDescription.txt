@@ -18,4 +18,4 @@ Leaf mechanical damage happens when external forces like wind, hail, or human ac
 The leaf appears vibrant and undamaged, indicating it is in good health and free from any diseases.
 Spots yellow at first; later, reddish brown spots and blotches with light brown centers, round or irregular up to 15 mm diameter
 Light green streaks, feather-- like patches  appear along the main leaf veins or between them; others are over the main veins throughout the leaf
-The image detected is considered not part of root crop leaf images the model was trained at. Please ensure that the leaf image is captured and properly visible for better disease prediction.
+The image detected is considered not part of root crop leaf images the model was trained at. Please ensure that the whole leaf image is captured and properly visible for better disease prediction.
