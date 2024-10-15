@@ -198,6 +198,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                 updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, 20, 0.9999f);
                 updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, 0, 0);
                 updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, 0, 0);
+                topIndices[0] = 20;
             } else {
                 // Runs mainModel inference and gets result.
                 EfficientNetB0.Outputs outputs = mainModel.process(inputFeature0);
