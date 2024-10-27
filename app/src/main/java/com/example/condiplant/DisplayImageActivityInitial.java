@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-import com.example.condiplant.ml.EfficientNetB0;
-import com.example.condiplant.ml.Efficientnetb0Classifier;
+import com.example.condiplant.ml.Efficientnetb0MainModel;
+import com.example.condiplant.ml.Efficientnetb0SubModel;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.image.TensorImage;
@@ -151,8 +151,8 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     public void predict(Bitmap bitmap){
         try {
             System.out.println("Predicting");
-            EfficientNetB0 mainModel = EfficientNetB0.newInstance(DisplayImageActivityInitial.this);
-            Efficientnetb0Classifier subModel = Efficientnetb0Classifier.newInstance(DisplayImageActivityInitial.this);
+            Efficientnetb0MainModel mainModel = Efficientnetb0MainModel.newInstance(DisplayImageActivityInitial.this);
+            Efficientnetb0SubModel subModel = Efficientnetb0SubModel.newInstance(DisplayImageActivityInitial.this);
 
             // Resize and normalize bitmap
             bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
@@ -181,58 +181,60 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
 
             Log.d("Shape of input buffer", tensorImage.getBuffer() + "");
 
+            // Runs subModel inference and gets result.
+            Efficientnetb0SubModel.Outputs outputs = subModel.process(inputFeature0);
+            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+            // Get top three confidence indices and values
+            float[] confidence = outputFeature0.getFloatArray();
 
+            Map<Integer, Float> topThreeConfidence = getTopThreeConfidence(confidence);
 
-
-            Efficientnetb0Classifier.Outputs result = subModel.process(inputFeature0);
-            TensorBuffer outputFeature = result.getOutputFeature0AsTensorBuffer();
-            float[] subConfidence = outputFeature.getFloatArray();
-
-            int index = 0;
-            for (float test : subConfidence) {
-                Log.d("Shape of input buffer", "Index " + index + " == " + test);
-                index++;
+            int count = 0;
+            for (Map.Entry<Integer, Float> entry : topThreeConfidence.entrySet()) {
+                topIndices[count] = entry.getKey(); // Get the index of the predicted class
+                topConfidences[count] = entry.getValue(); // Get the confidence value
+                count++;
             }
 
-            if (subConfidence[4] > 0.2f) {
-                updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, 20, 0.9999f);
-                updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, 0, 0);
-                updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, 0, 0);
-                topIndices[0] = 20;
-            } else {
-                // Runs mainModel inference and gets result.
-                EfficientNetB0.Outputs outputs = mainModel.process(inputFeature0);
-                TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
-                // Get top three confidence indices and values
-                float[] confidence = outputFeature0.getFloatArray();
+            // Debugging: Log the top indices and their corresponding confidence values
+            Log.d("Top Predictions", "Index 1: " + topIndices[0] + ", Confidence: " + topConfidences[0]);
+            Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
+            Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
 
-                Map<Integer, Float> topThreeConfidence = getTopThreeConfidence(confidence);
 
-                int count = 0;
-                for (Map.Entry<Integer, Float> entry : topThreeConfidence.entrySet()) {
+            if (checkForTopDisease(topIndices)) {
+                Efficientnetb0MainModel.Outputs result = mainModel.process(inputFeature0);
+                TensorBuffer outputFeature = result.getOutputFeature0AsTensorBuffer();
+                float[] subConfidence = outputFeature.getFloatArray();
+
+                Map<Integer, Float> topThreeSubConfidence = getTopThreeConfidence(subConfidence);
+
+                count = 0;
+                for (Map.Entry<Integer, Float> entry : topThreeSubConfidence.entrySet()) {
                     topIndices[count] = entry.getKey(); // Get the index of the predicted class
                     topConfidences[count] = entry.getValue(); // Get the confidence value
                     count++;
                 }
 
+                topIndices = convertIndices(topIndices);
+
                 // Debugging: Log the top indices and their corresponding confidence values
                 Log.d("Top Predictions", "Index 1: " + topIndices[0] + ", Confidence: " + topConfidences[0]);
                 Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
                 Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
-
-                // Update the text views for the predictions and accuracy
-                updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
-                updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
-                updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
             }
 
-            // Releases mainModel resources if no longer used.
-            mainModel.close();
+            // Update the text views for the predictions and accuracy
+            updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
+            updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
+            updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
+
+            // Releases subModel resources if no longer used.
             subModel.close();
+            mainModel.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     // Function to get the top 3 confidence values and their indices (class predictions)
@@ -289,9 +291,10 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         if (imagePath != null) {
             File tempFile = new File(imagePath);
             if (tempFile.exists()) {
-                tempFile.delete();
+                tempFile.deleteOnExit();
             }
         }
+        finish();
     }
 
     //Fills up the arraylist with the text contained in the selected text file named "fileName"
@@ -319,5 +322,20 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         } else {
             layout.setVisibility(View.GONE);
         }
+    }
+
+    private boolean checkForTopDisease(int[] topIndices) {
+        int[] diseaseIndices = {0, 1, 2, 5, 7, 11, 13, 14, 15, 18, 19};
+        for (int index : diseaseIndices){
+            if (topIndices[0] == index){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int[] convertIndices(int[] topIndices) {
+        int[] diseaseIndices = {0, 1, 2, 5, 7, 11, 13, 14, 15, 18, 19};
+        return new int[]{diseaseIndices[topIndices[0]], diseaseIndices[topIndices[1]], diseaseIndices[topIndices[2]]};
     }
 }

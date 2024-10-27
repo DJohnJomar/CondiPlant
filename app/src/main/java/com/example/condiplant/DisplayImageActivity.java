@@ -131,6 +131,12 @@ public class DisplayImageActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
+
     //Fills up the arraylist with the text contained in the selected text file named "fileName"
     public void setUpLabels(ArrayList<String> labels, String fileName){
         //For the classification labels

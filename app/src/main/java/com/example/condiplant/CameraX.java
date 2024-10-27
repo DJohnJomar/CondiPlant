@@ -73,6 +73,7 @@ public class CameraX extends AppCompatActivity {
             }
         }
     });
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +165,14 @@ public class CameraX extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, ContextCompat.getMainExecutor(this));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
+        timer.purge();
+        finish();
     }
 
     public void takePicture(ImageCapture imageCapture) {
