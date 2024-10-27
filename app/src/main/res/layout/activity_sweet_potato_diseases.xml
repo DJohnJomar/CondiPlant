@@ -106,11 +106,14 @@
                 app:layout_constraintTop_toTopOf="@+id/imgSweetPotato"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <ImageView
-                android:id="@+id/boxSPVirDis"
+
+            <ImageButton
+                android:id="@+id/btnVirus"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="43dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgSweetPotato"
@@ -120,142 +123,159 @@
                 android:id="@+id/imgSpVirDis"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/boxSPVirDis"
-                app:layout_constraintEnd_toEndOf="@+id/boxSPVirDis"
-                app:layout_constraintStart_toStartOf="@+id/boxSPVirDis"
-                app:layout_constraintTop_toTopOf="@+id/boxSPVirDis"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="145dp"
+                android:layout_marginTop="65dp"
+                android:layout_marginEnd="135dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnVirus"
+                app:layout_constraintStart_toStartOf="@+id/btnVirus"
+                app:layout_constraintTop_toTopOf="@+id/btnVirus"
                 app:srcCompat="@drawable/sp_virus_disease" />
 
             <TextView
                 android:id="@+id/txtSPMscVir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="69dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="59dp"
+                android:layout_marginBottom="8dp"
                 android:text="Sweet Potato Virus Disease"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgSpVirDis"
-                app:layout_constraintEnd_toEndOf="@+id/boxSPVirDis"
-                app:layout_constraintStart_toStartOf="@+id/boxSPVirDis"
-                app:layout_constraintTop_toTopOf="@+id/boxSPVirDis"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/btnVirus"
+                app:layout_constraintStart_toStartOf="@+id/btnVirus"
+                app:layout_constraintTop_toTopOf="@+id/btnVirus" />
 
             <TextView
                 android:id="@+id/txtSPMscVirDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="22dp"
                 android:justificationMode="inter_word"
                 android:text="Vein clearing; chlorotic spots; leaf curling; mosaic; stunting "
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/boxSPVirDis"
-                app:layout_constraintEnd_toEndOf="@+id/boxSPVirDis"
-                app:layout_constraintStart_toStartOf="@+id/boxSPVirDis"
-                app:layout_constraintTop_toBottomOf="@+id/imgSpVirDis"
-                app:layout_constraintVertical_bias="0.3" />
+                app:layout_constraintEnd_toEndOf="@+id/btnVirus"
+                app:layout_constraintStart_toStartOf="@+id/btnVirus"
+                app:layout_constraintTop_toBottomOf="@+id/imgSpVirDis" />
 
-            <ImageView
-                android:id="@+id/boxFusWil"
+            <ImageButton
+                android:id="@+id/btnFusariumWilt"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/boxSPVirDis"
+                app:layout_constraintTop_toBottomOf="@+id/btnVirus"
                 app:srcCompat="@drawable/rectangle2" />
 
             <ImageView
                 android:id="@+id/imgFusWill"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/boxFusWil"
-                app:layout_constraintEnd_toEndOf="@+id/boxFusWil"
-                app:layout_constraintStart_toStartOf="@+id/boxFusWil"
-                app:layout_constraintTop_toTopOf="@+id/boxFusWil"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="51dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnFusariumWilt"
+                app:layout_constraintStart_toStartOf="@+id/btnFusariumWilt"
+                app:layout_constraintTop_toTopOf="@+id/btnFusariumWilt"
                 app:srcCompat="@drawable/sp_fusarium" />
 
             <TextView
                 android:id="@+id/txtFusWil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="119dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginBottom="8dp"
                 android:text="Fusarium Wilt"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgFusWill"
-                app:layout_constraintEnd_toEndOf="@+id/boxFusWil"
-                app:layout_constraintStart_toStartOf="@+id/boxFusWil"
-                app:layout_constraintTop_toTopOf="@+id/boxFusWil"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/btnFusariumWilt"
+                app:layout_constraintStart_toStartOf="@+id/btnFusariumWilt"
+                app:layout_constraintTop_toTopOf="@+id/btnFusariumWilt" />
 
             <TextView
                 android:id="@+id/txtFulWilDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="27dp"
                 android:justificationMode="inter_word"
                 android:text="Interveinal discoloration (yellowing); wilting (older leaves dry out and drop or hang from the stem) "
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/boxFusWil"
-                app:layout_constraintEnd_toEndOf="@+id/boxFusWil"
-                app:layout_constraintStart_toStartOf="@+id/boxFusWil"
-                app:layout_constraintTop_toBottomOf="@+id/imgFusWill"
-                app:layout_constraintVertical_bias="0.3" />
+                app:layout_constraintEnd_toEndOf="@+id/btnFusariumWilt"
+                app:layout_constraintStart_toStartOf="@+id/btnFusariumWilt"
+                app:layout_constraintTop_toBottomOf="@+id/imgFusWill" />
 
-            <ImageView
-                android:id="@+id/imgFulWil"
+            <ImageButton
+                android:id="@+id/btnLeafSpot"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/boxFusWil"
+                app:layout_constraintTop_toBottomOf="@+id/btnFusariumWilt"
                 app:srcCompat="@drawable/rectangle2" />
 
             <ImageView
                 android:id="@+id/imgLfSpt"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgFulWil"
-                app:layout_constraintEnd_toEndOf="@+id/imgFulWil"
-                app:layout_constraintStart_toStartOf="@+id/imgFulWil"
-                app:layout_constraintTop_toTopOf="@+id/imgFulWil"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="46dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnLeafSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnLeafSpot"
+                app:layout_constraintTop_toTopOf="@+id/btnLeafSpot"
                 app:srcCompat="@drawable/sweetpotato_leafspot" />
-
-            <TextView
-                android:id="@+id/txtSPLfSpt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Leaf Spot"
-                android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imgFulWil"
-                app:layout_constraintEnd_toEndOf="@+id/imgFulWil"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="@+id/imgFulWil"
-                app:layout_constraintTop_toTopOf="@+id/imgFulWil"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtSPLfSptDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="27dp"
                 android:justificationMode="inter_word"
                 android:text="Brown, sometimes whitish to tan brown necrotic lesions on older leaves, with a typical bull’s eye appearance of concentric rings; blackened veins on leaf undersurface; lesions become necrotic usually surrounded by a wide yellow halo"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imgFulWil"
-                app:layout_constraintEnd_toEndOf="@+id/imgFulWil"
-                app:layout_constraintStart_toStartOf="@+id/imgFulWil"
-                app:layout_constraintTop_toBottomOf="@+id/imgLfSpt"
-                app:layout_constraintVertical_bias="0.3" />
+                app:layout_constraintEnd_toEndOf="@+id/btnLeafSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnLeafSpot"
+                app:layout_constraintTop_toBottomOf="@+id/imgLfSpt" />
+
+            <TextView
+                android:id="@+id/txtSPLfSpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="137dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="136dp"
+                android:text="Leaf Spot"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/btnLeafSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnLeafSpot"
+                app:layout_constraintTop_toTopOf="@+id/btnLeafSpot" />
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
