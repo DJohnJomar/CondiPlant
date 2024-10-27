@@ -48,8 +48,8 @@ public class CassavaDiseases extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent to pass on data
                 Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexBrownSpot); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgBrownSpot); // Pass the image path
+                intent.putExtra("index", indexBrownSpot); //Pass disease Index
+                intent.putExtra("drawableId", imgBrownSpot); // Pass the image drawable id
                 startActivity(intent);
             }
         });
@@ -63,8 +63,8 @@ public class CassavaDiseases extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent to pass on data
                 Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexMosaicVirus); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgMosaicVirus); // Pass the image path
+                intent.putExtra("index", indexMosaicVirus); //Pass disease Index
+                intent.putExtra("drawableId", imgMosaicVirus); // Pass the image drawable id
                 startActivity(intent);            }
         });
 
@@ -76,8 +76,8 @@ public class CassavaDiseases extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent to pass on data
                 Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexBacterialBlight); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgBacterialBlight); // Pass the image path
+                intent.putExtra("index", indexBacterialBlight); //Pass disease Index
+                intent.putExtra("drawableId", imgBacterialBlight);// Pass the image drawable id
                 startActivity(intent);            }
         });
 
@@ -89,8 +89,8 @@ public class CassavaDiseases extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent to pass on data
                 Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexBrownStreak); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgBrownStreak); // Pass the image path
+                intent.putExtra("index", indexBrownStreak);//Pass disease Index
+                intent.putExtra("drawableId", imgBrownStreak);// Pass the image drawable id
                 startActivity(intent);            }
         });
     }

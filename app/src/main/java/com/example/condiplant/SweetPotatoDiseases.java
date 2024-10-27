@@ -47,8 +47,8 @@ public class SweetPotatoDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(SweetPotatoDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexVirus); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgVirus); // Pass the image path
+                intent.putExtra("index", indexVirus); //Pass disease Index
+                intent.putExtra("drawableId", imgVirus); // Pass the image drawable id
                 startActivity(intent);
             }
         });
@@ -62,8 +62,8 @@ public class SweetPotatoDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(SweetPotatoDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexFusariumWilt); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgFusariumWilt); // Pass the image path
+                intent.putExtra("index", indexFusariumWilt); //Pass disease Index
+                intent.putExtra("drawableId", imgFusariumWilt); // Pass the image drawable id
                 startActivity(intent);
             }
         });
@@ -77,8 +77,8 @@ public class SweetPotatoDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(SweetPotatoDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexLeafSpot); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgLeafSpot); // Pass the image path
+                intent.putExtra("index", indexLeafSpot); //Pass disease Index
+                intent.putExtra("drawableId", imgLeafSpot); // Pass the image drawable id
                 startActivity(intent);
             }
         });

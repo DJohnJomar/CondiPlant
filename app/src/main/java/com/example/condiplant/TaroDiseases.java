@@ -46,8 +46,8 @@ public class TaroDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(TaroDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexLeafBlight); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgLeafBlight); // Pass the image path
+                intent.putExtra("index", indexLeafBlight); //Pass disease Index
+                intent.putExtra("drawableId", imgLeafBlight); // Pass the image drawable id
                 startActivity(intent);
             }
         });
@@ -61,8 +61,8 @@ public class TaroDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(TaroDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexDasheenMosaic); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgDasheeMosaic); // Pass the image path
+                intent.putExtra("index", indexDasheenMosaic); //Pass disease Index
+                intent.putExtra("drawableId", imgDasheeMosaic); // Pass the image drawable id
                 startActivity(intent);
             }
         });
@@ -76,8 +76,8 @@ public class TaroDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(TaroDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexTaroLeafSpot); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgTaroLeafSpot); // Pass the image path
+                intent.putExtra("index", indexTaroLeafSpot); //Pass disease Index
+                intent.putExtra("drawableId", imgTaroLeafSpot); // Pass the image drawable id
                 startActivity(intent);
             }
         });

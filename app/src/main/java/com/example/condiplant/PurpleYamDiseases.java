@@ -51,8 +51,8 @@ public class PurpleYamDiseases extends AppCompatActivity {
             public void onClick(View view) {
                 //Intent to pass on data
                 Intent intent = new Intent(PurpleYamDiseases.this, DiseaseMoreInfo.class);
-                intent.putExtra("index", indexAnthracnose); // Pass the top confidence - index 0
-                intent.putExtra("drawableId", imgAntrhacnoseId); // Pass the image path
+                intent.putExtra("index", indexAnthracnose); //Pass disease Index
+                intent.putExtra("drawableId", imgAntrhacnoseId); // Pass the image drawable id
                 startActivity(intent);
 
             }
