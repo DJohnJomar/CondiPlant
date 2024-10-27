@@ -104,55 +104,69 @@
                 app:layout_constraintTop_toTopOf="@+id/imgCassava"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <ImageView
-                android:id="@+id/boxAnthrac"
-                android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="30dp"
+
+            <ImageButton
+                android:id="@+id/btnAnthracnose"
+                android:layout_width="348dp"
+                android:layout_height="233dp"
+                android:layout_marginTop="36dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                app:layout_constraintTop_toBottomOf="@+id/imgCassava"
                 app:srcCompat="@drawable/rectangle2" />
+
 
             <ImageView
                 android:id="@+id/imgAnthrac"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/boxAnthrac"
-                app:layout_constraintEnd_toEndOf="@+id/boxAnthrac"
-                app:layout_constraintStart_toStartOf="@+id/boxAnthrac"
-                app:layout_constraintTop_toTopOf="@+id/boxAnthrac"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="139dp"
+                android:layout_marginEnd="139dp"
+                android:layout_marginBottom="82dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnAnthracnose"
+                app:layout_constraintEnd_toEndOf="@+id/btnAnthracnose"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnAnthracnose"
+                app:layout_constraintTop_toTopOf="@+id/btnAnthracnose"
+                app:layout_constraintVertical_bias="0.641"
                 app:srcCompat="@drawable/yam_anthracnose" />
-
-            <TextView
-                android:id="@+id/txtAnthrac"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Anthracnose"
-                android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/imgAnthrac"
-                app:layout_constraintEnd_toEndOf="@+id/boxAnthrac"
-                app:layout_constraintStart_toStartOf="@+id/boxAnthrac"
-                app:layout_constraintTop_toTopOf="@+id/boxAnthrac"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtAnthracDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="18dp"
                 android:justificationMode="inter_word"
                 android:text="Very small brown spots on young leaves; spots become larger as the leaves approach full size; may develop pale yellow margins; sometimes the leaf spots run together to form large irregular blotches "
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/boxAnthrac"
-                app:layout_constraintEnd_toEndOf="@+id/boxAnthrac"
-                app:layout_constraintStart_toStartOf="@+id/boxAnthrac"
-                app:layout_constraintTop_toBottomOf="@+id/imgAnthrac"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintBottom_toBottomOf="@+id/btnAnthracnose"
+                app:layout_constraintEnd_toEndOf="@+id/btnAnthracnose"
+                app:layout_constraintStart_toStartOf="@+id/btnAnthracnose"
+                app:layout_constraintTop_toBottomOf="@+id/imgAnthrac" />
+
+            <TextView
+                android:id="@+id/txtAnthrac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="123dp"
+                android:layout_marginEnd="123dp"
+                android:layout_marginBottom="8dp"
+                android:text="Anthracnose"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgAnthrac"
+                app:layout_constraintEnd_toEndOf="@+id/btnAnthracnose"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnAnthracnose"
+                app:layout_constraintTop_toTopOf="@+id/btnAnthracnose"
+                app:layout_constraintVertical_bias="0.9" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

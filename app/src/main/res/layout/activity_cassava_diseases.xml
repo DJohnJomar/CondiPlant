@@ -108,11 +108,13 @@
                 app:layout_constraintTop_toTopOf="@+id/imgCassava"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <ImageView
-                android:id="@+id/bxBrwnSpt"
+            <ImageButton
+                android:id="@+id/btnBrownSpot"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="42dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgCassava"
@@ -122,194 +124,217 @@
                 android:id="@+id/imgBrwnSpt"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bxBrwnSpt"
-                app:layout_constraintEnd_toEndOf="@+id/bxBrwnSpt"
-                app:layout_constraintStart_toStartOf="@+id/bxBrwnSpt"
-                app:layout_constraintTop_toTopOf="@+id/bxBrwnSpt"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="141dp"
+                android:layout_marginTop="51dp"
+                android:layout_marginEnd="139dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnBrownSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnBrownSpot"
+                app:layout_constraintTop_toTopOf="@+id/btnBrownSpot"
                 app:srcCompat="@drawable/cassava_brown_leafspot" />
-
-            <TextView
-                android:id="@+id/txtBrwnSpt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Cassava Brown Spot"
-                android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/imgBrwnSpt"
-                app:layout_constraintEnd_toEndOf="@+id/bxBrwnSpt"
-                app:layout_constraintStart_toStartOf="@+id/bxBrwnSpt"
-                app:layout_constraintTop_toTopOf="@+id/bxBrwnSpt"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtCassBrwnDesc"
                 android:layout_width="295dp"
                 android:layout_height="80dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="27dp"
                 android:justificationMode="inter_word"
                 android:text="Leaf spots are circular, up to 15 mm diameter, becoming angular and limited by veins; the spots are brown with dark borders, sometimes surrounded by indistinct yellow margins"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/bxBrwnSpt"
-                app:layout_constraintEnd_toEndOf="@+id/bxBrwnSpt"
-                app:layout_constraintHorizontal_bias="0.49"
-                app:layout_constraintStart_toStartOf="@+id/bxBrwnSpt"
-                app:layout_constraintTop_toBottomOf="@+id/imgBrwnSpt"
-                app:layout_constraintVertical_bias="0.243" />
+                app:layout_constraintEnd_toEndOf="@+id/btnBrownSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnBrownSpot"
+                app:layout_constraintTop_toBottomOf="@+id/imgBrwnSpt" />
 
-            <ImageView
-                android:id="@+id/imageView6"
+            <TextView
+                android:id="@+id/txtBrwnSpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="92dp"
+                android:text="Cassava Brown Spot"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgBrwnSpt"
+                app:layout_constraintEnd_toEndOf="@+id/btnBrownSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnBrownSpot"
+                app:layout_constraintTop_toTopOf="@+id/btnBrownSpot" />
+
+            <ImageButton
+                android:id="@+id/btnMosaicVirus"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bxBrwnSpt"
+                app:layout_constraintTop_toBottomOf="@+id/btnBrownSpot"
                 app:srcCompat="@drawable/rectangle2" />
+
 
             <TextView
                 android:id="@+id/txtMscVrs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="87dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="86dp"
                 android:text="Cassava Mosaic Virus"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgMscVrs"
-                app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintStart_toStartOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/bxBrwnSpt"
+                app:layout_constraintEnd_toEndOf="@+id/btnMosaicVirus"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnMosaicVirus"
+                app:layout_constraintTop_toTopOf="@+id/btnMosaicVirus"
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/imgMscVrs"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                app:layout_constraintStart_toStartOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/bxBrwnSpt"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="141dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="139dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnMosaicVirus"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnMosaicVirus"
+                app:layout_constraintTop_toTopOf="@+id/btnMosaicVirus"
                 app:srcCompat="@drawable/cassava_mosaic" />
 
             <TextView
                 android:id="@+id/txtMscVrsDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="27dp"
                 android:justificationMode="inter_word"
                 android:text="Deformed and distorted leaves and shoots are common and plants are stunted; leaves show pale green to yellow patches, giving what is called a 'mosaic' pattern"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-                app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                app:layout_constraintStart_toStartOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/imgMscVrs"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintEnd_toEndOf="@+id/btnMosaicVirus"
+                app:layout_constraintStart_toStartOf="@+id/btnMosaicVirus"
+                app:layout_constraintTop_toBottomOf="@+id/imgMscVrs" />
 
-            <ImageView
-                android:id="@+id/bxBacBlght"
+            <ImageButton
+                android:id="@+id/btnBacterialBlight"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/btnMosaicVirus"
                 app:srcCompat="@drawable/rectangle2" />
 
             <ImageView
                 android:id="@+id/imgBacBlght"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bxBacBlght"
-                app:layout_constraintEnd_toEndOf="@+id/bxBacBlght"
-                app:layout_constraintStart_toStartOf="@+id/bxBacBlght"
-                app:layout_constraintTop_toTopOf="@+id/bxBacBlght"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="141dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="139dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnBacterialBlight"
+                app:layout_constraintStart_toStartOf="@+id/btnBacterialBlight"
+                app:layout_constraintTop_toTopOf="@+id/btnBacterialBlight"
                 app:srcCompat="@drawable/cassava_blight" />
 
             <TextView
                 android:id="@+id/txtBacBlght"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="79dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="76dp"
                 android:text="Cassava Bacterial Blight"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgBacBlght"
-                app:layout_constraintEnd_toEndOf="@+id/bxBacBlght"
-                app:layout_constraintStart_toStartOf="@+id/bxBacBlght"
-                app:layout_constraintTop_toTopOf="@+id/bxBacBlght"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/btnBacterialBlight"
+                app:layout_constraintStart_toStartOf="@+id/btnBacterialBlight"
+                app:layout_constraintTop_toTopOf="@+id/btnBacterialBlight" />
 
             <TextView
                 android:id="@+id/txtBacBlghtDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginEnd="26dp"
                 android:justificationMode="inter_word"
                 android:text="Angular, water-soaked spots occur on the leaves which are restricted by the veins; the spots expand rapidly, join together, especially along the margins of the leaves, and turn brown with yellow borders"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/bxBacBlght"
-                app:layout_constraintEnd_toEndOf="@+id/bxBacBlght"
-                app:layout_constraintStart_toStartOf="@+id/bxBacBlght"
-                app:layout_constraintTop_toBottomOf="@+id/imgBacBlght"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintEnd_toEndOf="@+id/btnBacterialBlight"
+                app:layout_constraintStart_toStartOf="@+id/btnBacterialBlight"
+                app:layout_constraintTop_toBottomOf="@+id/imgBacBlght" />
 
-            <ImageView
-                android:id="@+id/bxBrwnStrk"
+            <ImageButton
+                android:id="@+id/btnBrownStreak"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="9dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bxBacBlght"
+                app:layout_constraintTop_toBottomOf="@+id/btnBacterialBlight"
                 app:srcCompat="@drawable/rectangle2" />
-
-            <ImageView
-                android:id="@+id/imgBrwnStrk"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bxBrwnStrk"
-                app:layout_constraintEnd_toEndOf="@+id/bxBrwnStrk"
-                app:layout_constraintStart_toStartOf="@+id/bxBrwnStrk"
-                app:layout_constraintTop_toTopOf="@+id/bxBrwnStrk"
-                app:layout_constraintVertical_bias="0.3"
-                app:srcCompat="@drawable/brown_streak" />
-
-            <TextView
-                android:id="@+id/txtBrwnStrk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Cassava Brown Streak Disease"
-                android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/imgBrwnStrk"
-                app:layout_constraintEnd_toEndOf="@+id/bxBrwnStrk"
-                app:layout_constraintStart_toStartOf="@+id/bxBrwnStrk"
-                app:layout_constraintTop_toTopOf="@+id/bxBrwnStrk"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtBrwnStrkDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="27dp"
                 android:justificationMode="inter_word"
                 android:text="Yellow patches occur along the secondary veins, those branching from the midribs, and they often join together; dieback occurs in the most susceptible varieties"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/bxBrwnStrk"
-                app:layout_constraintEnd_toEndOf="@+id/bxBrwnStrk"
-                app:layout_constraintStart_toStartOf="@+id/bxBrwnStrk"
-                app:layout_constraintTop_toBottomOf="@+id/imgBrwnStrk"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintEnd_toEndOf="@+id/btnBrownStreak"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnBrownStreak"
+                app:layout_constraintTop_toBottomOf="@+id/imgBrwnStrk" />
+
+            <TextView
+                android:id="@+id/txtBrwnStrk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="51dp"
+                android:layout_marginBottom="8dp"
+                android:text="Cassava Brown Streak Disease"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgBrwnStrk"
+                app:layout_constraintEnd_toEndOf="@+id/btnBrownStreak"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnBrownStreak"
+                app:layout_constraintTop_toTopOf="@+id/btnBrownStreak"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/imgBrwnStrk"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnBrownStreak"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnBrownStreak"
+                app:layout_constraintTop_toTopOf="@+id/btnBrownStreak"
+                app:srcCompat="@drawable/brown_streak" />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

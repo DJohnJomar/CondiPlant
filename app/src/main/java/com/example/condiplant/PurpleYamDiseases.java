@@ -1,5 +1,6 @@
 package com.example.condiplant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -10,9 +11,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public class PurpleYamDiseases extends AppCompatActivity {
 
     private ImageButton btnBack;
+    private ImageButton btnAnthracnose;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +33,28 @@ public class PurpleYamDiseases extends AppCompatActivity {
             return insets;
         });
 
+
         btnBack = findViewById(R.id.backButton);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
+            }
+        });
+
+        //Indexes to be passed to DiseaseMoreInfo Class
+        int indexAnthracnose = 7;
+        int imgAntrhacnoseId = R.drawable.yam_anthracnose;
+        btnAnthracnose = findViewById(R.id.btnAnthracnose);
+        btnAnthracnose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to pass on data
+                Intent intent = new Intent(PurpleYamDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexAnthracnose); // Pass the top confidence - index 0
+                intent.putExtra("drawableId", imgAntrhacnoseId); // Pass the image path
+                startActivity(intent);
+
             }
         });
     }

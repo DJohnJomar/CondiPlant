@@ -1,5 +1,6 @@
 package com.example.condiplant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +14,10 @@ import androidx.core.view.WindowInsetsCompat;
 public class CassavaDiseases extends AppCompatActivity {
 
     private ImageButton btnBack;
+    private ImageButton btnBrownSpot;
+    private ImageButton btnMosaicVirus;
+    private ImageButton btnBacterialBlight;
+    private ImageButton btnBrownStreak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +30,68 @@ public class CassavaDiseases extends AppCompatActivity {
             return insets;
         });
 
+
         btnBack = findViewById(R.id.backButton);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
             }
+        });
+
+
+        int indexBrownSpot = 1;
+        int imgBrownSpot = R.drawable.cassava_brown_leafspot;
+        btnBrownSpot = findViewById(R.id.btnBrownSpot);
+        btnBrownSpot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent to pass on data
+                Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexBrownSpot); // Pass the top confidence - index 0
+                intent.putExtra("drawableId", imgBrownSpot); // Pass the image path
+                startActivity(intent);
+            }
+        });
+
+
+        int indexMosaicVirus = 5;
+        int imgMosaicVirus = R.drawable.cassava_mosaic;
+        btnMosaicVirus = findViewById(R.id.btnMosaicVirus);
+        btnMosaicVirus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent to pass on data
+                Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexMosaicVirus); // Pass the top confidence - index 0
+                intent.putExtra("drawableId", imgMosaicVirus); // Pass the image path
+                startActivity(intent);            }
+        });
+
+        int indexBacterialBlight = 0;
+        int imgBacterialBlight = R.drawable.cassava_blight;
+        btnBacterialBlight = findViewById(R.id.btnBacterialBlight);
+        btnBacterialBlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent to pass on data
+                Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexBacterialBlight); // Pass the top confidence - index 0
+                intent.putExtra("drawableId", imgBacterialBlight); // Pass the image path
+                startActivity(intent);            }
+        });
+
+        int indexBrownStreak = 2;
+        int imgBrownStreak = R.drawable.brown_streak;
+        btnBrownStreak = findViewById(R.id.btnBrownStreak);
+        btnBrownStreak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent to pass on data
+                Intent intent = new Intent(CassavaDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexBrownStreak); // Pass the top confidence - index 0
+                intent.putExtra("drawableId", imgBrownStreak); // Pass the image path
+                startActivity(intent);            }
         });
     }
 }
