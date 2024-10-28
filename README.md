@@ -16,8 +16,8 @@ Condiplant is a mobile application designed to help farmers and agricultural pro
 - Information on identified diseases with management recommendations
 
 ## Technologies Used
-- Employs EfficientNet Model (Convolutional Neural Network) in classifying root crop images
-- Uses CameraX paired with ML Kit's on-device object detection and tracking API for detecting objects in live camera feed
+- Employs the EfficientNet model, an advanced convolutional neural network, to accurately and efficiently classify images of root crops, enhancing agricultural practices and yield assessment.
+- Utilizes CameraX in conjunction with ML Kit's on-device object detection and tracking API to detect objects in a live camera feed, allowing for instant identification and response to objects in the environment.
 
 ## Usage
 ### Disease Identification
