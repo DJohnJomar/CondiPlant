@@ -5,14 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.condiplant.databinding.ActivityMainBinding;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
-
 import java.util.ArrayList;
 
 public class HelpFragment extends Fragment {
@@ -87,5 +83,4 @@ public class HelpFragment extends Fragment {
 
         return view;
     }
-
 }

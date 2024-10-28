@@ -11,10 +11,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class PurpleYamDiseases extends AppCompatActivity {
 
@@ -54,7 +50,6 @@ public class PurpleYamDiseases extends AppCompatActivity {
                 intent.putExtra("index", indexAnthracnose); //Pass disease Index
                 intent.putExtra("drawableId", imgAntrhacnoseId); // Pass the image drawable id
                 startActivity(intent);
-
             }
         });
     }
