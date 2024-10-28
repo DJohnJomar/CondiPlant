@@ -103,11 +103,14 @@
                 app:layout_constraintTop_toTopOf="@+id/imgTaro"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <ImageView
-                android:id="@+id/boxBlight"
+
+            <ImageButton
+                android:id="@+id/btnLeafBlight"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="17dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imgTaro"
@@ -117,141 +120,156 @@
                 android:id="@+id/imgTaroLfBlght"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/boxBlight"
-                app:layout_constraintEnd_toEndOf="@+id/boxBlight"
-                app:layout_constraintStart_toStartOf="@+id/boxBlight"
-                app:layout_constraintTop_toTopOf="@+id/boxBlight"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="141dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="139dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnLeafBlight"
+                app:layout_constraintStart_toStartOf="@+id/btnLeafBlight"
+                app:layout_constraintTop_toTopOf="@+id/btnLeafBlight"
                 app:srcCompat="@drawable/taro_blight" />
 
             <TextView
                 android:id="@+id/txtTaroLfBLght"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="75dp"
                 android:text="Phytophthora Leaf Blight"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgTaroLfBlght"
-                app:layout_constraintEnd_toEndOf="@+id/boxBlight"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toStartOf="@+id/boxBlight"
-                app:layout_constraintTop_toTopOf="@+id/boxBlight"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/btnLeafBlight"
+                app:layout_constraintStart_toStartOf="@+id/btnLeafBlight"
+                app:layout_constraintTop_toTopOf="@+id/btnLeafBlight" />
 
             <TextView
                 android:id="@+id/txtTaroLfBlghtDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
-                android:text="Small, dark brown flecks or light brown spots on the upper leaf surface; the spots enlarge rapidly, becoming circular, zonate, and purplish brown to brown in color"
+                android:layout_marginStart="29dp"
+                android:layout_marginEnd="26dp"
                 android:justificationMode="inter_word"
+                android:text="Small, dark brown flecks or light brown spots on the upper leaf surface; the spots enlarge rapidly, becoming circular, zonate, and purplish brown to brown in color"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/boxBlight"
-                app:layout_constraintEnd_toEndOf="@+id/boxBlight"
-                app:layout_constraintStart_toStartOf="@+id/boxBlight"
-                app:layout_constraintTop_toBottomOf="@+id/imgTaroLfBlght"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintEnd_toEndOf="@+id/btnLeafBlight"
+                app:layout_constraintStart_toStartOf="@+id/btnLeafBlight"
+                app:layout_constraintTop_toBottomOf="@+id/imgTaroLfBlght" />
 
-            <ImageView
-                android:id="@+id/bxMsc"
+            <ImageButton
+                android:id="@+id/btnDasheenMosaic"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="13dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/boxBlight"
+                app:layout_constraintTop_toBottomOf="@+id/btnLeafBlight"
                 app:srcCompat="@drawable/rectangle2" />
 
             <ImageView
                 android:id="@+id/imgMsc"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/bxMsc"
-                app:layout_constraintEnd_toEndOf="@+id/bxMsc"
-                app:layout_constraintStart_toStartOf="@+id/bxMsc"
-                app:layout_constraintTop_toTopOf="@+id/bxMsc"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="141dp"
+                android:layout_marginTop="57dp"
+                android:layout_marginEnd="139dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnDasheenMosaic"
+                app:layout_constraintStart_toStartOf="@+id/btnDasheenMosaic"
+                app:layout_constraintTop_toTopOf="@+id/btnDasheenMosaic"
                 app:srcCompat="@drawable/taro_mosaic" />
 
             <TextView
                 android:id="@+id/txtMsc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="87dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="84dp"
                 android:text="Dasheen Mosaic Virus"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imgMsc"
-                app:layout_constraintEnd_toEndOf="@+id/bxMsc"
-                app:layout_constraintStart_toStartOf="@+id/bxMsc"
-                app:layout_constraintTop_toTopOf="@+id/bxMsc"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/btnDasheenMosaic"
+                app:layout_constraintStart_toStartOf="@+id/btnDasheenMosaic"
+                app:layout_constraintTop_toTopOf="@+id/btnDasheenMosaic" />
 
             <TextView
                 android:id="@+id/txtMscDesc"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginEnd="26dp"
                 android:justificationMode="inter_word"
                 android:text="Light green streaks, feather-like patches  appear along the main leaf veins or between them; others are over the main veins throughout the leaf "
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/bxMsc"
-                app:layout_constraintEnd_toEndOf="@+id/bxMsc"
-                app:layout_constraintStart_toStartOf="@+id/bxMsc"
-                app:layout_constraintTop_toBottomOf="@+id/imgMsc"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintEnd_toEndOf="@+id/btnDasheenMosaic"
+                app:layout_constraintStart_toStartOf="@+id/btnDasheenMosaic"
+                app:layout_constraintTop_toBottomOf="@+id/imgMsc" />
 
-            <ImageView
-                android:id="@+id/boxLeafSpot"
+
+            <ImageButton
+                android:id="@+id/btnTaroLeafSpot"
                 android:layout_width="350dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="3dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bxMsc"
+                app:layout_constraintTop_toBottomOf="@+id/btnDasheenMosaic"
                 app:srcCompat="@drawable/rectangle2" />
 
             <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/boxLeafSpot"
-                app:layout_constraintEnd_toEndOf="@+id/boxLeafSpot"
-                app:layout_constraintStart_toStartOf="@+id/boxLeafSpot"
-                app:layout_constraintTop_toTopOf="@+id/boxLeafSpot"
-                app:layout_constraintVertical_bias="0.3"
+                android:layout_marginStart="141dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="139dp"
+                app:layout_constraintEnd_toEndOf="@+id/btnTaroLeafSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnTaroLeafSpot"
+                app:layout_constraintTop_toTopOf="@+id/btnTaroLeafSpot"
                 app:srcCompat="@drawable/taro_leaf_spot" />
 
             <TextView
                 android:id="@+id/txtLeafSpot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="112dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="111dp"
                 android:text="Taro Leaf Spots"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imageView7"
-                app:layout_constraintEnd_toEndOf="@+id/boxLeafSpot"
-                app:layout_constraintStart_toStartOf="@+id/boxLeafSpot"
-                app:layout_constraintTop_toTopOf="@+id/boxLeafSpot"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/btnTaroLeafSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnTaroLeafSpot"
+                app:layout_constraintTop_toTopOf="@+id/btnTaroLeafSpot" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="295dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="27dp"
                 android:text="Spots yellow at first; later, reddish brown spots and blotches with light brown centers, round or irregular up to 15 mm diameter"
                 android:textColor="#000000"
                 android:textStyle="bold|italic"
-                app:layout_constraintBottom_toBottomOf="@+id/boxLeafSpot"
-                app:layout_constraintEnd_toEndOf="@+id/boxLeafSpot"
-                app:layout_constraintStart_toStartOf="@+id/boxLeafSpot"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                app:layout_constraintVertical_bias="0.24000001" />
+                app:layout_constraintEnd_toEndOf="@+id/btnTaroLeafSpot"
+                app:layout_constraintStart_toStartOf="@+id/btnTaroLeafSpot"
+                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package com.example.condiplant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,6 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 public class SweetPotatoDiseases extends AppCompatActivity {
 
     private ImageButton btnBack;
+    private ImageButton btnVirus;
+    private ImageButton btnFusariumWilt;
+    private ImageButton btnLeafSpot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,52 @@ public class SweetPotatoDiseases extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
+            }
+        });
+
+
+        //Indexes to be passed to DiseaseMoreInfo Class
+        int indexVirus = 14;
+        int imgVirus = R.drawable.sp_virus_disease;
+        btnVirus = findViewById(R.id.btnVirus);
+        btnVirus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to pass on data
+                Intent intent = new Intent(SweetPotatoDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexVirus); //Pass disease Index
+                intent.putExtra("drawableId", imgVirus); // Pass the image drawable id
+                startActivity(intent);
+            }
+        });
+
+        //Indexes to be passed to DiseaseMoreInfo Class
+        int indexFusariumWilt = 11;
+        int imgFusariumWilt = R.drawable.sp_fusarium;
+        btnFusariumWilt = findViewById(R.id.btnFusariumWilt);
+        btnFusariumWilt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to pass on data
+                Intent intent = new Intent(SweetPotatoDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexFusariumWilt); //Pass disease Index
+                intent.putExtra("drawableId", imgFusariumWilt); // Pass the image drawable id
+                startActivity(intent);
+            }
+        });
+
+        //Indexes to be passed to DiseaseMoreInfo Class
+        int indexLeafSpot = 13;
+        int imgLeafSpot = R.drawable.sweetpotato_leafspot;
+        btnLeafSpot = findViewById(R.id.btnLeafSpot);
+        btnLeafSpot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent to pass on data
+                Intent intent = new Intent(SweetPotatoDiseases.this, DiseaseMoreInfo.class);
+                intent.putExtra("index", indexLeafSpot); //Pass disease Index
+                intent.putExtra("drawableId", imgLeafSpot); // Pass the image drawable id
+                startActivity(intent);
             }
         });
     }
