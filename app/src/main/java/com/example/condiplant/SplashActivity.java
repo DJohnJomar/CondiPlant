@@ -24,7 +24,7 @@ private ImageView splashImageView;
 
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, IntroSlider.class);
             startActivity(intent);
             finish();
         }, 3000);
