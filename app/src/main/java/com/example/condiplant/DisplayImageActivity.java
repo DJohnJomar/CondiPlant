@@ -33,6 +33,8 @@ public class DisplayImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_image);
+
+        //Setting up arraylist to store information contained in the text files
         labelRootCrops = new ArrayList<>();
         setUpLabels(labelRootCrops, "labelRootCrops.txt");
         labelDiseases = new ArrayList<>();

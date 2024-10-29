@@ -109,6 +109,8 @@ public class HomeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    //Creates a temporary file saved on the user's device to be used to pass data.
+    //It is removed once it has been used up
     private File createTempImageFile(Bitmap bitmap) {
         File tempFile = null;
         try {

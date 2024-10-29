@@ -103,7 +103,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             public void onClick(View v){
                 //Intent to pass on data
                 Intent intent = new Intent(DisplayImageActivityInitial.this, DisplayImageActivity.class);
-                intent.putExtra("index", topIndices[1]); // Pass the top confidence - index 1
+                intent.putExtra("index", topIndices[1]); // Pass the 2nd to the top confidence - index 1
                 intent.putExtra("imagePath", imagePath); // Pass the image path
                 startActivity(intent);
             }
@@ -113,7 +113,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             public void onClick(View v){
                 //Intent to pass on data
                 Intent intent = new Intent(DisplayImageActivityInitial.this, DisplayImageActivity.class);
-                intent.putExtra("index", topIndices[2]); // Pass the top confidence - index 2
+                intent.putExtra("index", topIndices[2]); // Pass the 3rd to the top confidence - index 2
                 intent.putExtra("imagePath", imagePath); // Pass the image path
                 startActivity(intent);
             }

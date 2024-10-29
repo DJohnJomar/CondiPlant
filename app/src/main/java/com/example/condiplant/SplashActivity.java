@@ -22,7 +22,7 @@ private ImageView splashImageView;
         splashImageView = findViewById(R.id.splashImageView);
         splashImageView.setImageResource(R.drawable.splash_image);
 
-
+        //Delayed start up of another activity
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(SplashActivity.this, IntroSlider.class);
             startActivity(intent);
