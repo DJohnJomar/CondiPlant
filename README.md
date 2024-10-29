@@ -10,7 +10,7 @@
 ## Overview
 Condiplant is a mobile application designed to help farmers and agricultural professionals easily identify root crop diseases through image recognition powered by machine learning. Users can upload or capture photos of root crop leaves, and the application provides disease predictions and helpful information of the said diseases. Information including the identified root crop, identified disease, the disease's description and symptoms, causes, and the disease control and management. 
 ## Features
-- Disease predicion using image recognition for root crops
+- Disease prediction using image recognition for root crops
 - Information on identified diseases with management recommendations
 
 ## Technologies Used
