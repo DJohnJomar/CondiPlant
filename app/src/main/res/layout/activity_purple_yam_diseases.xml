@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BgGreen"
+    tools:context=".PurpleYamDiseases">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_green_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="3dp"
+            android:contentDescription="Back Button"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/racing_sans_one"
+            android:text="@string/condiplant"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logo"
+            app:layout_constraintStart_toEndOf="@+id/backButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="49dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgCassava"
+                android:layout_width="137dp"
+                android:layout_height="127dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.07999998"
+                app:srcCompat="@drawable/purpleyam" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Purple Yam Common Diseases"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCassava"
+                app:layout_constraintEnd_toEndOf="@+id/imgCassava"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="@+id/imgCassava"
+                app:layout_constraintTop_toTopOf="@+id/imgCassava"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <ImageButton
+                android:id="@+id/btnAnthracnose"
+                android:layout_width="348dp"
+                android:layout_height="233dp"
+                android:layout_marginTop="36dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCassava"
+                app:srcCompat="@drawable/rectangle2" />
+
+
+            <ImageView
+                android:id="@+id/imgAnthrac"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="139dp"
+                android:layout_marginEnd="139dp"
+                android:layout_marginBottom="82dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnAnthracnose"
+                app:layout_constraintEnd_toEndOf="@+id/btnAnthracnose"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnAnthracnose"
+                app:layout_constraintTop_toTopOf="@+id/btnAnthracnose"
+                app:layout_constraintVertical_bias="0.641"
+                app:srcCompat="@drawable/yam_anthracnose" />
+
+            <TextView
+                android:id="@+id/txtAnthracDesc"
+                android:layout_width="295dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="26dp"
+                android:layout_marginBottom="18dp"
+                android:justificationMode="inter_word"
+                android:text="Very small brown spots on young leaves; spots become larger as the leaves approach full size; may develop pale yellow margins; sometimes the leaf spots run together to form large irregular blotches "
+                android:textColor="#000000"
+                android:textStyle="bold|italic"
+                app:layout_constraintBottom_toBottomOf="@+id/btnAnthracnose"
+                app:layout_constraintEnd_toEndOf="@+id/btnAnthracnose"
+                app:layout_constraintStart_toStartOf="@+id/btnAnthracnose"
+                app:layout_constraintTop_toBottomOf="@+id/imgAnthrac" />
+
+            <TextView
+                android:id="@+id/txtAnthrac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="123dp"
+                android:layout_marginEnd="123dp"
+                android:layout_marginBottom="8dp"
+                android:text="Anthracnose"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imgAnthrac"
+                app:layout_constraintEnd_toEndOf="@+id/btnAnthracnose"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btnAnthracnose"
+                app:layout_constraintTop_toTopOf="@+id/btnAnthracnose"
+                app:layout_constraintVertical_bias="0.9" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

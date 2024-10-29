@@ -30,6 +30,12 @@
         </activity>
 
         <activity
+            android:name=".DiseaseMoreInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PurpleYamDiseases"
+            android:exported="false" />
+        <activity
             android:name=".Guide"
             android:exported="false" />
         <activity
@@ -42,13 +48,16 @@
             android:name=".CassavaDiseases"
             android:exported="false" />
         <activity
-            android:name=".cassavaDiseases"
-            android:exported="false" />
-        <activity
             android:name=".ListOfRootcrops"
             android:exported="false" />
         <activity
+            android:name=".CameraX"
+            android:exported="false" />
+        <activity
             android:name=".DisplayImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayImageActivityInitial"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

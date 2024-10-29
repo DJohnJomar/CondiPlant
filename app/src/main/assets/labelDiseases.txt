@@ -1,8 +1,21 @@
-Leaf Blight
+Bacterial Blight
 Brown Spot
+Brown Streak Disease
+Mechanical / Insect Damage
 Healthy
-Mosaic
+Mosaic Virus
+Pest Damage
+Anthracnose
+Mechanical / Insect Damage
+Healthy
+Mechanical / Insect Damage
+Fusarium Wilt
+Healthy
 Leaf Spot
-Leaf Blight
-Mosaic
-Unknown
+Virus Disease
+Phytophthora Leaf Blight
+Mechanical / Insect Damage
+Healthy
+Leaf Spot
+Dasheen Mosaic Virus
+Not Recognized

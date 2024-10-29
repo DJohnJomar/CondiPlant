@@ -32,9 +32,12 @@ public class HelpFragment extends Fragment {
         nextPage = view.findViewById(R.id.nextPage);
 
         // Create ViewPageItem objects
-        int[] images = {R.drawable.cassava_blight, R.drawable.cassava_blight, R.drawable.cassava_blight, R.drawable.cassava_blight};
-        String[] title = {"Step 1: Testing", "Step 2: Testing", "Step 3: Testing", "Step 4: Testing"};
-        String[] description = {getString(R.string.lorem_ipsum), getString(R.string.lorem_ipsum), getString(R.string.lorem_ipsum), getString(R.string.lorem_ipsum)};
+        int[] images = {R.drawable.guide1, R.drawable.guide2, R.drawable.guide3, R.drawable.guide4};
+        String[] title = {"Welcome to CondiPlant!", "Capturing and Uploading", "Viewing Prediction Result", "More Prediction Result Details"};
+        String[] description = {"CondiPlant is an application that allows one to detect plant diseases by taking pictures of its leaves. Currently, the application focuses on Root Crops found in the area of Cabuyao City, Laguna.",
+                "To start using the application, select either to capture or upload an image. The application will respectively open apps that are needed. Capture or Select the image that will be predicted by the application.",
+                "If the capture or upload of an image is successful, the prediction result is shown after a few seconds later. In here, At most 3 predictions with their percentages are shown. Clicking the Read More button shows a detailed explanation of each prediction",
+                "In this page, full details of the predicted disease, along with its scientific name, description, causes, and control & management is shown. "};
 
         viewPageItemArrayList = new ArrayList<>();
 
