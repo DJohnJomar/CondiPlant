@@ -31,22 +31,6 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-    private ImageButton btnCapture, btnUpload, btnSeeDiseases, btnGuide;
-    private Bitmap bitmap;
-    private File tempImageFile;
-
-
-    // Used after successful image cropping. Prepares the image for application usage.
-    ActivityResultLauncher<CropImageContractOptions> cropImage = registerForActivityResult(new CropImageContract(), result -> {
-        if (result.isSuccessful()) {
-            bitmap = BitmapFactory.decodeFile(result.getUriFilePath(getApplicationContext(), true));
-            tempImageFile = createTempImageFile(bitmap);
-            Intent displayIntent = new Intent(MainActivity.this, DisplayImageActivityInitial.class);
-            displayIntent.putExtra("image", tempImageFile.getAbsolutePath());
-            startActivity(displayIntent);
-        }
-    });
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //Permission
-        getPermission();
-
-
     }
 
     private void replaceFragment(Fragment fragment){
@@ -84,74 +64,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    /**
-     * Launches image cropper for the input image (Uri)
-     */
-    private void launchImageCropper(Uri uri) {
-        CropImageOptions cropImageOptions = new CropImageOptions();
-        cropImageOptions.imageSourceIncludeGallery = false;
-        cropImageOptions.imageSourceIncludeCamera = true;
-        cropImageOptions.fixAspectRatio = true;
-        cropImageOptions.aspectRatioX = 1;
-        cropImageOptions.aspectRatioY = 1;
-        CropImageContractOptions cropImageContractOptions = new CropImageContractOptions(uri, cropImageOptions);
-        cropImage.launch(cropImageContractOptions);
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        int captureRequestCode = 10;
-        int uploadRequestCode = 12;
-        //Image Capture
-        if(requestCode == captureRequestCode){
-            if (data != null){
-                Uri uri = data.getData();
-                launchImageCropper(uri);
-            }
-        }else{
-            // Log a message if no condition matches
-            Log.e("MainActivity", "No valid condition matched in onActivityResult()");
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    //Creates a temporary file saved on the user's device to be used to pass data.
-    //It is removed once it has been used up
-    private File createTempImageFile(Bitmap bitmap){
-        File tempFile = null;
-        try {
-            tempFile = File.createTempFile("temp_image", ".png", getCacheDir());
-            FileOutputStream out = new FileOutputStream(tempFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);//Using png format to save image
-            out.flush();
-            out.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return tempFile;
-    }
-
-    /**
-     * Requests camera permission if the devices has not granted its use.
-     */
-    void getPermission(){
-        if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this, new String [] {Manifest.permission.CAMERA}, 11);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        int permissionRequestCode = 11;
-        if(requestCode == permissionRequestCode){
-            if(grantResults.length>0){
-                if(grantResults[0] != PackageManager.PERMISSION_GRANTED){
-                    this.getPermission();
-                }
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
 
     @Override
     protected void onDestroy() {
