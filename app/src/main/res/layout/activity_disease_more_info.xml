@@ -129,7 +129,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:text="Predicted Disease:"
+                android:text="Disease:"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="24sp"
