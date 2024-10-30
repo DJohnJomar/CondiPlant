@@ -1,17 +1,12 @@
 package com.example.condiplant;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -197,6 +192,4 @@ public class DiseaseMoreInfo extends AppCompatActivity {
         txtDuring.setText(duringGrowth.toString());
         txtAfter.setText(afterHarvest.toString());
     }
-
-
 }

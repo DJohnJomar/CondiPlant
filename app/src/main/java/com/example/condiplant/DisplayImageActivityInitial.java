@@ -10,18 +10,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.example.condiplant.ml.Efficientnetb0MainModel;
 import com.example.condiplant.ml.Efficientnetb0SubModel;
-
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.image.TensorImage;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;

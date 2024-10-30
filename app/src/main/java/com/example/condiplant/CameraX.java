@@ -11,46 +11,38 @@ import android.graphics.Rect;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.util.Size;
-import android.view.Surface;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.AspectRatio;
 import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
-import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
-
-import com.example.condiplant.databinding.ActivityMainBinding;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.ObjectDetection;
 import com.google.mlkit.vision.objects.ObjectDetector;
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions;
-
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -64,7 +56,7 @@ public class CameraX extends AppCompatActivity {
     private PreviewView previewView;
     private BoundingBoxView boundingBoxView;
     private Camera camera;
-    private int cameraFacing = CameraSelector.LENS_FACING_BACK;
+    private final int cameraFacing = CameraSelector.LENS_FACING_BACK;
     private final ActivityResultLauncher<String> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
         @Override
         public void onActivityResult(Boolean result) {
@@ -109,11 +101,9 @@ public class CameraX extends AppCompatActivity {
     }
 
     public void startCamera(int cameraFacing) {
-        int aspectRatio = aspectRatio(previewView.getWidth(), previewView.getHeight());
         ListenableFuture<ProcessCameraProvider> listenableFuture = ProcessCameraProvider.getInstance(this);
         listenableFuture.addListener(() -> {
             try {
-
                 ProcessCameraProvider cameraProvider =  listenableFuture.get();
 
                 Preview preview = new Preview.Builder().build();
@@ -124,8 +114,6 @@ public class CameraX extends AppCompatActivity {
                 ImageCapture imageCapture = new ImageCapture.Builder().setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                         .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).setTargetResolution(new Size(1080, 1920)).build();
 
-
-
                 cameraProvider.unbindAll();
 
                 ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
@@ -134,7 +122,6 @@ public class CameraX extends AppCompatActivity {
 
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), image -> {
                     int rotationDegrees = image.getImageInfo().getRotationDegrees();
-
 
                     // Convert ImageProxy to Bitmap and detect objects
                     Bitmap bitmap = imageProxyToBitmap(image); // Convert ImageProxy to Bitmap
@@ -146,9 +133,6 @@ public class CameraX extends AppCompatActivity {
                 capture.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        if (ContextCompat.checkSelfPermission(CameraX.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//                            activityResultLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//                        }
                         takePicture(imageCapture);
                     }
                 });
@@ -206,7 +190,7 @@ public class CameraX extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    image.close(); // Always close the ImageProxy
+                    image.close();
                     finish();
                 }
             }
@@ -231,14 +215,6 @@ public class CameraX extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    private int aspectRatio(int width, int height) {
-        double previewRatio = (double) Math.max(width, height) / Math.min(width, height);
-        if (Math.abs(previewRatio - 4.0 / 3.0) <= Math.abs(previewRatio - 16.0 / 9.0)) {
-            return AspectRatio.RATIO_4_3;
-        }
-        return AspectRatio.RATIO_16_9;
     }
 
     private void detectObject(Bitmap bitmap, int rotationDegrees) {
@@ -363,10 +339,6 @@ public class CameraX extends AppCompatActivity {
         }
     }
 
-    private float getAspectRatio(int width, int height) {
-        return (float) width / (float) height;
-    }
-
     private List<Rect> scaleBoundingBoxes(List<Rect> boundingBoxes, int previewWidth, int previewHeight, int imageWidth, int imageHeight) {
 
         Log.e("CameraX", previewHeight + ", " + previewWidth + ", " + imageHeight + ", " + imageWidth);
@@ -374,7 +346,6 @@ public class CameraX extends AppCompatActivity {
         float heightScale = (float) previewHeight / imageWidth;
         Log.e("CameraX", heightScale + ", " + widthScale);
         List<Rect> scaledBoxes = new ArrayList<>();
-        int adjustments = 200;
         for (Rect rect : boundingBoxes) {
             Log.e("Orig Box", "Left: " + rect.left + ", Top: " + rect.top + ", Right: " + rect.right + ", Bottom: " + rect.bottom);
             int left = Math.round(rect.left * widthScale);
@@ -427,8 +398,6 @@ public class CameraX extends AppCompatActivity {
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         bitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
 
-
-
         Uri uri = null;
         try {
             // Create a temporary file in the cache directory
@@ -436,7 +405,7 @@ public class CameraX extends AppCompatActivity {
             tempFile.deleteOnExit(); // Optional: Ensure the file is deleted on exit
 
             // Write the bitmap to the temporary file
-            try (OutputStream outputStream = new FileOutputStream(tempFile)) {
+            try (OutputStream outputStream = Files.newOutputStream(tempFile.toPath())) {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
                 outputStream.flush();
                 uri = Uri.fromFile(tempFile); // Get URI of the saved temporary file
