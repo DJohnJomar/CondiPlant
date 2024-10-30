@@ -52,7 +52,7 @@ public class TaroDiseases extends AppCompatActivity {
         });
 
         //Indexes to be passed to DiseaseMoreInfo Class
-        int indexDasheenMosaic = 15;
+        int indexDasheenMosaic = 19;
         int imgDasheeMosaic = R.drawable.taro_mosaic;
         btnDasheenMosaic = findViewById(R.id.btnDasheenMosaic);
         btnDasheenMosaic.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class TaroDiseases extends AppCompatActivity {
         });
 
         //Indexes to be passed to DiseaseMoreInfo Class
-        int indexTaroLeafSpot = 15;
+        int indexTaroLeafSpot = 18;
         int imgTaroLeafSpot = R.drawable.taro_leaf_spot;
         btnTaroLeafSpot = findViewById(R.id.btnTaroLeafSpot);
         btnTaroLeafSpot.setOnClickListener(new View.OnClickListener() {
