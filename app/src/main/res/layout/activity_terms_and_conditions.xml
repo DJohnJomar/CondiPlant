@@ -34,7 +34,8 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Terms and Conditions" />
+                android:text="Terms and Conditions"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/txtTermsContent"
@@ -44,7 +45,8 @@
                 android:background="@color/white"
                 android:gravity="start"
                 android:text="@string/termsContent"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/LineGreen"
-                    android:text="Accept" />
+                    android:text="Accept"
+                    android:textColor="@color/white"/>
 
                 <Button
                     android:id="@+id/btnDecline"
@@ -66,7 +69,8 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/LineGreen"
                     android:text="Decline"
-                    android:layout_marginStart="64dp" />
+                    android:layout_marginStart="64dp"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
         </LinearLayout>
