@@ -19,7 +19,7 @@
         android:theme="@style/Theme.CondiPlant"
         tools:targetApi="31">
 
-        <activity android:name=".TermsAndConditions"
+        <activity android:name=".TermsOfService"
             android:exported="false"/>
         <activity
             android:name=".IntroSlider"

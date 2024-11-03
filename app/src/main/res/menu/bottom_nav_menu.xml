@@ -16,4 +16,9 @@
         android:title="Help"
         android:iconTint="@color/black"
         android:icon="@drawable/ic_help"/>
+    <item
+        android:id="@+id/terms_of_service"
+        android:title="TOS"
+        android:iconTint="@color/black"
+        android:icon="@drawable/ic_terms_of_service"/>
 </menu>

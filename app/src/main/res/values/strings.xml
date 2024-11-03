@@ -15,7 +15,7 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="termsContent">
-    <b>Terms and Conditions for CondiPlant</b>\n
+    <b>Terms of Service for CondiPlant</b>\n
     Last Updated: November 2, 2024\n\n
     <b>1. Introduction</b>\n
     Welcome to CondiPlant! CondiPlant is a mobile application designed to help farmers and agricultural workers to identify root crop diseases using machine learning and image recognition technology. By using this app, you agree to these Terms and Conditions.\n\n
@@ -59,6 +59,7 @@
     <b>10. Contact Us</b>\n\n
     If you have any questions, feedback, or concerns about these Terms, please contact us at condiplantuc@gmail.com
 </string>
+    <string name="dialog_message">Please note that our app\'s predictions are specifically focused on <b>root crops found in Cabuyao area</b>. If you enter a plant that is unrelated to these crops, the predictions may be inaccurate. Thank you for your understanding and please ensure to use the app as intended.</string>
 
 
 

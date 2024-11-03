@@ -1,10 +1,8 @@
 package com.example.condiplant;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +22,7 @@ private ImageView splashImageView;
 
         //Delayed start up of another activity
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, TermsAndConditions.class);
+            Intent intent = new Intent(SplashActivity.this, TermsOfService.class);
             startActivity(intent);
             finish();
         }, 3000);

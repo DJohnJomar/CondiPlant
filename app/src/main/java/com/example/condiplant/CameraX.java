@@ -91,7 +91,7 @@ public class CameraX extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (capture.getVisibility() == View.INVISIBLE) {
-                            Toast.makeText(CameraX.this, "Move Around the target object to focus", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CameraX.this, "Move Around the target object to focus", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -133,6 +133,7 @@ public class CameraX extends AppCompatActivity {
                 capture.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Toast.makeText(CameraX.this, "Image Capturing... Please hold steady...", Toast.LENGTH_SHORT).show();
                         takePicture(imageCapture);
                     }
                 });
@@ -186,7 +187,7 @@ public class CameraX extends AppCompatActivity {
                         }
                     });
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
