@@ -78,16 +78,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/displayImageView"
-                android:layout_width="345dp"
-                android:layout_height="321dp"
-                android:layout_marginTop="56dp"
-                android:contentDescription="@string/uploaded_img"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/displayImageFrame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:background="@color/LightDarkGreen"
+                android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/displayImageView"
+                    android:layout_width="286dp"
+                    android:layout_height="294dp"
+                    android:contentDescription="@string/uploaded_img"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/txtLabel2"
@@ -104,7 +117,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/displayImageFrame" />
 
             <TextView
                 android:id="@+id/txtRootCrop"
