@@ -25,6 +25,6 @@ Condiplant is a mobile application designed to help farmers and agricultural pro
 - **Viewing Common Diseases**: Tap the "Common Diseases" to view the common disease known by the application.
 - **Selecting a Crop**: Tap on a crop to see the diseases available on them that is known by the app. 
 ## Installation
-Click this link to download the APK: [Download Condiplant APK](https://www.dropbox.com/scl/fi/8w56x8he2ish2l1lwcguf/CondiPlant.apk?rlkey=99blc03ii1beuo3e5t1cq32vn&st=nqyqc947&dl=1)
+Click this link to download the APK: [Download Condiplant APK](https://www.dropbox.com/scl/fi/97qehj9g13djy749dyhxd/CondiPlant.apk?rlkey=wi5yxrsqsfwlqz4np883avhzf&st=xl5iuiuc&dl=1)
 
 You are going to be linked to a google drive download and you may see a Google warning about it. You can just ignore it and proceed to press the "Download anyway" to proceed with the download. 
