@@ -69,21 +69,36 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/displayImageView"
-                android:layout_width="350dp"
-                android:layout_height="350dp"
-                android:contentDescription="@string/uploaded_img"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/displayInitialFrame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/LightDarkGreen"
+                android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/predictionTitle">
+
+                <ImageView
+                    android:id="@+id/displayImageView"
+                    android:layout_width="278dp"
+                    android:layout_height="276dp"
+                    android:contentDescription="@string/uploaded_img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.482"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/predictionTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Predictions"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -91,7 +106,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/displayImageView" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Predictions and Accuracy TextViews -->
 
@@ -105,7 +120,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/predictionTitle">
+                app:layout_constraintTop_toBottomOf="@+id/displayInitialFrame">
 
 
                 <TextView
