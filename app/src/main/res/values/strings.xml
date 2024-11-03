@@ -13,6 +13,55 @@
     <string name="uploaded_img">Uploaded image by the user</string>
     <string name="app_logo">Condiplant logo</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="termsContent">
+    <b>Terms and Conditions for CondiPlant</b>\n
+    Last Updated: November 2, 2024\n\n
+    <b>1. Introduction</b>\n
+    Welcome to CondiPlant! CondiPlant is a mobile application designed to help farmers and agricultural workers to identify root crop diseases using machine learning and image recognition technology. By using this app, you agree to these Terms and Conditions.\n\n
+    <b>Developer Information:</b> CondiPlant\n
+    <b>Contact Email:</b> CondiPlant@gmail.com\n\n
+
+    <b>2. Acceptance of Terms</b>\n\n
+    By downloading, installing, or using CondiPlant, you confirm that you have read, understood, and agree to comply with these Terms. If you do not agree to these Terms, please do not use CondiPlant.\n
+
+    <b>3. User Obligations and Restrictions</b>\n
+    When using CondiPlant, you agree to:\n\n
+    - Use the app only for its intended purpose of identifying root crop diseases.\n
+    - Avoid engaging in any unlawful activities or unauthorized modifications of the app.\n
+    - Refrain from reverse-engineering, distributing, or reselling the app without our written permission.\n\n
+
+    <b>4. Permissions Required</b>\n\n
+    CondiPlant requires access to:\n
+    - Camera: For capturing images of crops for disease identification.\n
+    By granting these permissions, you allow CondiPlant to perform its core functionalities. If you deny these permissions, certain features may not work as intended.\n
+
+    <b>5. Accuracy and Limitation of Disease Identification</b>\n\n
+    CondiPlant uses machine learning to analyze and identify potential root crop diseases based on image recognition. However, the identification provided by CondiPlant is advisory and may not always be accurate. We strongly recommend consulting with an agricultural expert for confirmation and further guidance.\n\n
+
+    <b>6. Privacy Policy</b>\n\n
+    Your privacy is important to us. CondiPlant is designed to operate offline, ensuring that your personal data remains secure. We do not collect or store any user information, including images captured by the app. All images are stored temporarily during the analysis process and are deleted immediately after use. This ensures your data remains private and is not retained on our servers or devices.\n\n
+
+    <b>7. Data Storage and Usage</b>\n\n
+    CondiPlant does not store any user information, including the images captured. All images are only stored temporarily while they are being analyzed and are deleted immediately after use. This policy ensures that no data is retained once the analysis is complete, safeguarding your privacy.\n\n
+
+    <b>8. Intellectual Property</b>\n\n
+    All content, features, and functionality on CondiPlant, including text, images, and code, are the exclusive property of CondiPlant and are protected by copyright, trademark, and other intellectual property laws. Users may not reproduce, distribute, or create derivative works from any part of the app without our written consent.\n\n
+
+    <b>9. Disclaimer and Limitation of Liability</b>\n\n
+    CondiPlant is provided on an as is and as available basis. While we strive to ensure accuracy, we make no warranties or representations about the app\' reliability or accuracy. In no event will CondiPlant be liable for any damages resulting from the use or inability to use CondiPlant, including but not limited to personal injury, loss of crops, or financial losses.\n\n
+
+    <b>10. Modifications to Terms</b>\n\n
+    We may update these Terms from time to time. If any changes are made, we will notify you within the app or by other communication channels. By continuing to use CondiPlant after an update, you agree to the revised Terms.\n\n
+
+    <b>11. Termination</b>\n\n
+    We reserve the right to terminate or restrict access to CondiPlant if users violate these Terms or engage in behavior deemed harmful to other users or the app.\n\n
+
+    <b>12. Contact Us</b>\n\n
+    If you have any questions, feedback, or concerns about these Terms, please contact us at CondiPlant@gmail.com
+</string>
+
+
+
+
 </resources>

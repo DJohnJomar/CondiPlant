@@ -24,7 +24,7 @@ private ImageView splashImageView;
 
         //Delayed start up of another activity
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, IntroSlider.class);
+            Intent intent = new Intent(SplashActivity.this, TermsAndConditions.class);
             startActivity(intent);
             finish();
         }, 3000);

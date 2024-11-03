@@ -19,7 +19,8 @@
         android:theme="@style/Theme.CondiPlant"
         tools:targetApi="31">
 
-        <!-- IntroSlider is now the launcher activity -->
+        <activity android:name=".TermsAndConditions"
+            android:exported="false"/>
         <activity
             android:name=".IntroSlider"
             android:exported="true"/>

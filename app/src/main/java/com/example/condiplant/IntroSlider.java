@@ -24,7 +24,7 @@ public class IntroSlider extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Check SharedPreferences to see if the tutorial has been shown
-        SharedPreferences prefs = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("SliderPrefs", MODE_PRIVATE);
         boolean isFirstLaunch = prefs.getBoolean("isFirstLaunch", true);
         Log.d("IntroSlider", "isFirstLaunch: " + isFirstLaunch);
 
