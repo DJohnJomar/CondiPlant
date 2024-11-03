@@ -58,12 +58,14 @@
                     android:id="@+id/btnAccept"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/LineGreen"
                     android:text="Accept" />
 
                 <Button
                     android:id="@+id/btnDecline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/LineGreen"
                     android:text="Decline"
                     android:layout_marginStart="64dp" />
             </LinearLayout>

@@ -23,18 +23,23 @@
     <b>Contact Email:</b> condiplantuc@gmail.com\n\n
 
     <b>2. Acceptance of Terms</b>\n\n
-    By downloading, installing, or using CondiPlant, you confirm that you have read, understood, and agree to comply with these Terms. If you do not agree to these Terms, please do not use CondiPlant.\n
+    By downloading, installing, or using CondiPlant, you confirm that you have read, understood, and agree to comply with these Terms. If you do not agree to these Terms, please do not use CondiPlant.\n\n
 
     <b>3. User Obligations and Restrictions</b>\n
     When using CondiPlant, you agree to:\n\n
-    - Use the app only for its intended purpose of identifying root crop diseases.\n
-    - Avoid engaging in any unlawful activities or unauthorized modifications of the app.\n
-    - Refrain from reverse-engineering, distributing, or reselling the app without our written permission.\n\n
+        <ul>
+            <li>Use the app only for its intended purpose of identifying root crop diseases.</li>\n
+            <li>Avoid engaging in any unlawful activities or unauthorized modifications of the app.</li>\n
+            <li>Refrain from reverse-engineering, distributing, or reselling the app without our written permission.</li>\n\n
+
+        </ul>
 
     <b>4. Permissions Required</b>\n\n
-    CondiPlant requires access to:\n
-    - Camera: For capturing images of crops for disease identification.\n
-    By granting these permissions, you allow CondiPlant to perform its core functionalities. If you deny these permissions, certain features may not work as intended.\n
+    CondiPlant requires access to:\n\n
+        <ul>
+            <li>Camera: For capturing images of crops for disease identification.</li>\n\n
+        </ul>
+    By granting these permissions, you allow CondiPlant to perform its core functionalities. If you deny these permissions, certain features may not work as intended.\n\n
 
     <b>5. Accuracy and Limitation of Disease Identification</b>\n\n
     CondiPlant uses machine learning to analyze and identify potential root crop diseases based on image recognition. However, the identification provided by CondiPlant is advisory and may not always be accurate. We strongly recommend consulting with an agricultural expert for confirmation and further guidance.\n\n
