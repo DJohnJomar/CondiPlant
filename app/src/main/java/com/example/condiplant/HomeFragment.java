@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
     private File tempImageFile;
     private Toast currentToast;
     private SharedPreferences preferences;
+    private String selectedButton = "";
 
     // Used after successful image cropping. Prepares the image for application usage.
     ActivityResultLauncher<CropImageContractOptions> cropImage = registerForActivityResult(new CropImageContract(), result -> {
@@ -73,6 +74,7 @@ public class HomeFragment extends Fragment {
         btnCapture.setOnClickListener(v -> {
             boolean isFirstPrediction = preferences.getBoolean("isFirstPrediction", true);
             if (isFirstPrediction) {
+                selectedButton = "capture";
                 showDialogMessage();
             } else {
                 if (requireContext().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -98,6 +100,7 @@ public class HomeFragment extends Fragment {
         btnUpload.setOnClickListener(v -> {
             boolean isFirstPrediction = preferences.getBoolean("isFirstPrediction", true);
             if (isFirstPrediction) {
+                selectedButton = "upload";
                 showDialogMessage();
             } else {
                 Intent intent = new Intent();
@@ -203,6 +206,20 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 preferences.edit().putBoolean("isFirstPrediction", false).apply();
                 alertDialog.dismiss();
+
+                if ("capture".equals(selectedButton)) {
+                    if (requireContext().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        Intent intent = new Intent(getActivity(), CameraX.class);
+                        startActivityForResult(intent, 12);
+                    } else {
+                        getPermission();
+                    }
+                } else if ("upload".equals(selectedButton)) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, 10);
+                }
             }
         });
 

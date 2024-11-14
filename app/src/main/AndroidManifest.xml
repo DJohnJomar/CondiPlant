@@ -31,9 +31,6 @@
             android:name=".PurpleYamDiseases"
             android:exported="false" />
         <activity
-            android:name=".Guide"
-            android:exported="false" />
-        <activity
             android:name=".SweetPotatoDiseases"
             android:exported="false" />
         <activity

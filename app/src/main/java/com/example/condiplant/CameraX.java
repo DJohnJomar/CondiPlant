@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class CameraX extends AppCompatActivity {
@@ -56,6 +57,7 @@ public class CameraX extends AppCompatActivity {
     private PreviewView previewView;
     private BoundingBoxView boundingBoxView;
     private Camera camera;
+    private View flashOverlay;
     private final int cameraFacing = CameraSelector.LENS_FACING_BACK;
     private final ActivityResultLauncher<String> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
         @Override
@@ -76,6 +78,7 @@ public class CameraX extends AppCompatActivity {
         toggleFlash = findViewById(R.id.toggleFlash);
         boundingBoxView = findViewById(R.id.bounding_box_view);
         capture.setVisibility(View.INVISIBLE);
+        flashOverlay = findViewById(R.id.flashOverlay);
 
         if (ContextCompat.checkSelfPermission(CameraX.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             activityResultLauncher.launch(Manifest.permission.CAMERA);
@@ -104,15 +107,19 @@ public class CameraX extends AppCompatActivity {
         ListenableFuture<ProcessCameraProvider> listenableFuture = ProcessCameraProvider.getInstance(this);
         listenableFuture.addListener(() -> {
             try {
-                ProcessCameraProvider cameraProvider =  listenableFuture.get();
+                ProcessCameraProvider cameraProvider = listenableFuture.get();
 
                 Preview preview = new Preview.Builder().build();
 
                 CameraSelector cameraSelector = new CameraSelector.Builder()
-                        .requireLensFacing(cameraFacing).build();
+                        .requireLensFacing(cameraFacing)
+                        .build();
 
-                ImageCapture imageCapture = new ImageCapture.Builder().setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
-                        .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).setTargetResolution(new Size(1080, 1920)).build();
+                ImageCapture imageCapture = new ImageCapture.Builder()
+                        .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                        .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation())
+                        .setTargetResolution(new Size(1080, 1920))
+                        .build();
 
                 cameraProvider.unbindAll();
 
@@ -122,30 +129,33 @@ public class CameraX extends AppCompatActivity {
 
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), image -> {
                     int rotationDegrees = image.getImageInfo().getRotationDegrees();
-
-                    // Convert ImageProxy to Bitmap and detect objects
-                    Bitmap bitmap = imageProxyToBitmap(image); // Convert ImageProxy to Bitmap
-                    detectObject(bitmap, rotationDegrees);
+                    Bitmap bitmap = imageProxyToBitmap(image);  // Convert ImageProxy to Bitmap
+                    detectObject(bitmap, rotationDegrees);    // Run object detection
                     image.close();
                 });
 
+                // Bind camera with ImageCapture and ImageAnalysis
                 camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, imageAnalysis);
-                capture.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(CameraX.this, "Image Capturing... Please hold steady...", Toast.LENGTH_SHORT).show();
-                        takePicture(imageCapture);
-                    }
+
+                // Capture button click listener
+                capture.setOnClickListener(view -> {
+                    // Unbind the ImageAnalysis to stop object detection
+                    cameraProvider.unbind(imageAnalysis);
+
+                    // Flash the screen when capture button is clicked
+                    flashScreen();
+
+                    // Capture image immediately without focusing (instant capture)
+                    takePicture(imageCapture);
+
+                    // Rebind ImageAnalysis to resume object detection
+                    cameraProvider.bindToLifecycle(CameraX.this, cameraSelector, preview, imageCapture, imageAnalysis);
                 });
 
-                toggleFlash.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        setFlashIcon(camera);
-                    }
-                });
+                toggleFlash.setOnClickListener(view -> setFlashIcon(camera));
 
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
+
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -160,42 +170,55 @@ public class CameraX extends AppCompatActivity {
         finish();
     }
 
-    public void takePicture(ImageCapture imageCapture) {
-        imageCapture.takePicture(Executors.newCachedThreadPool(), new ImageCapture.OnImageCapturedCallback() {
+    private void flashScreen() {
+        // Show the flash overlay
+        flashOverlay.setVisibility(View.VISIBLE);
 
+        // Fade in the flash overlay
+        flashOverlay.setAlpha(0f);  // Start with completely transparent
+        flashOverlay.animate()
+                .alpha(1f)  // Fade in to opaque
+                .setDuration(75)  // Duration for fade-in (150ms for quick effect)
+                .withEndAction(() -> {
+                    // After fade-in, wait a moment before starting fade-out
+                    flashOverlay.animate()
+                            .alpha(0f)  // Fade out
+                            .setDuration(75)  // Duration for fade-out (150ms)
+                            .withEndAction(() -> flashOverlay.setVisibility(View.GONE))  // Hide after fade-out
+                            .start();
+                })
+                .start();
+    }
+
+    public void takePicture(ImageCapture imageCapture) {
+        Executor executor = Executors.newSingleThreadExecutor();  // Single thread executor for image capture
+
+        // Take the picture immediately when the button is clicked
+        imageCapture.takePicture(executor, new ImageCapture.OnImageCapturedCallback() {
             @Override
             public void onCaptureSuccess(@NonNull ImageProxy image) {
-                if (capture.getVisibility() == View.INVISIBLE) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(CameraX.this, "Image Capture Failed. Please hold the camera still...", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } else {
-                    super.onCaptureSuccess(image);
-                    timer.cancel();
-                    timer.purge();
-                    Uri imageUri = saveImageToFile(image);
-                    Intent resultIntent = new Intent();
-                    resultIntent.setData(imageUri);
-                    setResult(MainActivity.RESULT_OK, resultIntent);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(CameraX.this, "Image Captured. Preparing image for cropping...", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    image.close();
-                    finish();
-                }
-            }
+                super.onCaptureSuccess(image);
 
+                runOnUiThread(() -> {
+                    Toast.makeText(CameraX.this, "Image Captured. Preparing image for cropping...", Toast.LENGTH_SHORT).show();
+                });
+
+                // Save image to file
+                Uri imageUri = saveImageToFile(image);
+
+                executor.execute(() -> {
+                    // Return URI to the main thread once the image is saved
+                    runOnUiThread(() -> {
+                        Intent resultIntent = new Intent();
+                        resultIntent.setData(imageUri);
+                        setResult(MainActivity.RESULT_OK, resultIntent);
+                        finish();
+                    });
+                });
+
+                // Close the ImageProxy after capture
+                image.close();
+            }
         });
     }
 
