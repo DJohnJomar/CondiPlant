@@ -35,6 +35,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     private ConstraintLayout layout1;
     private ConstraintLayout layout2;
     private ConstraintLayout layout3;
+    private ConstraintLayout layoutUnknown;
     private TextView txtPlant1;
     private TextView txtPrediction1;
     private TextView txtAccuracy1;
@@ -47,6 +48,9 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     private TextView txtPrediction3;
     private TextView txtAccuracy3;
     private Button btnPrediction3More;
+    private TextView txtUnknown;
+    private TextView txtUnknownDetails;
+    private TextView txtAccuracy4;
     private ImageButton btnBack;
     private ArrayList<String> labelDiseases;
     private ArrayList<String> labelPlants;
@@ -68,15 +72,19 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
         layout1 = findViewById(R.id.layout1);
         layout2 = findViewById(R.id.layout2);
         layout3 = findViewById(R.id.layout3);
+        layoutUnknown = findViewById(R.id.layoutUnknown);
         txtPlant1 = findViewById(R.id.txtPlant1);
         txtPlant2 = findViewById(R.id.txtPlant2);
         txtPlant3 = findViewById(R.id.txtPlant3);
+        txtUnknown = findViewById(R.id.txtUnknown);
         txtPrediction1 = findViewById(R.id.txtPrediction1);
         txtPrediction2 = findViewById(R.id.txtPrediction2);
         txtPrediction3 = findViewById(R.id.txtPrediction3);
+        txtUnknownDetails = findViewById(R.id.txtUnknownDetails);
         txtAccuracy1 = findViewById(R.id.txtAccuracy1);
         txtAccuracy2 = findViewById(R.id.txtAccuracy2);
         txtAccuracy3 = findViewById(R.id.txtAccuracy3);
+        txtAccuracy4 = findViewById(R.id.txtAccuracy4);
         btnPrediction1More = findViewById(R.id.btnPrediction1More);
         btnPrediction2More = findViewById(R.id.btnPrediction2More);
         btnPrediction3More = findViewById(R.id.btnPrediction3More);
@@ -196,33 +204,41 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
             Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
 
+            if (topIndices[0] == 20) {
+                txtAccuracy4.setText(String.format("%.2f%%", 100.00));
+                layoutUnknown.setVisibility(View.VISIBLE);
+                layout1.setVisibility(View.GONE);
+                layout2.setVisibility(View.GONE);
+                layout3.setVisibility(View.GONE);
+            } else {
+                if (checkForTopDisease(topIndices)) {
+                    Efficientnetb0MainModel.Outputs result = mainModel.process(inputFeature0);
+                    TensorBuffer outputFeature = result.getOutputFeature0AsTensorBuffer();
+                    float[] subConfidence = outputFeature.getFloatArray();
 
-            if (checkForTopDisease(topIndices)) {
-                Efficientnetb0MainModel.Outputs result = mainModel.process(inputFeature0);
-                TensorBuffer outputFeature = result.getOutputFeature0AsTensorBuffer();
-                float[] subConfidence = outputFeature.getFloatArray();
+                    Map<Integer, Float> topThreeSubConfidence = getTopThreeConfidence(subConfidence);
 
-                Map<Integer, Float> topThreeSubConfidence = getTopThreeConfidence(subConfidence);
+                    count = 0;
+                    for (Map.Entry<Integer, Float> entry : topThreeSubConfidence.entrySet()) {
+                        topIndices[count] = entry.getKey(); // Get the index of the predicted class
+                        topConfidences[count] = entry.getValue(); // Get the confidence value
+                        count++;
+                    }
 
-                count = 0;
-                for (Map.Entry<Integer, Float> entry : topThreeSubConfidence.entrySet()) {
-                    topIndices[count] = entry.getKey(); // Get the index of the predicted class
-                    topConfidences[count] = entry.getValue(); // Get the confidence value
-                    count++;
+                    topIndices = convertIndices(topIndices);
+
+                    // Debugging: Log the top indices and their corresponding confidence values
+                    Log.d("Top Predictions", "Index 1: " + topIndices[0] + ", Confidence: " + topConfidences[0]);
+                    Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
+                    Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
                 }
 
-                topIndices = convertIndices(topIndices);
-
-                // Debugging: Log the top indices and their corresponding confidence values
-                Log.d("Top Predictions", "Index 1: " + topIndices[0] + ", Confidence: " + topConfidences[0]);
-                Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
-                Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
+                // Update the text views for the predictions and accuracy
+                layoutUnknown.setVisibility(View.GONE);
+                updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
+                updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
+                updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
             }
-
-            // Update the text views for the predictions and accuracy
-            updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
-            updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
-            updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
 
             // Releases subModel resources if no longer used.
             subModel.close();
