@@ -236,8 +236,16 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                 // Update the text views for the predictions and accuracy
                 layoutUnknown.setVisibility(View.GONE);
                 updatePredictionUI(layout1, txtPlant1, txtPrediction1, txtAccuracy1, btnPrediction1More, topIndices[0], topConfidences[0]);
-                updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
-                updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
+                if (topIndices[1] != 20) {
+                    updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], topConfidences[1]);
+                } else {
+                    updatePredictionUI(layout2, txtPlant2, txtPrediction2, txtAccuracy2, btnPrediction2More, topIndices[1], 0);
+                }
+                if (topIndices[2] != 20) {
+                    updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], topConfidences[2]);
+                } else {
+                    updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], 0);
+                }
             }
 
             // Releases subModel resources if no longer used.
