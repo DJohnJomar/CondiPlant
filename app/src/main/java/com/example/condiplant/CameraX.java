@@ -275,12 +275,10 @@ public class CameraX extends AppCompatActivity {
                         capture.setVisibility(View.VISIBLE);
                     } else {
                         boundingBoxView.clearBoundingBoxes();
-                        capture.setVisibility(View.INVISIBLE);
                     }
                 })
                 .addOnFailureListener(e -> {
                     boundingBoxView.clearBoundingBoxes();
-                    capture.setVisibility(View.INVISIBLE);
                 });
     }
 
