@@ -226,10 +226,10 @@ public class CameraX extends AppCompatActivity {
         if (camera.getCameraInfo().hasFlashUnit()) {
             if (camera.getCameraInfo().getTorchState().getValue() == 0) {
                 camera.getCameraControl().enableTorch(true);
-                toggleFlash.setImageResource(R.drawable.baseline_flash_off_24);
+                toggleFlash.setImageResource(R.drawable.baseline_flash_on_24);
             } else {
                 camera.getCameraControl().enableTorch(false);
-                toggleFlash.setImageResource(R.drawable.baseline_flash_on_24);
+                toggleFlash.setImageResource(R.drawable.baseline_flash_off_24);
             }
         } else {
             runOnUiThread(new Runnable() {

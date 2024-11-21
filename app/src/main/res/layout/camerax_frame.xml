@@ -40,7 +40,7 @@
         android:layout_height="40sp"
         android:layout_alignParentEnd="true"
         android:layout_margin="10sp"
-        android:src="@drawable/baseline_flash_on_24"
+        android:src="@drawable/baseline_flash_off_24"
         app:tint="#fff"
         android:id="@+id/toggleFlash"
         android:background="?attr/selectableItemBackgroundBorderless"/>
