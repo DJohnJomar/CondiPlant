@@ -18,12 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CondiPlant"
         tools:targetApi="31">
-
-        <activity android:name=".TermsOfService"
-            android:exported="false"/>
+        <activity
+            android:name=".Report"
+            android:exported="false" />
+        <activity
+            android:name=".TermsOfService"
+            android:exported="false" />
         <activity
             android:name=".IntroSlider"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".DiseaseMoreInfo"
             android:exported="false" />

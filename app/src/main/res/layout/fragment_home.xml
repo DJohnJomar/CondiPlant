@@ -12,7 +12,8 @@
         android:id="@+id/btnSeeDiseases"
         android:layout_width="250dp"
         android:layout_height="130dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="188dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="See Diseases"
@@ -21,13 +22,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpload"
         app:srcCompat="@drawable/disease_rec_new" />
+
+    <ImageButton
+        android:id="@+id/btnUpload"
+        android:layout_width="257dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="106dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="Upload Image"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCapture"
+        app:srcCompat="@drawable/upload_rec_new" />
 
     <ImageButton
         android:id="@+id/btnCapture"
         android:layout_width="250dp"
         android:layout_height="150dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="36dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="Capture Image"
@@ -39,20 +57,17 @@
         app:srcCompat="@drawable/capture_rec_new" />
 
     <ImageButton
-        android:id="@+id/btnUpload"
-        android:layout_width="257dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginEnd="106dp"
-        android:adjustViewBounds="true"
+        android:id="@+id/btnReport"
+        android:layout_width="250dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="28dp"
         android:background="#00FFFFFF"
-        android:contentDescription="Upload Image"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/btnSeeDiseases"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCapture"
-        app:srcCompat="@drawable/upload_rec_new" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSeeDiseases"
+        app:srcCompat="@drawable/report_rec" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

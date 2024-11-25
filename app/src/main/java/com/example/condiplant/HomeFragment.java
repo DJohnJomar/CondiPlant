@@ -38,7 +38,7 @@ import java.io.IOException;
 
 public class HomeFragment extends Fragment {
 
-    private ImageButton btnCapture, btnUpload, btnSeeDiseases;
+    private ImageButton btnCapture, btnUpload, btnSeeDiseases, btnReport;
     private Bitmap bitmap;
     private File tempImageFile;
     private Toast currentToast;
@@ -65,6 +65,7 @@ public class HomeFragment extends Fragment {
         btnCapture = view.findViewById(R.id.btnCapture);
         btnUpload = view.findViewById(R.id.btnUpload);
         btnSeeDiseases = view.findViewById(R.id.btnSeeDiseases);
+        btnReport = view.findViewById(R.id.btnReport);
 
         preferences = requireContext().getSharedPreferences("HomePrefs", MODE_PRIVATE);
 
@@ -114,6 +115,13 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(getActivity(), ListOfRootcrops.class);
             startActivity(intent);
         });
+
+        btnReport.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), Report.class);
+            startActivity(intent);
+        });
+
+
 
         return view;
     }
