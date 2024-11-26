@@ -44,12 +44,13 @@ public class Report extends AppCompatActivity {
         });
         initDatePicker();
 
+
         btnDatePicker = findViewById(R.id.btnDatePicker);
         btnDatePicker.setText(getTodaysDate());
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openDatePicker(v);
             }
         });
     }
