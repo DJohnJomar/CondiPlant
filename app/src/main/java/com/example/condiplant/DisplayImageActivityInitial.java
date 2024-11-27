@@ -259,7 +259,8 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                 Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
                 reportsModel = new ReportsModel("error", "Error");
             }
-            DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+            DatabaseHelper databaseHelper = new DatabaseHelper(DisplayImageActivityInitial.this);
             boolean success = databaseHelper.addOne(reportsModel);
 
             Toast.makeText(DisplayImageActivityInitial.this, "Success = "+success, Toast.LENGTH_SHORT).show();
