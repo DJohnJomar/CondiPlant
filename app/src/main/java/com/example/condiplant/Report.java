@@ -2,7 +2,9 @@ package com.example.condiplant;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -42,7 +44,7 @@ public class Report extends AppCompatActivity {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
             }
         });
-        initDatePicker();
+        initMonthYearPicker();
 
 
         btnDatePicker = findViewById(R.id.btnDatePicker);
@@ -60,34 +62,33 @@ public class Report extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         month = month + 1; // Month is set to 0 (January is 0). This is to set it to 1 as january is in the calendar
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
+        return makeDateString(month, year);
     }
 
-    private void initDatePicker(){
+    private void initMonthYearPicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+
+            //Use the values inside onDateSet for other purposes e.g. for database, etc.
             @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
-                month = month + 1; // Month is set to 0 (January is 0). This is to set it to 1 as january is in the calendar
-                String date = makeDateString(day, month, year);
-                btnDatePicker.setText(date);
-
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Log.d("MonthYearPicker", "Selected Month: " + (month + 1) + ", Selected Year: " + year);
+                // Ignore dayOfMonth and format output as Month-Year
+                String selectedDate = getMonthFormat(month + 1) + " " + year;
+                btnDatePicker.setText(selectedDate);
             }
         };
+
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year , month, day);
-
+        datePickerDialog = new DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, dateSetListener, year, month, 1);
+        // Suppress the calendar view (only spinner mode)
+        datePickerDialog.getDatePicker().findViewById(Resources.getSystem().getIdentifier("day", "id", "android")).setVisibility(View.GONE);
     }
 
-    private String makeDateString(int day, int month, int year){
-        return getMonthFormat(month) + " " + day + " " + year;
+    private String makeDateString(int month, int year){
+        return getMonthFormat(month) + " " + " " + year;
     }
 
     private String getMonthFormat (int month){
