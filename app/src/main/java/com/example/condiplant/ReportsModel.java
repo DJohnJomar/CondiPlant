@@ -13,6 +13,7 @@ public class ReportsModel {
     public ReportsModel(String plantName, String diseaseName, int count){
         this.plantName = plantName;
         this.diseaseName = diseaseName;
+        this.count = count;
     }
 
     public String getPlantName(){
@@ -20,6 +21,9 @@ public class ReportsModel {
     }
     public String getDiseaseName(){
         return this.diseaseName;
+    }
+    public int getCount(){
+        return this.count;
     }
 
     public String toString(){

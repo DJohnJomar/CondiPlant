@@ -29,8 +29,12 @@ public class Report extends AppCompatActivity {
     private ImageButton btnBack;
     private Button btnDatePicker;
     private DatePickerDialog datePickerDialog;
+    private ArrayList<ReportsModel> reportsModelList;
+    private String btnTextSelectedDate;//Date String for the datePicker button
+    private String selectedDate;
+    private Reports_RecyclerViewAdapter adapter;
+    RecyclerView reportRecyclerView;
 
-    ArrayList<ReportsModel> reportsModelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class Report extends AppCompatActivity {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
             }
         });
+        selectedDate = getTodaysDateFormatted();// Initialize selectedDate with today's date
         initMonthYearPicker();
 
 
@@ -64,10 +69,10 @@ public class Report extends AppCompatActivity {
         });
 
         //Create your adapter after you setup your model
-        RecyclerView reportRecyclerView = findViewById(R.id.reportRecyclerView);
-        setupReportsModel();
+        reportRecyclerView = findViewById(R.id.reportRecyclerView);
+        updateRecyclerViewData(selectedDate);
 
-        Reports_RecyclerViewAdapter adapter = new Reports_RecyclerViewAdapter(this, reportsModelList);
+        adapter = new Reports_RecyclerViewAdapter(this, reportsModelList);
 
         //Attaching the adapter to the recyclerview
         reportRecyclerView.setAdapter(adapter);
@@ -82,6 +87,13 @@ public class Report extends AppCompatActivity {
         month = month + 1; // Month is set to 0 (January is 0). This is to set it to 1 as january is in the calendar
         return makeDateString(month, year);
     }
+    private String getTodaysDateFormatted(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        month = month + 1; // Month is set to 0 (January is 0). This is to set it to 1 as january is in the calendar
+        return year+"-"+month;
+    }
 
     private void initMonthYearPicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -91,8 +103,10 @@ public class Report extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 Log.d("MonthYearPicker", "Selected Month: " + (month + 1) + ", Selected Year: " + year);
                 // Ignore dayOfMonth and format output as Month-Year
-                String selectedDate = getMonthFormat(month + 1) + " " + year;
-                btnDatePicker.setText(selectedDate);
+                btnTextSelectedDate = getMonthFormat(month + 1) + " " + year;
+                btnDatePicker.setText(btnTextSelectedDate);
+                selectedDate = year+"-"+(month+1);
+                updateRecyclerViewData(selectedDate);
             }
         };
 
@@ -142,18 +156,21 @@ public class Report extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    //Used to create reports items and attach attributes to it
-    //Can be used later for filling up data from a database
-    private void setupReportsModel(){
-        /*
-        Data must now come from the database instead of the string files
-         */
-//        String[] plantNames = getResources().getStringArray(R.array.plantNamesArray);
-//        String[] diseaseNames = getResources().getStringArray(R.array.diseaseNamesArray);
-//
-//        for(int i = 0; i<plantNames.length;i++){
-//            reportsModelList.add(new ReportsModel(plantNames[i], diseaseNames[i]));
-//
-//        }
+    // This method will query the database and update the RecyclerView's adapter
+    private void updateRecyclerViewData(String selectedDate) {
+        // Fetch the data based on the selected date
+        DatabaseHelper databaseHelper = new DatabaseHelper(Report.this);
+        reportsModelList = databaseHelper.getSelectedDate(selectedDate); // Assume this method fetches data based on date
+        Log.d("RecyclerViewData", "Fetched data: " + reportsModelList.size() + " items");
+
+        // Check if reportsModelList has data
+        if (reportsModelList != null && !reportsModelList.isEmpty()) {
+            adapter = new Reports_RecyclerViewAdapter(this, reportsModelList);
+            reportRecyclerView.setAdapter(adapter);  // Set adapter only once after fetching data
+            adapter.notifyDataSetChanged(); // Notify the adapter of the updated data
+        } else {
+            Log.d("RecyclerViewData", "No data found for selected date.");
+        }
     }
+
 }

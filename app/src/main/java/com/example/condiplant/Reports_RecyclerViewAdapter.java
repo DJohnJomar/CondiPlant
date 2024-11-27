@@ -45,8 +45,8 @@ public class Reports_RecyclerViewAdapter extends RecyclerView.Adapter<Reports_Re
 
         holder.txtPlantName.setText(reportsModelsList.get(position).getPlantName());
         holder.txtDiseaseName.setText(reportsModelsList.get(position).getDiseaseName());
-        //holder.txtCount.setText(String.valueOf(reportsModelsList.get(position).getCount()));
-        holder.txtCount.setText("0"); //Temporarily Zero
+        holder.txtCount.setText(String.valueOf(reportsModelsList.get(position).getCount()));
+        //holder.txtCount.setText(reportsModelsList.get(position).getCount());
 
 
     }

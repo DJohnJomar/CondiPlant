@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -55,20 +56,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    // Method to fetch records based on selected month and year
-    //Uses ReportsModel - report object specialized for recyclerview and displaying
-    public List<ReportsModel> getSelectedDate(int year, int month) {
-        List<ReportsModel> returnList = new ArrayList<>();
+    // Method to fetch records based on selected "yyyy-MM" formatted date string
+    // Uses ReportsModel - report object specialized for RecyclerView and displaying
+    public ArrayList<ReportsModel> getSelectedDate(String yearMonth) {
+        ArrayList<ReportsModel> returnList = new ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-
-        // Format year and month as yyyy-MM (e.g., 2024-11)
-        String yearMonth = String.format("%04d-%02d", year, month);
 
         // SQL query to get the count of each (PLANT_NAME, PLANT_DISEASE_NAME) pair
         String queryString = "SELECT " + COLUMN_PLANT_NAME + ", " + COLUMN_PLANT_DISEASE_NAME + ", COUNT(*) as count FROM " + REPORT_TABLE +
                 " WHERE " + COLUMN_CAPTURE_DATE + " LIKE ? GROUP BY " + COLUMN_PLANT_NAME + ", " + COLUMN_PLANT_DISEASE_NAME;
-        Cursor cursor = db.rawQuery(queryString, new String[]{yearMonth + "%"});
+        Log.d("DatabaseQuery", "Query: " + queryString);  // Log the query
+        // Query with the "yyyy-MM%" format to match all entries for that month and year
+        Cursor cursor = db.rawQuery(queryString, new String[]{yearMonth + "%"}); // yearMonth is "yyyy-MM"
 
         if (cursor.moveToFirst()) {
             do {
@@ -76,14 +76,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String plantName = cursor.getString(0); // Assuming COLUMN_PLANT_NAME is at index 0
                 String diseaseName = cursor.getString(1); // Assuming COLUMN_PLANT_DISEASE_NAME is at index 1
                 int count = cursor.getInt(2); // The count from COUNT(*) alias 'count' will be at index 2
-
+                // Log the results
+                Log.d("DatabaseQuery", "Plant: " + plantName + ", Disease: " + diseaseName + ", Count: " + count);
                 // Add the formatted result to the list
                 returnList.add(new ReportsModel(plantName, diseaseName, count));
             } while (cursor.moveToNext());
+        }else {
+            Log.d("DatabaseQuery", "No data found for " + yearMonth);
         }
 
         cursor.close();
         db.close();
         return returnList;
     }
+
 }
