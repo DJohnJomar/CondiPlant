@@ -77,13 +77,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reportRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_width="400dp"
+        android:layout_height="503dp"
         android:layout_marginTop="179dp"
-        android:paddingTop="20dp"
         android:background="@color/LightDarkerGreen"
+        android:paddingTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        tools:layout_editor_absoluteX="-2dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnDatePicker"
