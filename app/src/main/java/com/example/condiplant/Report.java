@@ -150,7 +150,7 @@ public class Report extends AppCompatActivity {
         String[] counts = getResources().getStringArray(R.array.countsArray);
 
         for(int i = 0; i<plantNames.length;i++){
-            reportsModelList.add(new ReportsModel(plantNames[i], diseaseNames[i], Integer.parseInt(counts[i])));
+            reportsModelList.add(new ReportsModel(plantNames[i], diseaseNames[i]));
 
         }
     }

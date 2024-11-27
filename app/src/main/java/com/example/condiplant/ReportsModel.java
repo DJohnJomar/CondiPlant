@@ -3,13 +3,11 @@ package com.example.condiplant;
 public class ReportsModel {
     private String plantName;
     private String diseaseName;
-    private int count;
     private String captureDate;
 
-    public ReportsModel(String plantName, String diseaseName, int count){
+    public ReportsModel(String plantName, String diseaseName){
         this.plantName = plantName;
         this.diseaseName = diseaseName;
-        this.count = count;
     }
 
     public String getPlantName(){
@@ -18,9 +16,7 @@ public class ReportsModel {
     public String getDiseaseName(){
         return this.diseaseName;
     }
-    public int getCount(){
-        return this.count;
-    }
+
     public String getCaptureDate(){
         return this.captureDate;
     }

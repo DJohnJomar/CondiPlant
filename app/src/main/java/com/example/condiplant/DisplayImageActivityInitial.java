@@ -253,11 +253,11 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             }
             ReportsModel reportsModel;
             try{
-                reportsModel = new ReportsModel(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), 0);
+                reportsModel = new ReportsModel(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]));
                 Toast.makeText(DisplayImageActivityInitial.this, reportsModel.toString(), Toast.LENGTH_SHORT).show();
             }catch (Exception e){
                 Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
-                reportsModel = new ReportsModel("error", "Error", 0);
+                reportsModel = new ReportsModel("error", "Error");
             }
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
             boolean success = databaseHelper.addOne(reportsModel);
