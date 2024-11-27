@@ -162,13 +162,25 @@ public class Report extends AppCompatActivity {
         reportsModelList = databaseHelper.getSelectedDate(selectedDate); // Assume this method fetches data based on date
         Log.d("RecyclerViewData", "Fetched data: " + reportsModelList.size() + " items");
 
+        // Find the empty state TextView
+        TextView txtEmptyState = findViewById(R.id.txtEmptyState);
+
         // Check if reportsModelList has data
         if (reportsModelList != null && !reportsModelList.isEmpty()) {
+            // Hide empty state message
+            txtEmptyState.setVisibility(View.GONE);
+
+            // Show RecyclerView and set adapter
+            reportRecyclerView.setVisibility(View.VISIBLE);
             adapter = new Reports_RecyclerViewAdapter(this, reportsModelList);
             reportRecyclerView.setAdapter(adapter);  // Set adapter only once after fetching data
             adapter.notifyDataSetChanged(); // Notify the adapter of the updated data
         } else {
-            Log.d("RecyclerViewData", "No data found for selected date.");
+            // Show empty state message
+            txtEmptyState.setVisibility(View.VISIBLE);
+
+            // Hide RecyclerView
+            reportRecyclerView.setVisibility(View.GONE);
         }
     }
 
