@@ -106,7 +106,7 @@ public class Report extends AppCompatActivity {
     }
 
     private String makeDateString(int month, int year){
-        return getMonthFormat(month) + " " + " " + year;
+        return getMonthFormat(month) + " " + year;
     }
 
     private String getMonthFormat (int month){
@@ -145,13 +145,15 @@ public class Report extends AppCompatActivity {
     //Used to create reports items and attach attributes to it
     //Can be used later for filling up data from a database
     private void setupReportsModel(){
-        String[] plantNames = getResources().getStringArray(R.array.plantNamesArray);
-        String[] diseaseNames = getResources().getStringArray(R.array.diseaseNamesArray);
-        String[] counts = getResources().getStringArray(R.array.countsArray);
-
-        for(int i = 0; i<plantNames.length;i++){
-            reportsModelList.add(new ReportsModel(plantNames[i], diseaseNames[i]));
-
-        }
+        /*
+        Data must now come from the database instead of the string files
+         */
+//        String[] plantNames = getResources().getStringArray(R.array.plantNamesArray);
+//        String[] diseaseNames = getResources().getStringArray(R.array.diseaseNamesArray);
+//
+//        for(int i = 0; i<plantNames.length;i++){
+//            reportsModelList.add(new ReportsModel(plantNames[i], diseaseNames[i]));
+//
+//        }
     }
 }

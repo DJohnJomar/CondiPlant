@@ -5,9 +5,10 @@ public class ReportsModel {
     private String diseaseName;
     private String captureDate;
 
-    public ReportsModel(String plantName, String diseaseName){
+    public ReportsModel(String plantName, String diseaseName, String captureDate){
         this.plantName = plantName;
         this.diseaseName = diseaseName;
+        this.captureDate = captureDate;
     }
 
     public String getPlantName(){

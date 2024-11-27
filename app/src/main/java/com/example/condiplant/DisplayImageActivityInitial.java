@@ -27,6 +27,7 @@ import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -253,11 +254,11 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
             }
             ReportsModel reportsModel;
             try{
-                reportsModel = new ReportsModel(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]));
+                reportsModel = new ReportsModel(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), getTodaysDate());
                 Toast.makeText(DisplayImageActivityInitial.this, reportsModel.toString(), Toast.LENGTH_SHORT).show();
             }catch (Exception e){
                 Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
-                reportsModel = new ReportsModel("error", "Error");
+                reportsModel = new ReportsModel("error", "Error", getTodaysDate());
             }
 
             DatabaseHelper databaseHelper = new DatabaseHelper(DisplayImageActivityInitial.this);
@@ -374,5 +375,48 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
     private int[] convertIndices(int[] topIndices) {
         int[] diseaseIndices = {0, 1, 2, 5, 7, 11, 13, 14, 15, 18, 19};
         return new int[]{diseaseIndices[topIndices[0]], diseaseIndices[topIndices[1]], diseaseIndices[topIndices[2]]};
+    }
+
+    private String getTodaysDate(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = month + 1; // Month is set to 0 (January is 0). This is to set it to 1 as january is in the calendar
+        return makeDateString(year, month, day);
+    }
+
+    //yyyy-MM-DD format, standardized for the db (ISO 8601 standard)
+    private String makeDateString(int year, int month, int day){
+        return year+"-"+month+"-"+day;
+    }
+
+    private String getMonthFormat (int month){
+        if(month == 1)
+            return "JAN";
+        if(month == 2)
+            return "FEB";
+        if(month == 3)
+            return "MAR";
+        if(month == 4)
+            return "APR";
+        if(month == 5)
+            return "MAY";
+        if(month == 6)
+            return "JUN";
+        if(month == 7)
+            return "JUL";
+        if(month == 8)
+            return "AUG";
+        if(month == 9)
+            return "SEP";
+        if(month == 10)
+            return "OCT";
+        if(month == 11)
+            return "NOV";
+        if(month == 12)
+            return "DEC";
+        //Default should never happen
+        return "JAN";
     }
 }
