@@ -78,7 +78,7 @@ public class DisplayImageActivity extends AppCompatActivity {
         listManagements.add(TMV);
 
         txtRootCrop = findViewById(R.id.txtRootCrop);
-        txtDisease = findViewById(R.id.txtDisease);
+        txtDisease = findViewById(R.id.txtDiseaseName);
         txtDiseaseDesc = findViewById(R.id.txtDiseaseDesc);
         txtCausesDesc = findViewById(R.id.txtCausesDesc);
         txtBefore = findViewById(R.id.txtBefore);

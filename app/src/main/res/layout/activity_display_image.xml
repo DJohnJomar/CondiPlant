@@ -164,7 +164,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtRootCrop" />
 
             <TextView
-                android:id="@+id/txtDisease"
+                android:id="@+id/txtDiseaseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
@@ -194,7 +194,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtDisease" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDiseaseName" />
 
             <TextView
                 android:id="@+id/txtDiseaseDesc"

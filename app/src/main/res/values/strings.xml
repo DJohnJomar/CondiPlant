@@ -61,5 +61,26 @@
 </string>
     <string name="dialog_message">Please note that our app\'s predictions are specifically focused on <b>root crops found in Cabuyao area</b>. If you enter a plant that is unrelated to these crops, the predictions may be inaccurate. Thank you for your understanding and please ensure to use the app as intended.</string>
 
+<string-array name="plantNamesArray">
+    <item>Plant name 1</item>
+    <item>Plant name 2</item>
+    <item>Plant name 3</item>
+    <item>Plant name 4</item>
+</string-array>
+
+<string-array name="diseaseNamesArray">
+    <item>Disease name 1</item>
+    <item>Disease name 2</item>
+    <item>Disease name 3</item>
+    <item>Disease name 4</item>
+</string-array>
+
+<string-array name="countsArray">
+    <item>69</item>
+    <item>420</item>
+    <item>132</item>
+    <item>456</item>
+    <item>789</item>
+</string-array>
 
 </resources>

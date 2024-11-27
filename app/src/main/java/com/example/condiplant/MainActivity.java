@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
 import com.example.condiplant.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,5 +59,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
     }
+
+
 
 }

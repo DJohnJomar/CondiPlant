@@ -16,7 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.condiplant.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Report extends AppCompatActivity {
@@ -24,6 +29,8 @@ public class Report extends AppCompatActivity {
     private ImageButton btnBack;
     private Button btnDatePicker;
     private DatePickerDialog datePickerDialog;
+
+    ArrayList<ReportsModel> reportsModelList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,17 @@ public class Report extends AppCompatActivity {
                 openDatePicker(v);
             }
         });
+
+        //Create your adapter after you setup your model
+        RecyclerView reportRecyclerView = findViewById(R.id.reportRecyclerView);
+        setupReportsModel();
+
+        Reports_RecyclerViewAdapter adapter = new Reports_RecyclerViewAdapter(this, reportsModelList);
+
+        //Attaching the adapter to the recyclerview
+        reportRecyclerView.setAdapter(adapter);
+        reportRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private String getTodaysDate(){
@@ -122,5 +140,18 @@ public class Report extends AppCompatActivity {
 
     public void openDatePicker(View view){
         datePickerDialog.show();
+    }
+
+    //Used to create reports items and attach attributes to it
+    //Can be used later for filling up data from a database
+    private void setupReportsModel(){
+        String[] plantNames = getResources().getStringArray(R.array.plantNamesArray);
+        String[] diseaseNames = getResources().getStringArray(R.array.diseaseNamesArray);
+        String[] counts = getResources().getStringArray(R.array.countsArray);
+
+        for(int i = 0; i<plantNames.length;i++){
+            reportsModelList.add(new ReportsModel(plantNames[i], diseaseNames[i], Integer.parseInt(counts[i])));
+
+        }
     }
 }

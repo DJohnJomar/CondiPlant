@@ -5,5 +5,6 @@
     <color name="BgGreen">#E9FCDA</color>
     <color name="LineGreen">#1E7922</color>
     <color name="LightDarkGreen">#C2DCAB</color>
+    <color name="LightDarkerGreen">#A3B693</color>
 
 </resources>
