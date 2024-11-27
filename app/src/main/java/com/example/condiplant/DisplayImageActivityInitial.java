@@ -252,17 +252,17 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                     updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], 0);
                 }
             }
-            ReportsModel reportsModel;
+            ReportItem reportItem;
             try{
-                reportsModel = new ReportsModel(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), getTodaysDate());
-                Toast.makeText(DisplayImageActivityInitial.this, reportsModel.toString(), Toast.LENGTH_SHORT).show();
+                reportItem = new ReportItem(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), getTodaysDate());
+                Toast.makeText(DisplayImageActivityInitial.this, reportItem.toString(), Toast.LENGTH_SHORT).show();
             }catch (Exception e){
                 Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
-                reportsModel = new ReportsModel("error", "Error", getTodaysDate());
+                reportItem = new ReportItem("error", "Error", getTodaysDate());
             }
 
             DatabaseHelper databaseHelper = new DatabaseHelper(DisplayImageActivityInitial.this);
-            boolean success = databaseHelper.addOne(reportsModel);
+            boolean success = databaseHelper.addOne(reportItem);
 
             Toast.makeText(DisplayImageActivityInitial.this, "Success = "+success, Toast.LENGTH_SHORT).show();
 

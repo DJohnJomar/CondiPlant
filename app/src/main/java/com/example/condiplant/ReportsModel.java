@@ -1,14 +1,18 @@
+/*
+This class is to be used by the reyclerView to store report objects
+That is why it stores a count
+ */
 package com.example.condiplant;
+
 
 public class ReportsModel {
     private String plantName;
     private String diseaseName;
-    private String captureDate;
+    private int count;
 
-    public ReportsModel(String plantName, String diseaseName, String captureDate){
+    public ReportsModel(String plantName, String diseaseName, int count){
         this.plantName = plantName;
         this.diseaseName = diseaseName;
-        this.captureDate = captureDate;
     }
 
     public String getPlantName(){
@@ -16,14 +20,6 @@ public class ReportsModel {
     }
     public String getDiseaseName(){
         return this.diseaseName;
-    }
-
-    public String getCaptureDate(){
-        return this.captureDate;
-    }
-
-    public void setCaptureDate(String date){
-        this.captureDate = date;
     }
 
     public String toString(){
