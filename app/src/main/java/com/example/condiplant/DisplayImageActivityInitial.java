@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -153,6 +155,8 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
 
     public void predict(Bitmap bitmap){
         try {
+
+
             System.out.println("Predicting");
             Efficientnetb0MainModel mainModel = Efficientnetb0MainModel.newInstance(DisplayImageActivityInitial.this);
             Efficientnetb0SubModel subModel = Efficientnetb0SubModel.newInstance(DisplayImageActivityInitial.this);
@@ -247,6 +251,19 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                     updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], 0);
                 }
             }
+            ReportsModel reportsModel;
+            try{
+                reportsModel = new ReportsModel(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), 0);
+                Toast.makeText(DisplayImageActivityInitial.this, reportsModel.toString(), Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
+                reportsModel = new ReportsModel("error", "Error", 0);
+            }
+            DatabaseHelper databaseHelper = new DatabaseHelper(this);
+            boolean success = databaseHelper.addOne(reportsModel);
+
+            Toast.makeText(DisplayImageActivityInitial.this, "Success = "+success, Toast.LENGTH_SHORT).show();
+
 
             // Releases subModel resources if no longer used.
             subModel.close();
