@@ -55,9 +55,9 @@ public class Report extends AppCompatActivity {
                 finish();// Finish current activity and go back to previous activity (MainActivity)
             }
         });
+
         selectedDate = getTodaysDateFormatted();// Initialize selectedDate with today's date
         initMonthYearPicker();
-
 
         btnDatePicker = findViewById(R.id.btnDatePicker);
         btnDatePicker.setText(getTodaysDate());
@@ -73,7 +73,6 @@ public class Report extends AppCompatActivity {
         updateRecyclerViewData(selectedDate);
 
         adapter = new Reports_RecyclerViewAdapter(this, reportsModelList);
-
         //Attaching the adapter to the recyclerview
         reportRecyclerView.setAdapter(adapter);
         reportRecyclerView.setLayoutManager(new LinearLayoutManager(this));
