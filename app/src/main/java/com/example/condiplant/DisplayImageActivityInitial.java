@@ -236,6 +236,22 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                     Log.d("Top Predictions", "Index 1: " + topIndices[0] + ", Confidence: " + topConfidences[0]);
                     Log.d("Top Predictions", "Index 2: " + topIndices[1] + ", Confidence: " + topConfidences[1]);
                     Log.d("Top Predictions", "Index 3: " + topIndices[2] + ", Confidence: " + topConfidences[2]);
+
+                    // Add prediction to database for report
+                    ReportItem reportItem;
+                    try{
+                        reportItem = new ReportItem(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), getTodaysDate());
+                        Toast.makeText(DisplayImageActivityInitial.this, reportItem.toString(), Toast.LENGTH_SHORT).show();
+                    }catch (Exception e){
+                        Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
+                        reportItem = new ReportItem("error", "Error", getTodaysDate());
+                    }
+
+                    DatabaseHelper databaseHelper = new DatabaseHelper(DisplayImageActivityInitial.this);
+                    boolean success = databaseHelper.addOne(reportItem);
+
+                    Toast.makeText(DisplayImageActivityInitial.this, "Success = "+success, Toast.LENGTH_SHORT).show();
+
                 }
 
                 // Update the text views for the predictions and accuracy
@@ -252,19 +268,7 @@ public class DisplayImageActivityInitial extends AppCompatActivity {
                     updatePredictionUI(layout3, txtPlant3, txtPrediction3, txtAccuracy3, btnPrediction3More, topIndices[2], 0);
                 }
             }
-            ReportItem reportItem;
-            try{
-                reportItem = new ReportItem(labelPlants.get(topIndices[0]), labelDiseases.get(topIndices[0]), getTodaysDate());
-                Toast.makeText(DisplayImageActivityInitial.this, reportItem.toString(), Toast.LENGTH_SHORT).show();
-            }catch (Exception e){
-                Toast.makeText(DisplayImageActivityInitial.this, "Error creating report", Toast.LENGTH_SHORT).show();
-                reportItem = new ReportItem("error", "Error", getTodaysDate());
-            }
 
-            DatabaseHelper databaseHelper = new DatabaseHelper(DisplayImageActivityInitial.this);
-            boolean success = databaseHelper.addOne(reportItem);
-
-            Toast.makeText(DisplayImageActivityInitial.this, "Success = "+success, Toast.LENGTH_SHORT).show();
 
 
             // Releases subModel resources if no longer used.

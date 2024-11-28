@@ -9,13 +9,13 @@
     tools:context=".ListOfRootcrops">
 
     <ImageView
-        android:id="@+id/imgPlant3"
+        android:id="@+id/imgPlant4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="516dp"
         android:src="@drawable/bg_design"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtTitle"
@@ -102,6 +102,7 @@
         android:contentDescription="Taro"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCassava"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle"
         app:srcCompat="@drawable/taro" />
 
@@ -114,6 +115,7 @@
         android:background="@color/BgGreen"
         android:contentDescription="Cassava"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/btnTaro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle"
         app:srcCompat="@drawable/cassava" />
@@ -127,6 +129,7 @@
         android:contentDescription="Sweet_Potato"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnPurpleYam"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCassava"
         app:layout_constraintVertical_bias="0.21"
@@ -141,6 +144,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSweetPotato"
         app:layout_constraintTop_toBottomOf="@+id/txtTaro"
         app:layout_constraintVertical_bias="0.186"
         app:srcCompat="@drawable/purpleyam" />
